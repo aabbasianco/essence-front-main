@@ -100,10 +100,10 @@
 }
 
 .dark {
-  --background: #1d1b17;
+  --background: #0A0A0A;
   --foreground: #f6f1e7;
 
-  --card: #25221c;
+  --card: #171717;
   --card-foreground: #f6f1e7;
 
   --popover: #25221c;
@@ -124,8 +124,8 @@
   --destructive: #cc7a7a;
   --destructive-foreground: #1d1b17;
 
-  --border: #3b3730;
-  --input: #3b3730;
+  --border: #424242;
+  --input: #212121;
   --ring: #c1b08a;
 
   --chart-1: #c1b08a;

@@ -7,6 +7,9 @@ import { cn } from "@/lib/utils";
 import { Noto_Sans_Arabic } from "next/font/google"
 import { Noto_Naskh_Arabic } from "next/font/google"
 
+// Theme probider
+import { ThemeProvider } from "@/components/theme-provider"
+
 const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
@@ -37,11 +40,21 @@ export default function RootLayout({
 }>) {
   return (
     <html
+      suppressHydrationWarning
       lang="fa"
       dir="rtl"
       className={cn("h-full", "antialiased", notoSans.variable, geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            </ThemeProvider>
+      </body>
     </html>
   );
 }

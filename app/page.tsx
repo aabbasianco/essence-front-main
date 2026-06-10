@@ -1,3 +1,9 @@
+"use client"
+
+import * as React from "react"
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
+
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -10,8 +16,17 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function CardDemo() {
+  const { setTheme } = useTheme()
+  
+  
   return (
     <Card className="w-full max-w-sm m-auto">
       <CardHeader>
@@ -51,10 +66,10 @@ export default function CardDemo() {
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" size="lg" onClick={() => setTheme("dark")}>
           ورود
         </Button>
-        <Button variant="outline" className="w-full">
+        <Button variant="outline" className="w-full" size="lg" onClick={() => setTheme("light")}>
           ورود با Google
         </Button>
       </CardFooter>
