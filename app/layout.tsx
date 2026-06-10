@@ -3,12 +3,22 @@ import { Geist, Geist_Mono, Figtree } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
+// RTL
+import { Noto_Sans_Arabic } from "next/font/google"
+import { Noto_Naskh_Arabic } from "next/font/google"
+
 const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+// RTL
+const notoSans = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-sans",
+})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -28,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
+      className={cn("h-full", "antialiased", notoSans.variable, geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
