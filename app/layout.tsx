@@ -37,7 +37,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="fa"
+      dir="rtl"
       className={cn("h-full", "antialiased", notoSans.variable, geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
     >
       <body className="min-h-full flex flex-col">{children}</body>

@@ -13,9 +13,7 @@ import { Label } from "@/components/ui/label"
 
 export default function CardDemo() {
   return (
-    <html lang="fa" dir="rtl">
-      <body>
-    <Card className="w-full max-w-sm">
+    <Card className="w-full max-w-sm m-auto">
       <CardHeader>
         <CardTitle>ورود به اکانت</CardTitle>
         <CardDescription>
@@ -61,7 +59,5 @@ export default function CardDemo() {
         </Button>
       </CardFooter>
     </Card>
-    </body>
-    </html>
   )
 }
