@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 
-export function LoginForm({
+export function LoginPasswordForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
