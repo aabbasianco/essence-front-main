@@ -35,11 +35,11 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="[--card-spacing:--spacing(7)]">
         <CardHeader>
-          <div className="flex flex-row-reverse items-center mb-12">
-            <Image className="m-auto" src="/images/logos/essence_logo_type_primary_transparent_fa.png" alt="Logo" width={200} height={120} />
+          <div className="flex flex-row items-center">
+            {/* <Image className="m-auto" src="/images/logos/essence_type_primary_transparent.png" alt="Logo" width={260} height={120} /> */}
             <a><ArrowRight></ArrowRight></a>
-          </div>
-          <CardTitle className="text-xl">ورود یا ثبت نام در اسانس</CardTitle>
+          <CardTitle className="text-xl m-auto">ورود یا ثبت نام در اسانس</CardTitle>
+            </div>
         </CardHeader>
         <CardContent>
           <form>
@@ -56,7 +56,7 @@ export function LoginForm({
                   required
                 />
                 <Button className="cursor-pointer" type="submit" size="xl">
-                  ورود
+                  ورود به اسانس
                 </Button>
                 <FieldDescription className="px-6 text-center">
                   ورود شما به معنای پذیرش <a href="#">شرایط اسانس</a> و{" "}
