@@ -32,14 +32,18 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col", className)} {...props}>
       <Card className="[--card-spacing:--spacing(7)]">
         <CardHeader>
           <div className="flex flex-row items-center">
             {/* <Image className="m-auto" src="/images/logos/essence_type_primary_transparent.png" alt="Logo" width={260} height={120} /> */}
-            <a><ArrowRight></ArrowRight></a>
-          <CardTitle className="text-xl m-auto">ورود یا ثبت نام در اسانس</CardTitle>
-            </div>
+            <a>
+              <ArrowRight></ArrowRight>
+            </a>
+            <CardTitle className="text-xl m-auto">
+              ورود یا ثبت نام در اسانس
+            </CardTitle>
+          </div>
         </CardHeader>
         <CardContent>
           <form>

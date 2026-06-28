@@ -1,12 +1,14 @@
-import { GalleryVerticalEnd } from "lucide-react";
+import { GalleryVerticalEnd } from "lucide-react"
 
 import { LoginForm } from "@/components/login-form";
 import Image from "next/image";
+import { ThemeToggle } from '@/components/theme-toggle';
 
-export default function SignupPage() {
+export default function Login() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="flex w-full max-w-sm flex-col gap-6">
+        <ThemeToggle/>
         <Image
           className="m-auto"
           src="/images/logos/essence_logo_type_primary_dark_transparent_en.png"
@@ -14,15 +16,8 @@ export default function SignupPage() {
           width={260}
           height={120}
         />
-
-        {/* <a href="#" className="flex items-center gap-2 self-center font-medium">
-          <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <GalleryVerticalEnd className="size-4" />
-          </div>
-         اسانس
-        </a> */}
         <LoginForm />
       </div>
     </div>
-  );
+  )
 }
