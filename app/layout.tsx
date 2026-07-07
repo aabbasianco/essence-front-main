@@ -1,19 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-
-// RTL
-import { Noto_Sans_Arabic } from "next/font/google"
-// import { Noto_Naskh_Arabic } from "next/font/google"
+import { notoSans } from "@/lib/fonts";
 
 // Theme probider
-import { ThemeProvider } from "@/components/theme-provider"
-
-// RTL
-const notoSans = Noto_Sans_Arabic({
-  subsets: ["arabic", "latin"],
-  variable: "--font-sans",
-})
+import { ThemeProvider } from "@/components/theme-provider" 
 
 export const metadata: Metadata = {
   title: "Essence | اسانس",
