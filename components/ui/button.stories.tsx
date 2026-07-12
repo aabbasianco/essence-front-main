@@ -3,59 +3,95 @@ import type { Meta, StoryObj} from '@storybook/nextjs-vite'
 import { Button } from '@/components/ui/button'
 
 const meta = {
-    title:'UI/Button',
+    title:'UI/Atoms/Button',
     component: Button,
-    tags:['autodocs'],
+    argTypes: {
+        variant: {
+            control: 'select',
+            options: ['primary',  'secondary', 'tertiary', 'ghost', 'destructive', 'link'],
+            description: 'Variant of the button',
+        },
+        size: {
+            control: 'select',
+            options: ['md', 'xs', 'sm', 'lg', 'xl', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'],
+            description: 'Sizes of the Button',
+        },
+        children: {
+            control: 'text',
+            description: 'Content of the button',
+        },
+        disabled: {
+            control: 'boolean',
+            description: 'Disables the button',
+        }
+    },
+    tags: ['experimental'],
+    args: {
+        size: 'md',
+    }
 } satisfies Meta<typeof Button>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default : Story = {
+export const Primary : Story = {
+    tags: ['autodocs'],
     args: {
-        variant: 'default',
-        size: 'default',
-        children: 'افزودن',
-    }
+        variant: 'primary',
+        size: 'md',
+        children: 'Primary',
+    },
 }
 
-export const Outline : Story = {
-    args : {
-        variant: 'outline',
-        size: 'default',
-        children: 'افزودن',
-    }
+export const Variations : Story = {
+    tags: ['autodocs'],
+    args: {
+        size: 'md',
+    },
+    render: (args) => (
+        <div className="flex gap-4 justify-center">
+            <Button {...args} variant="primary">Primary</Button>
+            <Button {...args} variant="secondary">Secondary</Button>
+            <Button {...args} variant="tertiary">Tertiary</Button>
+            <Button {...args} variant="ghost">Ghost</Button>
+            <Button {...args} variant="destructive">Destructive</Button>
+            <Button {...args} variant="link">Link</Button>
+        </div>
+    )
 }
 
 export const Secondary : Story ={
     args: {
         variant: 'secondary',
-        size: 'default',
-        children: 'افزودن'
+        children: 'Secondary',
+    }
+}
+
+export const Tertiary : Story = {
+    args : {
+        variant: 'tertiary',
+        children: 'Tertiary',
     }
 }
 
 export const Ghost : Story = {
     args: {
         variant: 'ghost',
-        size: 'default',
-        children: 'افزودن',
+        children: 'Ghost',
     }
 }
 
 export const Destructive : Story = {
     args : {
         variant: 'destructive',
-        size: 'default',
-        children: 'افزودن',
+        children: 'Destructive',
     }
 }
 
 export const Link : Story = {
     args : {
         variant: 'link',
-        size: 'default',
-        children: 'افزودن',
+        children: 'Link',
     }
 }
