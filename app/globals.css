@@ -275,6 +275,7 @@
   --radius-xl: 1rem;
   --radius-2xl: 1.25rem;
   --radius-3xl: 1.5rem;
+  --radius-4xl: 1.75rem;
   --radius-full: 9999px;
 
   /* ==========================================================================
@@ -342,6 +343,92 @@
   --blur-sm: 4px;
   --blur-md: 8px;
   --blur-lg: 16px;
+
+  /* ==========================================================================
+   Semantic Tokens : Background & Foreground
+   ========================================================================== */
+  /* Backgrounds */
+  --background: var(--color-gray-50);
+  --background-foreground: var(--color-gray-950);
+
+  --surface: #FFFFFF;
+  --surface-foreground: var(--color-gray-900);
+
+  --surface-subtle: var(--color-gray-100);
+
+  /* Brand */
+  --brand: var(--color-brand-850);
+  --brand-foreground: #FFFFFF;
+
+  --brand-subtle: var(--color-brand-50);
+  --brand-subtle-foreground: var(--color-brand-800);
+
+  /* Primary */
+  --primary: var(--color-blue-500);
+  --primary-foreground: #FFFFFF;
+
+  --primary-subtle: var(--color-blue-50);
+  --primary-subtle-foreground: var(--color-blue-700);
+
+  /* Secondary */
+  --secondary: var(--color-warm-sand-300);
+  --secondary-foreground: var(--color-brand-850);
+
+  --secondary-subtle: var(--color-warm-sand-100);
+  --secondary-subtle-foreground: var(--color-warm-sand-700);
+
+  /* Tertiary */
+  --tertiary: var(--color-gray-200);
+  --tertiary-foreground: var(--color-gray-900);
+
+  --tertiary-subtle: var(--color-gray-100);
+  --tertiary-subtle-foreground: var(--color-gray-700);
+
+  /* ==========================================================================
+   Semantic Tokens : Border
+   ========================================================================== */
+  --border: var(--color-gray-200);
+
+  --focus-ring: var(--color-blue-400);
+
+  --seperator: var(--color-gray-200);
+
+  /* ==========================================================================
+   Semantic Tokens : Support
+   ========================================================================== */
+  /* Success */
+  --success: var(--color-success-600);
+  --success-foreground: #FFFFFF;
+
+  --success-subtle: var(--color-success-50);
+  --success-subtle-foreground: var(--color-success-700);
+
+  /* Warning */
+  --warning: var(--color-warning-500);
+  --warning-foreground: var(--color-brand-900);
+
+  --warning-subtle: var(--color-warning-50);
+  --warning-subtle-foreground: var(--color-warning-700);
+
+  /* Error */
+  --error: var(--color-error-600);
+  --error-foreground: #FFFFFF;
+
+  --error-subtle: var(--color-error-50);
+  --error-subtle-foreground: var(--color-error-700);
+
+  /* Info */
+  --info: var(--color-info-600);
+  --info-foreground: #FFFFFF;
+
+  --info-subtle: var(--color-info-50);
+  --info-subtle-foreground: var(--color-info-700);
+
+  /* ==========================================================================
+   Semantic Tokens : Overlay
+   ========================================================================== */
+  /* Overlay */
+  --overlay: rgb(0 0 0 / 0.45);
 }
 
 .dark {
