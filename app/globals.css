@@ -48,7 +48,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-  /* --primary: hsl(44, 24%, 45%);
+/* --primary: hsl(44, 24%, 45%);
   --primary: #c1b08a; */
 
 :root {
@@ -87,6 +87,261 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
+
+  /* ==========================================================================
+   Primitive Tokens : Colors
+   ========================================================================== */
+  /* Gray */
+  --color-gray-50: oklch(98.5% 0.002 247.839);
+  --color-gray-100: oklch(96.7% 0.003 264.542);
+  --color-gray-200: oklch(92.8% 0.006 264.531);
+  --color-gray-300: oklch(87.2% 0.01 258.338);
+  --color-gray-400: oklch(70.7% 0.022 261.325);
+  --color-gray-500: oklch(55.1% 0.027 264.364);
+  --color-gray-600: oklch(44.6% 0.03 256.802);
+  --color-gray-700: oklch(37.3% 0.034 259.733);
+  --color-gray-800: oklch(27.8% 0.033 256.848);
+  --color-gray-900: oklch(21% 0.034 264.665);
+  --color-gray-950: oklch(13% 0.028 261.692);
+
+  /* Brand */
+  --color-brand-50: #96AFDB;
+  --color-brand-100: #87A4D6;
+  --color-brand-150: #7999D1;
+  --color-brand-200: #6A8ECC;
+  --color-brand-250: #5B83C7;
+  --color-brand-300: #4D78C2;
+  --color-brand-350: #406EBB;
+  --color-brand-400: #3B65AD;
+  --color-brand-450: #365C9E;
+  --color-brand-500: #31548F;
+  --color-brand-550: #2C4B81;
+  --color-brand-600: #274372;
+  --color-brand-650: #223A63;
+  --color-brand-700: #1D3255;
+  --color-brand-750: #182946;
+  --color-brand-800: #132138;
+  --color-brand-850: #0E1829;
+  --color-brand-900: #090F1A;
+  --color-brand-950: #04070C;
+
+  /* Blue */
+  --color-blue-50: #E6EEFD;
+  --color-blue-100: #CDDDFC;
+  --color-blue-150: #B4CCFB;
+  --color-blue-200: #9BBCFA;
+  --color-blue-250: #83ABF9;
+  --color-blue-300: #6A9AF7;
+  --color-blue-350: #518AF6;
+  --color-blue-400: #3879F5;
+  --color-blue-450: #1F68F4;
+  --color-blue-500: #0758F3;
+  --color-blue-550: #064FDA;
+  --color-blue-600: #0546C2;
+  --color-blue-650: #043DAA;
+  --color-blue-700: #043491;
+  --color-blue-750: #032C79;
+  --color-blue-800: #022361;
+  --color-blue-850: #021A48;
+  --color-blue-900: #011130;
+  --color-blue-950: #000818;
+
+  /* Warm Sand */
+  --color-warm-sand-50: #F9F7F2;
+  --color-warm-sand-100: #F3EEE3;
+  --color-warm-sand-150: #ECE5D4;
+  --color-warm-sand-200: #E5DCC5;
+  --color-warm-sand-250: #DDD2B6;
+  --color-warm-sand-300: #D5C7A7;
+  --color-warm-sand-350: #CDBC98;
+  --color-warm-sand-400: #C5B189;
+  --color-warm-sand-450: #BDA67A;
+  --color-warm-sand-500: #B59B6B;
+  --color-warm-sand-550: #A58D61;
+  --color-warm-sand-600: #957F57;
+  --color-warm-sand-650: #85724D;
+  --color-warm-sand-700: #756443;
+  --color-warm-sand-750: #655639;
+  --color-warm-sand-800: #55482F;
+  --color-warm-sand-850: #453A25;
+  --color-warm-sand-900: #352C1B;
+  --color-warm-sand-950: #251E11;
+
+  /* Olive */
+  --color-olive-50: #F4F7F3;
+  --color-olive-100: #E8EFE6;
+  --color-olive-150: #DCE7DA;
+  --color-olive-200: #D0DFCE;
+  --color-olive-250: #C4D7C2;
+  --color-olive-300: #B8CFB6;
+  --color-olive-350: #ABC6A9;
+  --color-olive-400: #9FBE9D;
+  --color-olive-450: #93B691;
+  --color-olive-500: #87AE85;
+  --color-olive-550: #789C77;
+  --color-olive-600: #698A69;
+  --color-olive-650: #5A785B;
+  --color-olive-700: #4B664D;
+  --color-olive-750: #3D543F;
+  --color-olive-800: #2E4231;
+  --color-olive-850: #1F3023;
+  --color-olive-900: #101E15;
+  --color-olive-950: #070E0A;
+
+  /* Success */
+  --color-success-50: #F0FDF4;
+  --color-success-100: #DCFCE7;
+  --color-success-200: #BBF7D0;
+  --color-success-300: #86EFAC;
+  --color-success-400: #4ADE80;
+  --color-success-500: #22C55E;
+  --color-success-600: #16A34A;
+  --color-success-700: #15803D;
+  --color-success-800: #166534;
+  --color-success-900: #14532D;
+  --color-success-950: #052E16;
+
+  /* Warning */
+  --color-warning-50: #FFFBEB;
+  --color-warning-100: #FEF3C7;
+  --color-warning-200: #FDE68A;
+  --color-warning-300: #FCD34D;
+  --color-warning-400: #FBBF24;
+  --color-warning-500: #F59E0B;
+  --color-warning-600: #D97706;
+  --color-warning-700: #B45309;
+  --color-warning-800: #92400E;
+  --color-warning-900: #78350F;
+  --color-warning-950: #451A03;
+
+  /* Error */
+  --color-error-50: #FEF2F2;
+  --color-error-100: #FEE2E2;
+  --color-error-200: #FECACA;
+  --color-error-300: #FCA5A5;
+  --color-error-400: #F87171;
+  --color-error-500: #EF4444;
+  --color-error-600: #DC2626;
+  --color-error-700: #B91C1C;
+  --color-error-800: #991B1B;
+  --color-error-900: #7F1D1D;
+  --color-error-950: #450A0A;
+
+  /* Info */
+  --color-info-50: #EFF6FF;
+  --color-info-100: #DBEAFE;
+  --color-info-200: #BFDBFE;
+  --color-info-300: #93C5FD;
+  --color-info-400: #60A5FA;
+  --color-info-500: #3B82F6;
+  --color-info-600: #2563EB;
+  --color-info-700: #1D4ED8;
+  --color-info-800: #1E40AF;
+  --color-info-900: #1E3A8A;
+  --color-info-950: #172554;
+
+  /* ==========================================================================
+   Primitive Tokens : Typography
+   ========================================================================== */
+  /* Size */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* Weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.025em;
+
+  /* ==========================================================================
+   Primitive Tokens : Radius
+   ========================================================================== */
+  --radius-none: 0;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+   Primitive Tokens : Shadow
+   ========================================================================== */
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 8px 24px rgb(0 0 0 / 0.10);
+  --shadow-xl: 0 16px 48px rgb(0 0 0 / 0.12);
+
+  /* ==========================================================================
+   Primitive Tokens : Border
+   ========================================================================== */
+  /* Width */
+  --border-width-0: 0;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+
+  /* ==========================================================================
+   Primitive Tokens : Opacity
+   ========================================================================== */
+  --opacity-0: 0;
+  --opacity-5: .05;
+  --opacity-10: .1;
+  --opacity-20: .2;
+  --opacity-30: .3;
+  --opacity-40: .4;
+  --opacity-50: .5;
+  --opacity-60: .6;
+  --opacity-70: .7;
+  --opacity-80: .8;
+  --opacity-90: .9;
+  --opacity-100: 1;
+
+  /* ==========================================================================
+   Primitive Tokens : Breakpoint //i'll just use tailwind's breakpoints for now and document them in storybook
+   ========================================================================== */
+
+  /* ==========================================================================
+   Primitive Tokens : Z-index
+   ========================================================================== */
+  --z-index-base: 0;
+  --z-index-dropdown: 100;
+  --z-index-sticky: 110;
+  --z-index-fixed: 120;
+  --z-index-popover: 130;
+  --z-index-modal: 140;
+  --z-index-toast: 150;
+  --z-index-tooltip: 160;
+
+  /* ==========================================================================
+   Primitive Tokens : Motion
+   ========================================================================== */
+  /* Duration */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+
+  /* ==========================================================================
+   Primitive Tokens : Blur
+   ========================================================================== */
+  --blur-none: 0;
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 16px;
 }
 
 .dark {
@@ -131,9 +386,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
