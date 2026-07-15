@@ -1,9 +1,8 @@
 import type { Meta, StoryObj} from '@storybook/nextjs-vite'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/primitive/button'
 
 const meta = {
-    title:'UI/Atoms/Button',
     component: Button,
     argTypes: {
         variant: {

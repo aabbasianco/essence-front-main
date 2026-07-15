@@ -7,7 +7,7 @@ import { CardDescription } from "./card";
 import { CardContent } from "./card";
 import { CardFooter } from "./card";
 import { CardAction } from "./card";
-import {Button} from "@/components/ui/button";
+import {Button} from "@/components/primitive/button";
 
 const meta = {
   component: Card,
