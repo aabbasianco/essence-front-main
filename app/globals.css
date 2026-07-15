@@ -48,46 +48,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* --primary: hsl(44, 24%, 45%);
-  --primary: #c1b08a; */
-
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: #0758F3;
-  /* --primary: #0E1829; */
-  /* --primary: #8e8057; */
-  /* --primary: oklch(0.555 0.163 48.998); */
-  --primary-foreground: oklch(0.987 0.022 95.277);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.546 0.245 262.881);
-  --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
-
   /* ==========================================================================
    Primitive Tokens : Colors
    ========================================================================== */
@@ -429,6 +390,144 @@
    ========================================================================== */
   /* Overlay */
   --overlay: rgb(0 0 0 / 0.45);
+
+  /* ==========================================================================
+   State Tokens : Opacity
+   ========================================================================== */
+  --state-opacity-disabled: var(--opacity-40);
+  --state-opacity-hover: var(--opacity-80);
+
+  /* ==========================================================================
+   State Tokens : Focus
+   ========================================================================== */
+  --state-focus-ring-width: 2px;
+  --state-focus-ring-offset: 2px;
+
+  /* ==========================================================================
+   Component Tokens : Button
+   ========================================================================== */
+  --button-height-sm: 2rem;
+  --button-height-md: 2.5rem;
+  --button-height-lg: 3rem;
+
+  --button-padding-x-sm: --spacing(3);
+  --button-padding-x-md: --spacing(4);
+  --button-padding-x-lg: --spacing(6);
+
+  --button-gap: --spacing(2);
+
+  --button-radius: var(--radius-lg);
+
+  --button-font-size: var(--font-size-sm);
+  --button-font-weight: var(--font-weight-medium);
+
+  --button-icon-size: 1rem;
+
+  --button-border-width: var(--border-width-1);
+
+  /* ==========================================================================
+   Component Tokens : Typography
+   ========================================================================== */
+  --text-line-height: 1.5;
+
+  --heading-line-height: 1.2;
+
+  --heading-letter-spacing: var(--letter-spacing-tight);
+
+  /* ==========================================================================
+   Component Tokens : Icon
+   ========================================================================== */
+  --icon-size-xs: 0.75rem;
+  --icon-size-sm: 1rem;
+  --icon-size-md: 1.25rem;
+  --icon-size-lg: 1.5rem;
+  --icon-size-xl: 2rem;
+
+  --icon-stroke-width: 2;
+
+  /* ==========================================================================
+   Component Tokens : Input
+   ========================================================================== */
+  --input-height: 2.5rem;
+
+  --input-padding-x: --spacing(3);
+  --input-padding-y: --spacing(2);
+
+  --input-radius: var(--radius-lg);
+
+  --input-font-size: var(--font-size-sm);
+
+  --input-border-width: var(--border-width-1);
+
+  /* ==========================================================================
+   Component Tokens : Label
+   ========================================================================== */
+  --label-font-size: var(--font-size-sm);
+
+  --label-font-weight: var(--font-weight-medium);
+
+  --label-gap: --spacing(2);
+
+  /* ==========================================================================
+   Component Tokens : Card
+   ========================================================================== */
+  --card-padding-sm: --spacing(4);
+  --card-padding-md: --spacing(6);
+
+  --card-gap-sm: --spacing(4);
+  --card-gap-md: --spacing(6);
+
+  --card-radius: var(--radius-xl);
+
+  --card-border-width: var(--border-width-1);
+
+  --card-shadow: var(--shadow-sm);
+
+  /* ==========================================================================
+   Component Tokens : Badge
+   ========================================================================== */
+  --badge-height: 1.5rem;
+
+  --badge-padding-x: --spacing(2);
+  --badge-padding-y: --spacing(1);
+
+  --badge-gap: --spacing(1);
+
+  --badge-radius: var(--radius-full);
+
+  --badge-font-size: var(--font-size-xs);
+
+  --badge-font-weight: var(--font-weight-medium);
+
+  /* ==========================================================================
+   Component Tokens : Separator
+   ========================================================================== */
+  --separator-thickness: 1px;
+
+  /* ==========================================================================
+   Component Tokens : Spinner
+   ========================================================================== */
+  --spinner-size-sm: 1rem;
+  --spinner-size-md: 1.5rem;
+  --spinner-size-lg: 2rem;
+
+  --spinner-border-width: 2px;
+
+  /* ==========================================================================
+   Component Tokens : Skeleton
+   ========================================================================== */
+  --skeleton-radius: var(--radius-md);
+
+  /* ==========================================================================
+   Component Tokens : Avatar
+   ========================================================================== */
+  --avatar-size-xs: 1.5rem;
+  --avatar-size-sm: 2rem;
+  --avatar-size-md: 2.5rem;
+  --avatar-size-lg: 3rem;
+  --avatar-size-xl: 4rem;
+
+  --avatar-radius: var(--radius-full);
 }
 
 .dark {
