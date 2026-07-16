@@ -24,6 +24,9 @@ const meta = {
             control: 'text',
             description: 'Content of the button',
         },
+        loading: {
+            controll: 'boolean',
+        },
         disabled: {
             control: 'boolean',
             description: 'Disables the button',
