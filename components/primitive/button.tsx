@@ -1,11 +1,11 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { Slot } from "radix-ui"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { Slot } from "radix-ui";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-[3px] aria-invalid:ring-error/20 dark:aria-invalid:border-error/50 dark:aria-invalid:ring-error/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -17,50 +17,82 @@ const buttonVariants = cva(
         ghost:
           "bg-background text-primary hover:bg-muted hover:text-foreground hover:bg-primary-subtle aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
         destructive:
-          "bg-error-subtle text-error-subtle-foreground hover:bg-error/20 focus-visible:border-error/40 focus-visible:ring-error/20 dark:bg-error/20 dark:hover:bg-error/30 dark:focus-visible:ring-error/40",
+          "bg-danger-subtle text-danger-subtle-foreground hover:bg-danger/20 focus-visible:border-danger/40 focus-visible:ring-danger/20 dark:bg-danger/20 dark:hover:bg-danger/30 dark:focus-visible:ring-danger/40",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        md:
-          "h-9 gap-1.5 px-4 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5",
-        xs: "h-6 gap-1 px-2.5 text-xs has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-8 gap-1 px-3 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        lg: "h-10 gap-1.5 px-5 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
-        xl: "h-10 gap-1.5 px-8 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
+        md: "h-9 gap-1.5 px-4 data-[has-right-icon=true]:pr-2.5 data-[has-left-icon=true]:pl-2.5",
+        xs: "h-6 gap-1 px-2.5 text-xs data-[has-right-icon=true]:pr-2 data-[has-left-icon=true]:pl-2 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-8 gap-1 px-3 data-[has-right-icon=true]:pr-2 data-[has-left-icon=true]:pl-2",
+        lg: "h-10 gap-1.5 px-5 data-[has-right-icon=true]:pr-3 data-[has-left-icon=true]:pl-3",
+        xl: "h-10 gap-1.5 px-8 data-[has-right-icon=true]:pr-3 data-[has-left-icon=true]:pl-3",
         icon: "size-9",
         "icon-xs": "size-6 [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",
         "icon-lg": "size-10",
       },
+      layout: {
+        fit: "w-fit",
+        full: "w-full",
+      },
     },
     defaultVariants: {
       variant: "primary",
-      size: "md",
+      size: "lg",
+      layout: "fit",
     },
-  }
-)
+  },
+);
+
+type ButtonProps = React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+    loading?: boolean;
+    leftIcon?: React.ReactElement;
+    rightIcon?: React.ReactElement;
+  };
 
 function Button({
   className,
   variant = "primary",
-  size = "md",
+  size = "lg",
+  layout = "fit",
   asChild = false,
+  loading = false,
+  leftIcon,
+  rightIcon,
+  children,
+  disabled,
   ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot.Root : "button"
+}: ButtonProps) {
+  const Comp = asChild ? Slot.Root : "button";
 
   return (
     <Comp
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      data-layout={layout}
+      data-loading={loading || undefined}
+      data-has-left-icon={!!leftIcon || undefined}
+      data-has-right-icon={!!rightIcon || undefined}
+      disabled={disabled || loading}
+      className={cn(buttonVariants({ variant, size, layout, className }))}
       {...props}
-    />
-  )
+    >
+      {loading ? (
+        <span>...</span>
+      ) : (
+        leftIcon && <span data-slot="button-left-icon">{leftIcon}</span>
+      )}
+
+      {children}
+
+      {rightIcon && !loading && (
+        <span data-slot="button-right-icon">{rightIcon}</span>
+      )}
+    </Comp>
+  );
 }
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };

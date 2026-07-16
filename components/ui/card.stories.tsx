@@ -29,11 +29,11 @@ export const Default: Story = {
           on some random dimention.
         </p>
       </CardContent>
-      <CardFooter>
-        <CardAction>
-          <Button>Some Action</Button>
-        </CardAction>
+      <CardFooter className="flex-row flex-wrap gap-5">
         <CardDescription>&quot; Some description</CardDescription>
+        <CardAction className="w-full">
+          <Button layout="full">Some Action</Button>
+        </CardAction>
       </CardFooter>
     </Card>
   ),

@@ -12,8 +12,13 @@ const meta = {
         },
         size: {
             control: 'select',
-            options: ['md', 'xs', 'sm', 'lg', 'xl', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'],
+            options: ['xs', 'sm', 'md', 'lg', 'xl', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'],
             description: 'Sizes of the Button',
+        },
+        layout: {
+            control: 'select',
+            options: ['fit', 'full'],
+            description: 'Layout of the button',
         },
         children: {
             control: 'text',
@@ -22,12 +27,20 @@ const meta = {
         disabled: {
             control: 'boolean',
             description: 'Disables the button',
-        }
+        },
     },
     tags: ['experimental'],
     args: {
-        size: 'md',
-    }
+        size: 'lg',
+        layout: 'fit'
+    },
+    decorators: [
+        (Story) => (
+            <div className="w-100 text-center">
+                <Story/>
+            </div>
+        ),
+    ],
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -38,7 +51,6 @@ export const Primary : Story = {
     tags: ['autodocs'],
     args: {
         variant: 'primary',
-        size: 'md',
         children: 'Primary',
     },
 }
