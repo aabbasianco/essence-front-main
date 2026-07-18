@@ -2,6 +2,8 @@ import type { Meta, StoryObj} from '@storybook/nextjs-vite'
 
 import { Button } from '@/components/primitive/button'
 
+import { ArrowRight, Search, Heart } from "lucide-react";
+
 const meta = {
     component: Button,
     argTypes: {
@@ -19,6 +21,10 @@ const meta = {
             control: 'select',
             options: ['fit', 'full'],
             description: 'Layout of the button',
+        },
+        dir: {
+            control: 'select',
+            options: ['ltr', 'rtl'],
         },
         children: {
             control: 'text',
@@ -55,6 +61,8 @@ export const Primary : Story = {
     args: {
         variant: 'primary',
         children: 'Primary',
+        // startIcon:<ArrowRight />,
+        startIcon:<Heart />,
     },
 }
 
@@ -65,9 +73,9 @@ export const Variations : Story = {
     },
     render: (args) => (
         <div className="flex gap-4 justify-center">
-            <Button {...args} variant="primary">Primary</Button>
-            <Button {...args} variant="secondary">Secondary</Button>
-            <Button {...args} variant="tertiary">Tertiary</Button>
+            <Button {...args} variant="primary" startIcon={<Search />}>Primary</Button>
+            <Button {...args} variant="secondary" startIcon={<Heart />}>Secondary</Button>
+            <Button {...args} variant="tertiary" startIcon={<ArrowRight />}>Tertiary</Button>
             <Button {...args} variant="ghost">Ghost</Button>
             <Button {...args} variant="destructive">Destructive</Button>
             <Button {...args} variant="link">Link</Button>

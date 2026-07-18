@@ -22,11 +22,11 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        md: "h-9 gap-1.5 px-4 data-[has-right-icon=true]:pr-2.5 data-[has-left-icon=true]:pl-2.5",
-        xs: "h-6 gap-1 px-2.5 text-xs data-[has-right-icon=true]:pr-2 data-[has-left-icon=true]:pl-2 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-8 gap-1 px-3 data-[has-right-icon=true]:pr-2 data-[has-left-icon=true]:pl-2",
-        lg: "h-10 gap-1.5 px-5 data-[has-right-icon=true]:pr-3 data-[has-left-icon=true]:pl-3",
-        xl: "h-10 gap-1.5 px-8 data-[has-right-icon=true]:pr-3 data-[has-left-icon=true]:pl-3",
+        md: "h-9 gap-1.5 px-4 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5",
+        xs: "h-6 gap-1 px-2.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-8 gap-1 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2",
+        lg: "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3",
+        xl: "h-10 gap-1.5 px-8 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3",
         icon: "size-9",
         "icon-xs": "size-6 [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",
@@ -49,8 +49,8 @@ type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
     loading?: boolean;
-    leftIcon?: React.ReactElement;
-    rightIcon?: React.ReactElement;
+    startIcon?: React.ReactElement;
+    endIcon?: React.ReactElement;
   };
 
 function Button({
@@ -60,8 +60,8 @@ function Button({
   layout = "fit",
   asChild = false,
   loading = false,
-  leftIcon,
-  rightIcon,
+  startIcon,
+  endIcon,
   children,
   disabled,
   ...props
@@ -75,8 +75,8 @@ function Button({
       data-size={size}
       data-layout={layout}
       data-loading={loading || undefined}
-      data-has-left-icon={!!leftIcon || undefined}
-      data-has-right-icon={!!rightIcon || undefined}
+      data-has-start-icon={!!startIcon || undefined}
+      data-has-end-icon={!!endIcon || undefined}
       disabled={disabled || loading}
       className={cn(buttonVariants({ variant, size, layout, className }))}
       {...props}
@@ -84,13 +84,13 @@ function Button({
       {loading ? (
         <Spinner />
       ) : (
-        leftIcon && <span data-slot="button-left-icon">{leftIcon}</span>
+        startIcon && <span data-slot="button-start-icon">{startIcon}</span>
       )}
 
-      {children}
+      <span data-slot="button-label">{children}</span>
 
-      {rightIcon && !loading && (
-        <span data-slot="button-right-icon">{rightIcon}</span>
+      {endIcon && !loading && (
+        <span data-slot="button-end-icon">{endIcon}</span>
       )}
     </Comp>
   );
