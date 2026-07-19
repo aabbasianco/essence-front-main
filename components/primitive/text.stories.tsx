@@ -44,7 +44,7 @@ const meta = {
     },
     weight: {
       control: "select",
-      options: ["regular", "medium", "semibold", "bold", "inherit"],
+      options: ["light", "regular", "medium", "semibold", "bold", "inherit"],
     },
     children: {
       control: "text",
