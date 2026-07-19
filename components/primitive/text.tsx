@@ -25,7 +25,7 @@ const textVariants = cva("", {
       warningSubtleForeground: "text-warning-subtle-foreground",
       infoForeground: "text-info-foreground",
       infoSubtleForeground: "text-info-subtle-foreground",
-      caption: "text-caption",
+      caption: "text-caption text-[length:var(--caption-font-size)] font-[length:var(--caption-font-weight)]",
     },
     size: {
       heroTitle:
@@ -39,14 +39,21 @@ const textVariants = cva("", {
       body: "text-[length:var(--body-font-size)] font-[length:var(--body-font-weight)]",
       caption:
         "text-[length:var(--caption-font-size)] font-[length:var(--caption-font-weight)]",
+      inherit:"",
     },
     weight: {
       regular: "font-[length:var(--font-weight-regular)]",
+      medium: "font-[length:var(--font-weight-medium)]",
       semibold: "font-[length:var(--font-weight-semibold)]",
       bold: "font-[length:var(--font-weight-bold)]",
+      inherit:"",
     },
   },
-  defaultVariants: {},
+  defaultVariants: {
+    tone: "backgroundForeground",
+    size: "inherit",
+    weight: "inherit",
+  },
 });
 
 type TextProps = VariantProps<typeof textVariants> & {
@@ -63,9 +70,9 @@ const truncateMap = {
 
 function Text({
   as = "p",
-  tone = "surfaceForeground",
-  size = "body",
-  weight = "regular",
+  tone = "backgroundForeground",
+  size = "inherit",
+  weight = "inherit",
   truncate = 1,
   children = "I'm a customizable text component. You can use me to display text.",
   ...props

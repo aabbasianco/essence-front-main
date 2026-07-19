@@ -696,7 +696,7 @@
    Component Tokens : Caption
    ========================================================================== */
   --caption-font-size: var(--font-size-xs);
-  --caption-font-weight: var(--font-weight-medium);
+  --caption-font-weight: var(--font-weight-semibold);
 }
 
 /* .dark {

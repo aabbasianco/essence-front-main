@@ -39,11 +39,19 @@ const meta = {
         "cardTitle",
         "body",
         "caption",
+        "inherit",
       ],
     },
     weight: {
       control: "select",
-      options: ["regular", "semibold", "bold"],
+      options: ["regular", "medium", "semibold", "bold", "inherit"],
+    },
+    children: {
+      control: "text",
+    },
+    truncate: {
+      control: "radio",
+      options: [1, 2, 3],
     },
   },
 } satisfies Meta<typeof Text>;
