@@ -24,7 +24,7 @@ const textVariants = cva("", {
       warningForeground: "text-warning-foreground",
       warningSubtleForeground: "text-warning-subtle-foreground",
       infoForeground: "text-info-foreground",
-      infoSubtleForeground: "<text-></text->info-subtle-foreground",
+      infoSubtleForeground: "text-info-subtle-foreground",
       caption: "text-caption",
     },
     size: {

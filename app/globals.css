@@ -47,6 +47,9 @@
   --color-tertiary-subtle: var(--tertiary-subtle);
   --color-tertiary-subtle-foreground: var(--tertiary-subtle-foreground);
 
+  /* Caption */
+  --color-caption: var(--caption);
+
   /* Support */
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
@@ -473,6 +476,13 @@
 
   --tertiary-subtle: var(--color-gray-100);
   --tertiary-subtle-foreground: var(--color-gray-700);
+
+  /* Caption */
+  --caption: var(--color-gray-600);
+
+  /* Body */
+  --body: var(--color-gray-700);
+  --body-foreground: var(--color-gray-950);
 
   /* Success */
   --success: var(--color-success-600);
