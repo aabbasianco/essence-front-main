@@ -90,7 +90,7 @@ function Button({
       <span data-slot="button-label">{children}</span>
 
       {endIcon && !loading && (
-        <span data-slot="button-end-icon">{endIcon}</span>
+        <span className="" data-slot="button-end-icon">{endIcon}</span>
       )}
     </Comp>
   );

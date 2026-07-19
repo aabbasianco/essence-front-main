@@ -14,10 +14,10 @@
 
   /* Surface */
   --color-surface: var(--surface);
-  --color-surface-foreground: var(--background-foreground);
+  --color-surface-foreground: var(--surface-foreground);
 
   --color-surface-subtle: var(--surface-subtle);
-  --color-surface-subtle-foreground: var(--surface-subtle-foreground);
+  --color-surface-subtle-foreground: var(--background-foreground);
 
   /* Brand */
   --color-brand: var(--brand);
@@ -77,8 +77,23 @@
   /* ==========================================================================
      Typography
      ========================================================================== */
-  --font-body: var(--font-family-body);
-  --font-heading: var(--font-family-heading);
+  --font-button-size: var(--button-font-size);
+  --font-button-weight: var(--button-font-weight);
+  --font-label-size: var(--label-font-size);
+  --font-label-weight: var(--label-font-weight);
+  --font-card-title-size: var(--card-title-font-size);
+  --font-card-title-weight: var(--card-title-font-weight);
+  --font-hero-title-size: var(--hero-title-font-size);
+  --font-hero-title-weight: var(--hero-title-font-weight);
+  --font-page-title-size: var(--page-title-font-size);
+  --font-page-title-weight: var(--page-title-font-weight);
+  --font-section-title-size: var(--section-title-font-size);
+  --font-section-title-weight: var(--section-title-font-weight);
+  --font-body-size: var(--body-font-size);
+  --font-body-weight: var(--body-font-weight);
+  --font-caption-size: var(--caption-font-size);
+  --font-caption-weight: var(--caption-font-weight);
+
 
   /* ==========================================================================
      Radius
@@ -115,17 +130,17 @@
    Primitive Tokens : Colors
    ========================================================================== */
   /* Gray */
-  --color-gray-50: oklch(98.5% 0.002 247.839);
-  --color-gray-100: oklch(96.7% 0.003 264.542);
-  --color-gray-200: oklch(92.8% 0.006 264.531);
-  --color-gray-300: oklch(87.2% 0.01 258.338);
-  --color-gray-400: oklch(70.7% 0.022 261.325);
-  --color-gray-500: oklch(55.1% 0.027 264.364);
-  --color-gray-600: oklch(44.6% 0.03 256.802);
-  --color-gray-700: oklch(37.3% 0.034 259.733);
-  --color-gray-800: oklch(27.8% 0.033 256.848);
-  --color-gray-900: oklch(21% 0.034 264.665);
-  --color-gray-950: oklch(13% 0.028 261.692);
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #99a1af;
+  --color-gray-500: #6a7282;
+  --color-gray-600: #4a5565;
+  --color-gray-700: #364153;
+  --color-gray-800: #1e2939;
+  --color-gray-900: #101828;
+  --color-gray-950: #030712;
 
   /* Brand */
   --color-brand-50: #96AFDB;
@@ -211,57 +226,109 @@
   --color-olive-900: #101E15;
   --color-olive-950: #070E0A;
 
+  /* Orange */
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd4;
+  --color-orange-200: #ffd6a7;
+  --color-orange-300: #ffb869;
+  --color-orange-400: #ff8903;
+  --color-orange-500: #ff6900;
+  --color-orange-600: #f54900;
+  --color-orange-700: #ca3500;
+  --color-orange-800: #9f2d00;
+  --color-orange-900: #7e2a0c;
+  --color-orange-950: #441306;
+
+  /* Yellow */
+  --color-yellow-50: #fefce8;
+  --color-yellow-100: #fef9c2;
+  --color-yellow-200: #fff085;
+  --color-yellow-300: #ffdf20;
+  --color-yellow-400: #fdc700;
+  --color-yellow-500: #f0b100;
+  --color-yellow-600: #d08700;
+  --color-yellow-700: #a65f00;
+  --color-yellow-800: #894b00;
+  --color-yellow-900: #733e0a;
+  --color-yellow-950: #432004;
+
+  /* Green */
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #b9f8cf;
+  --color-green-300: #7bf1a7;
+  --color-green-400: #06df72;
+  --color-green-500: #00c950;
+  --color-green-600: #00a63e;
+  --color-green-700: #008235;
+  --color-green-800: #026630;
+  --color-green-900: #0d542b;
+  --color-green-950: #032e15;
+
+  /* Red */
+  --color-red-50: #fef2f2;
+  --color-red-100: #ffe2e2;
+  --color-red-200: #ffc9c9;
+  --color-red-300: #ffa2a2;
+  --color-red-400: #ff6467;
+  --color-red-500: #fb2c36;
+  --color-red-600: #e7000b;
+  --color-red-700: #c10007;
+  --color-red-800: #9f0712;
+  --color-red-900: #82181a;
+  --color-red-950: #460809;
+
   /* Success */
-  --color-success-50: #F0FDF4;
-  --color-success-100: #DCFCE7;
-  --color-success-200: #BBF7D0;
-  --color-success-300: #86EFAC;
-  --color-success-400: #4ADE80;
-  --color-success-500: #22C55E;
-  --color-success-600: #16A34A;
-  --color-success-700: #15803D;
-  --color-success-800: #166534;
-  --color-success-900: #14532D;
-  --color-success-950: #052E16;
+  --color-success-50: var(--color-green-50);
+  --color-success-100: var(--color-green-100);
+  --color-success-200: var(--color-green-200);
+  --color-success-300: var(--color-green-300);
+  --color-success-400: var(--color-green-400);
+  --color-success-500: var(--color-green-500);
+  --color-success-600: var(--color-green-600);
+  --color-success-700: var(--color-green-700);
+  --color-success-800: var(--color-green-800);
+  --color-success-900: var(--color-green-900);
+  --color-success-950: var(--color-green-950);
 
   /* Warning */
-  --color-warning-50: #FFFBEB;
-  --color-warning-100: #FEF3C7;
-  --color-warning-200: #FDE68A;
-  --color-warning-300: #FCD34D;
-  --color-warning-400: #FBBF24;
-  --color-warning-500: #F59E0B;
-  --color-warning-600: #D97706;
-  --color-warning-700: #B45309;
-  --color-warning-800: #92400E;
-  --color-warning-900: #78350F;
-  --color-warning-950: #451A03;
+  --color-warning-50: var(--color-yellow-50);
+  --color-warning-100: var(--color-yellow-100);
+  --color-warning-200: var(--color-yellow-200);
+  --color-warning-300: var(--color-yellow-300);
+  --color-warning-400: var(--color-yellow-400);
+  --color-warning-500: var(--color-yellow-500);
+  --color-warning-600: var(--color-yellow-600);
+  --color-warning-700: var(--color-yellow-700);
+  --color-warning-800: var(--color-yellow-800);
+  --color-warning-900: var(--color-yellow-900);
+  --color-warning-950: var(--color-yellow-950);
 
   /* danger */
-  --color-danger-50: #FEF2F2;
-  --color-danger-100: #FEE2E2;
-  --color-danger-200: #FECACA;
-  --color-danger-300: #FCA5A5;
-  --color-danger-400: #F87171;
-  --color-danger-500: #EF4444;
-  --color-danger-600: #DC2626;
-  --color-danger-700: #B91C1C;
-  --color-danger-800: #991B1B;
-  --color-danger-900: #7F1D1D;
-  --color-danger-950: #450A0A;
+  --color-danger-50: var(--color-red-50);
+  --color-danger-100: var(--color-red-100);
+  --color-danger-200: var(--color-red-200);
+  --color-danger-300: var(--color-red-300);
+  --color-danger-400: var(--color-red-400);
+  --color-danger-500: var(--color-red-500);
+  --color-danger-600: var(--color-red-600);
+  --color-danger-700: var(--color-red-700);
+  --color-danger-800: var(--color-red-800);
+  --color-danger-900: var(--color-red-900);
+  --color-danger-950: var(--color-red-950);
 
   /* Info */
-  --color-info-50: #EFF6FF;
-  --color-info-100: #DBEAFE;
-  --color-info-200: #BFDBFE;
-  --color-info-300: #93C5FD;
-  --color-info-400: #60A5FA;
-  --color-info-500: #3B82F6;
-  --color-info-600: #2563EB;
-  --color-info-700: #1D4ED8;
-  --color-info-800: #1E40AF;
-  --color-info-900: #1E3A8A;
-  --color-info-950: #172554;
+  --color-info-50: var(--color-blue-50);
+  --color-info-100: var(--color-blue-100);
+  --color-info-200: var(--color-blue-200);
+  --color-info-300: var(--color-blue-300);
+  --color-info-400: var(--color-blue-400);
+  --color-info-500: var(--color-blue-500);
+  --color-info-600: var(--color-blue-600);
+  --color-info-700: var(--color-blue-700);
+  --color-info-800: var(--color-blue-800);
+  --color-info-900: var(--color-blue-900);
+  --color-info-950: var(--color-blue-950);
 
   /* ==========================================================================
    Primitive Tokens : Typography
@@ -398,7 +465,7 @@
   --secondary-foreground: var(--color-brand-850);
 
   --secondary-subtle: var(--color-warm-sand-100);
-  --secondary-subtle-foreground: var(--color-warm-sand-700);
+  --secondary-subtle-foreground: var(--color-warm-sand-850);
 
   /* Tertiary */
   --tertiary: var(--color-gray-200);
@@ -406,6 +473,34 @@
 
   --tertiary-subtle: var(--color-gray-100);
   --tertiary-subtle-foreground: var(--color-gray-700);
+
+  /* Success */
+  --success: var(--color-success-600);
+  --success-foreground: #FFFFFF;
+
+  --success-subtle: var(--color-success-100);
+  --success-subtle-foreground: var(--color-success-900);
+
+  /* Warning */
+  --warning: var(--color-warning-500);
+  --warning-foreground: var(--color-brand-900);
+
+  --warning-subtle: var(--color-warning-100);
+  --warning-subtle-foreground: var(--color-warning-900);
+
+  /* danger */
+  --danger: var(--color-danger-600);
+  --danger-foreground: #FFFFFF;
+
+  --danger-subtle: var(--color-danger-100);
+  --danger-subtle-foreground: var(--color-danger-900);
+
+  /* Info */
+  --info: var(--color-info-600);
+  --info-foreground: #FFFFFF;
+
+  --info-subtle: var(--color-info-100);
+  --info-subtle-foreground: var(--color-info-800);
 
   /* ==========================================================================
    Semantic Tokens : Border
@@ -415,37 +510,6 @@
   --focus-ring: var(--color-blue-400);
 
   --separator: var(--color-gray-200);
-
-  /* ==========================================================================
-   Semantic Tokens : Support
-   ========================================================================== */
-  /* Success */
-  --success: var(--color-success-600);
-  --success-foreground: #FFFFFF;
-
-  --success-subtle: var(--color-success-50);
-  --success-subtle-foreground: var(--color-success-700);
-
-  /* Warning */
-  --warning: var(--color-warning-500);
-  --warning-foreground: var(--color-brand-900);
-
-  --warning-subtle: var(--color-warning-50);
-  --warning-subtle-foreground: var(--color-warning-700);
-
-  /* danger */
-  --danger: var(--color-danger-600);
-  --danger-foreground: #FFFFFF;
-
-  --danger-subtle: var(--color-danger-100);
-  --danger-subtle-foreground: var(--color-danger-700);
-
-  /* Info */
-  --info: var(--color-info-600);
-  --info-foreground: #FFFFFF;
-
-  --info-subtle: var(--color-info-50);
-  --info-subtle-foreground: var(--color-info-700);
 
   /* ==========================================================================
    Semantic Tokens : Overlay
@@ -525,7 +589,6 @@
    Component Tokens : Label
    ========================================================================== */
   --label-font-size: var(--font-size-sm);
-
   --label-font-weight: var(--font-weight-medium);
 
   --label-gap: --spacing(2);
@@ -544,6 +607,9 @@
   --card-border-width: var(--border-width-1);
 
   --card-shadow: var(--shadow-sm);
+
+  --card-title-font-size: var(--font-size-xl);
+  --card-title-font-weight: var(--font-weight-semibold);
 
   /* ==========================================================================
    Component Tokens : Badge
@@ -590,6 +656,37 @@
   --avatar-size-xl: 4rem;
 
   --avatar-radius: var(--radius-full);
+
+  /* ==========================================================================
+   Component Tokens : Hero
+   ========================================================================== */
+  --hero-title-font-size: var(--font-size-5xl);
+  --hero-title-font-weight: var(--font-weight-bold);
+  --hero-title-font-line-height: 1.05;
+
+  /* ==========================================================================
+   Component Tokens : Page
+   ========================================================================== */
+  --page-title-font-size: var(--font-size-4xl);
+  --page-title-font-weight: var(--font-weight-bold);
+
+  /* ==========================================================================
+   Component Tokens : Section
+   ========================================================================== */
+  --section-title-font-size: var(--font-size-3xl);
+  --section-title-font-weight: var(--font-weight-semibold);
+
+  /* ==========================================================================
+   Component Tokens : Body
+   ========================================================================== */
+  --body-font-size: var(--font-size-md);
+  --body-font-weight: var(--font-weight-regular);
+
+  /* ==========================================================================
+   Component Tokens : Caption
+   ========================================================================== */
+  --caption-font-size: var(--font-size-xs);
+  --caption-font-weight: var(--font-weight-medium);
 }
 
 /* .dark {

@@ -38,7 +38,7 @@ const meta = {
             description: 'Disables the button',
         },
     },
-    tags: ['experimental'],
+    tags: [''],
     args: {
         size: 'lg',
         layout: 'fit'
@@ -57,7 +57,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary : Story = {
-    tags: ['autodocs'],
     args: {
         variant: 'primary',
         children: 'Primary',
@@ -67,7 +66,6 @@ export const Primary : Story = {
 }
 
 export const Variations : Story = {
-    tags: ['autodocs'],
     args: {
         size: 'md',
     },
