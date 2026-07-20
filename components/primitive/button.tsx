@@ -82,7 +82,7 @@ function Button({
       {...props}
     >
       {loading ? (
-        <Spinner />
+        <Spinner data-icon="inline-start"/>
       ) : (
         startIcon && <span data-slot="button-start-icon">{startIcon}</span>
       )}

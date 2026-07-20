@@ -281,6 +281,19 @@
   --color-red-900: #82181a;
   --color-red-950: #460809;
 
+  /* Purple */
+  --color-purple-50: #faf5ff;
+  --color-purple-100: #f3e8ff;
+  --color-purple-200: #e9d4ff;
+  --color-purple-300: #dab2ff;
+  --color-purple-400: #c27aff;
+  --color-purple-500: #ad46ff;
+  --color-purple-600: #9810fa;
+  --color-purple-700: #8200db;
+  --color-purple-800: #6e11b0;
+  --color-purple-900: #59168b;
+  --color-purple-950: #3c0366;
+
   /* Success */
   --color-success-50: var(--color-green-50);
   --color-success-100: var(--color-green-100);
