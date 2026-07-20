@@ -475,7 +475,7 @@
   --primary-foreground: #FFFFFF;
 
   --primary-subtle: var(--color-blue-50);
-  --primary-subtle-foreground: var(--color-blue-700);
+  --primary-subtle-foreground: var(--color-blue-500);
 
   /* Secondary */
   --secondary: var(--color-warm-sand-300);
@@ -485,11 +485,11 @@
   --secondary-subtle-foreground: var(--color-warm-sand-850);
 
   /* Tertiary */
-  --tertiary: var(--color-gray-200);
-  --tertiary-foreground: var(--color-gray-900);
+  --tertiary: var(--color-gray-900);
+  --tertiary-foreground: #FFFFFF;
 
-  --tertiary-subtle: var(--color-gray-100);
-  --tertiary-subtle-foreground: var(--color-gray-700);
+  --tertiary-subtle: var(--color-gray-200);
+  --tertiary-subtle-foreground: var(--color-gray-900);
 
   /* Caption */
   --caption: var(--color-gray-600);
@@ -645,11 +645,16 @@
 
   --badge-gap: --spacing(1);
 
-  --badge-radius: var(--radius-full);
+  --badge-radius: var(--radius-md);
 
   --badge-font-size: var(--font-size-xs);
 
-  --badge-font-weight: var(--font-weight-medium);
+  --badge-font-weight: var(--font-weight-bold);
+
+  --badge-border: var(--border)
+
+  --badge-background: 000;
+  --badge-foreground: 000;
 
   /* ==========================================================================
    Component Tokens : Separator
