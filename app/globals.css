@@ -47,8 +47,8 @@
   --color-tertiary-subtle: var(--tertiary-subtle);
   --color-tertiary-subtle-foreground: var(--tertiary-subtle-foreground);
 
-  /* Caption */
-  --color-caption: var(--caption);
+  /* Muted */
+  --color-muted: var(--muted);
 
   /* Support */
   --color-success: var(--success);
@@ -94,8 +94,8 @@
   --font-section-title-weight: var(--section-title-font-weight);
   --font-body-size: var(--body-font-size);
   --font-body-weight: var(--body-font-weight);
-  --font-caption-size: var(--caption-font-size);
-  --font-caption-weight: var(--caption-font-weight);
+  --font-description-size: var(--description-font-size);
+  --font-description-weight: var(--description-font-weight);
 
 
   /* ==========================================================================
@@ -474,7 +474,7 @@
   --primary: var(--color-blue-500);
   --primary-foreground: #FFFFFF;
 
-  --primary-subtle: var(--color-blue-50);
+  --primary-subtle: var(--color-blue-100);
   --primary-subtle-foreground: var(--color-blue-500);
 
   /* Secondary */
@@ -491,8 +491,8 @@
   --tertiary-subtle: var(--color-gray-200);
   --tertiary-subtle-foreground: var(--color-gray-900);
 
-  /* Caption */
-  --caption: var(--color-gray-600);
+  /* Muted */
+  --muted: var(--color-gray-500);
 
   /* Body */
   --body: var(--color-gray-700);
@@ -649,7 +649,7 @@
 
   --badge-font-size: var(--font-size-xs);
 
-  --badge-font-weight: var(--font-weight-bold);
+  --badge-font-weight: var(--font-weight-semibold);
 
   --badge-border: var(--border)
 
@@ -712,10 +712,10 @@
   --body-font-weight: var(--font-weight-regular);
 
   /* ==========================================================================
-   Component Tokens : Caption
+   Component Tokens : description
    ========================================================================== */
-  --caption-font-size: var(--font-size-xs);
-  --caption-font-weight: var(--font-weight-semibold);
+  --description-font-size: var(--font-size-xs);
+  --description-font-weight: var(--font-weight-medium);
 }
 
 /* .dark {

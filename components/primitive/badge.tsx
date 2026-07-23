@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
-
+import { Disc } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
@@ -24,7 +24,7 @@ const badgeVariants = cva(
         info: "",
       },
       size: {
-        md: "px-2.5 py-0.5 text-[length:var(--caption-font-size)] font-[var(--badge-font-weight)]",
+        md: "px-2.5 py-0.5 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)]",
         lg: "px-3 py-1 text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
       },
       shape: {
@@ -57,6 +57,7 @@ function Badge({
   size = "md",
   shape = "rounded",
   asChild = false,
+  children,
   ...props
 }: BadgeProps) {
   const Comp = asChild ? Slot.Root : "span";
@@ -83,7 +84,12 @@ function Badge({
         } as React.CSSProperties
       }
       {...props}
-    />
+    >
+      {appearance == "ghost" && (
+        <span aria-hidden className="size-2 rounded-full bg-current" />
+      )}
+      <span data-slot="badge-label">{children}</span>
+    </Comp>
   );
 }
 

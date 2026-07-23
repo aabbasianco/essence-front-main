@@ -82,7 +82,7 @@ function Button({
       {...props}
     >
       {loading ? (
-        <Spinner data-icon="inline-start"/>
+        <Spinner data-icon="inline-start" />
       ) : (
         startIcon && <span data-slot="button-start-icon">{startIcon}</span>
       )}
@@ -90,7 +90,9 @@ function Button({
       <span data-slot="button-label">{children}</span>
 
       {endIcon && !loading && (
-        <span className="" data-slot="button-end-icon">{endIcon}</span>
+        <span className="" data-slot="button-end-icon">
+          {endIcon}
+        </span>
       )}
     </Comp>
   );

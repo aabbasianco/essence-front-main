@@ -27,7 +27,7 @@ const meta = {
         "warningSubtleForeground",
         "infoForeground",
         "infoSubtleForeground",
-        "caption",
+        "description",
       ],
     },
     size: {
@@ -38,7 +38,7 @@ const meta = {
         "sectionTitle",
         "cardTitle",
         "body",
-        "caption",
+        "description",
         "inherit",
       ],
     },

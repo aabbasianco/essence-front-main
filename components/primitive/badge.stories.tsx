@@ -49,4 +49,5 @@ export const Primary: Story = {
     children: "sample",
     shape: "rounded",
   },
+  render: (args) => <Badge {...args} dir="auto" />,
 };

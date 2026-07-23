@@ -25,7 +25,7 @@ const textVariants = cva("", {
       warningSubtleForeground: "text-warning-subtle-foreground text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
       infoForeground: "text-info-foreground text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
       infoSubtleForeground: "text-info-subtle-foreground text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
-      caption: "text-caption text-[length:var(--caption-font-size)] font-[var(--caption-font-weight)]",
+      description: "text-muted text-[length:var(--description-font-size)] font-[var(--description-font-weight)]",
     },
     size: {
       heroTitle:
@@ -37,8 +37,8 @@ const textVariants = cva("", {
       cardTitle:
         "text-[length:var(--card-title-font-size)] font-[var(--card-title-font-weight)]",
       body: "text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
-      caption:
-        "text-[length:var(--caption-font-size)] font-[var(--caption-font-weight)]",
+      description:
+        "text-[length:var(--description-font-size)] font-[var(--description-font-weight)]",
       inherit:"",
     },
     weight: {
