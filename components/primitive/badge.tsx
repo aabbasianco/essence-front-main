@@ -4,8 +4,8 @@ import { Slot } from "radix-ui";
 import { Disc } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const tagVariants = cva(
-  "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] hover:cursor-pointer border-2 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
+const badgeVariants = cva(
+  "bg-[var(--badge-background)] text-[var(--badge-foreground)] border-[var(--badge-border)] hover:cursor-pointer border-2 group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       appearance: {
@@ -43,15 +43,15 @@ const tagVariants = cva(
   },
 );
 
-type TagProps = React.ComponentProps<"span"> &
-  VariantProps<typeof tagVariants> & { asChild?: boolean };
+type BadgeProps = React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & { asChild?: boolean };
 
-type TagVariants = VariantProps<typeof tagVariants>;
+type BadgeVariants = VariantProps<typeof badgeVariants>;
 
-type TagAppearance = NonNullable<TagVariants["appearance"]>;
-type TagColor = NonNullable<TagVariants["color"]>;
+type BadgeAppearance = NonNullable<BadgeVariants["appearance"]>;
+type BadgeColor = NonNullable<BadgeVariants["color"]>;
 
-function Tag({
+function Badge({
   className,
   appearance = "solid",
   color = "primary",
@@ -60,28 +60,28 @@ function Tag({
   asChild = false,
   children,
   ...props
-}: TagProps) {
+}: BadgeProps) {
   const Comp = asChild ? Slot.Root : "span";
   const appearanceValue = appearance ?? "solid";
   const colorValue = color ?? "primary";
-  const palette = GetTagPalette(appearanceValue, colorValue);
+  const palette = GetBadgePalette(appearanceValue, colorValue);
 
   return (
     <Comp
-      data-slot="tag"
+      data-slot="badge"
       data-appearance={appearance}
       data-color={color}
       data-size={size}
       data-shape={shape}
       className={cn(
-        tagVariants({ appearance, color, size, shape }),
+        badgeVariants({ appearance, color, size, shape }),
         className,
       )}
       style={
         {
-          "--tag-background": palette.background,
-          "--tag-foreground": palette.foreground,
-          "--tag-border": palette.border,
+          "--badge-background": palette.background,
+          "--badge-foreground": palette.foreground,
+          "--badge-border": palette.border,
         } as React.CSSProperties
       }
       {...props}
@@ -89,14 +89,14 @@ function Tag({
       {appearance == "ghost" && (
         <span aria-hidden className="size-1.5 rounded-full bg-current animate-pulse" />
       )}
-      <span data-slot="tag-label">{children}</span>
+      <span data-slot="badge-label">{children}</span>
     </Comp>
   );
 }
 
-export { Tag, tagVariants };
+export { Badge, badgeVariants };
 
-function GetTagPalette(appearance: TagAppearance, color: TagColor) {
+function GetBadgePalette(appearance: BadgeAppearance, color: BadgeColor) {
   switch (appearance) {
     case "solid":
       return {
