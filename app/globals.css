@@ -474,7 +474,7 @@
   --primary: var(--color-blue-500);
   --primary-foreground: #FFFFFF;
 
-  --primary-subtle: var(--color-blue-100);
+  --primary-subtle: var(--color-blue-50);
   --primary-subtle-foreground: var(--color-blue-500);
 
   /* Secondary */
@@ -488,7 +488,7 @@
   --tertiary: var(--color-gray-900);
   --tertiary-foreground: #FFFFFF;
 
-  --tertiary-subtle: var(--color-gray-200);
+  --tertiary-subtle: var(--color-gray-100);
   --tertiary-subtle-foreground: var(--color-gray-900);
 
   /* Muted */
@@ -718,6 +718,9 @@
   --description-font-weight: var(--font-weight-medium);
 }
 
+  /* ==========================================================================
+   Styling
+   ========================================================================== */
 /* .dark {
 } */
 

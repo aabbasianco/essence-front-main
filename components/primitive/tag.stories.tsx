@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Badge } from "./badge";
+import { Tag } from "./tag";
 
 const meta = {
-  component: Badge,
+  component: Tag,
   argTypes: {
     appearance: {
       control: "select",
@@ -36,7 +36,7 @@ const meta = {
       control: "text",
     },
   },
-} satisfies Meta<typeof Badge>;
+} satisfies Meta<typeof Tag>;
 
 export default meta;
 
@@ -49,5 +49,5 @@ export const Primary: Story = {
     children: "sample",
     shape: "rounded",
   },
-  render: (args) => <Badge {...args} dir="auto" />,
+  render: (args) => <Tag {...args} dir="auto" />,
 };

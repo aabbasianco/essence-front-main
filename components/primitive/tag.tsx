@@ -24,8 +24,9 @@ const badgeVariants = cva(
         info: "",
       },
       size: {
-        md: "px-2.5 py-0.5 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)]",
-        lg: "px-3 py-1 text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
+        // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
+        md: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)]",
+        lg: "px-1.5 py-0.5 text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
       },
       shape: {
         rounded: "rounded-[var(--badge-radius)]",
@@ -50,7 +51,7 @@ type BadgeVariants = VariantProps<typeof badgeVariants>;
 type BadgeAppearance = NonNullable<BadgeVariants["appearance"]>;
 type BadgeColor = NonNullable<BadgeVariants["color"]>;
 
-function Badge({
+function Tag({
   className,
   appearance = "solid",
   color = "primary",
@@ -93,7 +94,7 @@ function Badge({
   );
 }
 
-export { Badge, badgeVariants };
+export { Tag, badgeVariants };
 
 function GetBadgePalette(appearance: BadgeAppearance, color: BadgeColor) {
   switch (appearance) {

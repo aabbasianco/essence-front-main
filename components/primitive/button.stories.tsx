@@ -2,7 +2,7 @@ import type { Meta, StoryObj} from '@storybook/nextjs-vite'
 
 import { Button } from '@/components/primitive/button'
 
-import { ArrowRight, Search, Heart } from "lucide-react";
+import { ArrowRight, Search, Heart, ShoppingBag } from "lucide-react";
 
 const meta = {
     component: Button,
@@ -14,7 +14,7 @@ const meta = {
         },
         size: {
             control: 'select',
-            options: ['xs', 'sm', 'md', 'lg', 'xl', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'],
+            options: ['xs', 'sm', 'md', 'lg', 'xl', 'icon-md', 'icon-xs', 'icon-sm', 'icon-lg'],
             description: 'Sizes of the Button',
         },
         layout: {
@@ -61,7 +61,7 @@ export const Primary : Story = {
         variant: 'primary',
         children: 'Primary',
         // startIcon:<ArrowRight />,
-        startIcon:<Heart />,
+        startIcon:<ShoppingBag />,
     },
 }
 
