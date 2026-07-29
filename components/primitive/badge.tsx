@@ -18,6 +18,7 @@ const badgeVariants = cva(
         primary: "",
         secondary: "",
         tertiary: "",
+        brand: "",
         success: "",
         warning: "",
         danger: "",

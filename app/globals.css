@@ -229,6 +229,19 @@
   --color-olive-900: #101E15;
   --color-olive-950: #070E0A;
 
+  /* Red */
+  --color-red-50: #fef2f2;
+  --color-red-100: #ffe2e2;
+  --color-red-200: #ffc9c9;
+  --color-red-300: #ffa2a2;
+  --color-red-400: #ff6467;
+  --color-red-500: #fb2c36;
+  --color-red-600: #e7000b;
+  --color-red-700: #c10007;
+  --color-red-800: #9f0712;
+  --color-red-900: #82181a;
+  --color-red-950: #460809;
+
   /* Orange */
   --color-orange-50: #fff7ed;
   --color-orange-100: #ffedd4;
@@ -255,6 +268,19 @@
   --color-yellow-900: #733e0a;
   --color-yellow-950: #432004;
 
+  /* Amber */
+  --color-ambeer-50: oklch(98.7% 0.022 95.277);
+  --color-ambeer-100: oklch(96.2% 0.059 95.617);
+  --color-ambeer-200: oklch(92.4% 0.12 95.746);
+  --color-ambeer-300: oklch(87.9% 0.169 91.605);
+  --color-ambeer-400: oklch(82.8% 0.189 84.429);
+  --color-ambeer-500: oklch(76.9% 0.188 70.08);
+  --color-ambeer-600: oklch(66.6% 0.179 58.318);
+  --color-ambeer-700: oklch(55.5% 0.163 48.998);
+  --color-ambeer-800: oklch(47.3% 0.137 46.201);
+  --color-ambeer-900: oklch(41.4% 0.112 45.904);
+  --color-ambeer-950: oklch(27.9% 0.077 45.635);
+
   /* Green */
   --color-green-50: #f0fdf4;
   --color-green-100: #dcfce7;
@@ -268,18 +294,31 @@
   --color-green-900: #0d542b;
   --color-green-950: #032e15;
 
-  /* Red */
-  --color-red-50: #fef2f2;
-  --color-red-100: #ffe2e2;
-  --color-red-200: #ffc9c9;
-  --color-red-300: #ffa2a2;
-  --color-red-400: #ff6467;
-  --color-red-500: #fb2c36;
-  --color-red-600: #e7000b;
-  --color-red-700: #c10007;
-  --color-red-800: #9f0712;
-  --color-red-900: #82181a;
-  --color-red-950: #460809;
+  /* Teal */
+  --color-teal-50: oklch(98.4% 0.014 180.72);
+  --color-teal-100: oklch(95.3% 0.051 180.801);
+  --color-teal-200: oklch(91% 0.096 180.426);
+  --color-teal-300: oklch(85.5% 0.138 181.071);
+  --color-teal-400: oklch(77.7% 0.152 181.912);
+  --color-teal-500: oklch(70.4% 0.14 182.503);
+  --color-teal-600: oklch(60% 0.118 184.704);
+  --color-teal-700: oklch(51.1% 0.096 186.391);
+  --color-teal-800: oklch(43.7% 0.078 188.216);
+  --color-teal-900: oklch(38.6% 0.063 188.416);
+  --color-teal-950: oklch(27.7% 0.046 192.524);
+
+  /* Sky */
+  --color-sky-50: oklch(97.7% 0.013 236.62);
+  --color-sky-100: oklch(95.1% 0.026 236.824);
+  --color-sky-200: oklch(90.1% 0.058 230.902);
+  --color-sky-300: oklch(82.8% 0.111 230.318);
+  --color-sky-400: oklch(74.6% 0.16 232.661);
+  --color-sky-500: oklch(68.5% 0.169 237.323);
+  --color-sky-600: oklch(58.8% 0.158 241.966);
+  --color-sky-700: oklch(50% 0.134 242.749);
+  --color-sky-800: oklch(44.3% 0.11 240.79);
+  --color-sky-900: oklch(39.1% 0.09 240.876);
+  --color-sky-950: oklch(29.3% 0.066 243.157);
 
   /* Purple */
   --color-purple-50: #faf5ff;
@@ -468,7 +507,7 @@
   --brand-foreground: #FFFFFF;
 
   --brand-subtle: var(--color-brand-50);
-  --brand-subtle-foreground: var(--color-brand-800);
+  --brand-subtle-foreground: var(--color-brand-850);
 
   /* Primary */
   --primary: var(--color-blue-500);
@@ -489,7 +528,7 @@
   --tertiary-foreground: var(--color-brand-850);
 
   --tertiary-subtle: var(--color-warm-sand-100);
-  --tertiary-subtle-foreground: var(--color-warm-sand-850);
+  --tertiary-subtle-foreground: var(--color-warm-sand-90);
 
   /* Muted */
   --muted: var(--color-gray-500);
@@ -525,6 +564,20 @@
 
   --info-subtle: var(--color-info-100);
   --info-subtle-foreground: var(--color-info-800);
+
+  /* Purple */
+  --purple: var(--color-purple-600);
+  --purple-foreground: #FFFFFF;
+
+  --purple-subtle: var(--color-purple-50);
+  --purple-subtle-foreground: var(--color-purple-900);
+
+  /* Green */
+  --green: var(--color-green-600);
+  --green-foreground: #FFFFFF;
+
+  --green-subtle: var(--color-green-50);
+  --green-subtle-foreground: var(--color-green-900);
 
   /* ==========================================================================
    Semantic Tokens : Border

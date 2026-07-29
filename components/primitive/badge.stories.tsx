@@ -15,6 +15,7 @@ const meta = {
         "primary",
         "secondary",
         "tertiary",
+        "brand",
         "success",
         "warning",
         "danger",
