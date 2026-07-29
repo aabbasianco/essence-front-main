@@ -25,8 +25,8 @@ const tagVariants = cva(
       },
       size: {
         // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
-        md: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)]",
-        lg: "px-1.5 py-0.5 text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
+        sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)]",
+        md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)]",
       },
       shape: {
         rounded: "rounded-[var(--badge-radius)]",
@@ -35,7 +35,7 @@ const tagVariants = cva(
       },
     },
     defaultVariants: {
-      appearance: "solid",
+      appearance: "soft",
       color: "primary",
       size: "md",
       shape: "rounded",
@@ -73,10 +73,7 @@ function Tag({
       data-color={color}
       data-size={size}
       data-shape={shape}
-      className={cn(
-        tagVariants({ appearance, color, size, shape }),
-        className,
-      )}
+      className={cn(tagVariants({ appearance, color, size, shape }), className)}
       style={
         {
           "--tag-background": palette.background,
@@ -87,7 +84,10 @@ function Tag({
       {...props}
     >
       {appearance == "ghost" && (
-        <span aria-hidden className="size-1.5 rounded-full bg-current animate-pulse" />
+        <span
+          aria-hidden
+          className="size-1.5 rounded-full bg-current animate-pulse"
+        />
       )}
       <span data-slot="tag-label">{children}</span>
     </Comp>

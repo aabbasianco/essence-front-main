@@ -25,8 +25,8 @@ const badgeVariants = cva(
       },
       size: {
         // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
-        md: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)]",
-        lg: "px-1.5 py-0.5 text-[length:var(--body-font-size)] font-[var(--body-font-weight)]",
+        sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)]",
+        md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)]",
       },
       shape: {
         rounded: "rounded-[var(--badge-radius)]",
@@ -37,7 +37,7 @@ const badgeVariants = cva(
     defaultVariants: {
       appearance: "solid",
       color: "primary",
-      size: "md",
+      size: "sm",
       shape: "rounded",
     },
   },
@@ -55,7 +55,7 @@ function Badge({
   className,
   appearance = "solid",
   color = "primary",
-  size = "md",
+  size = "sm",
   shape = "rounded",
   asChild = false,
   children,
@@ -87,7 +87,10 @@ function Badge({
       {...props}
     >
       {appearance == "ghost" && (
-        <span aria-hidden className="size-1.5 rounded-full bg-current animate-pulse" />
+        <span
+          aria-hidden
+          className="size-1.5 rounded-full bg-current animate-pulse"
+        />
       )}
       <span data-slot="badge-label">{children}</span>
     </Comp>

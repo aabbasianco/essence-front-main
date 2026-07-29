@@ -23,7 +23,7 @@ const meta = {
     },
     size: {
       control: "radio",
-      options: ["md", "lg"],
+      options: ["sm", "md"],
     },
     shape: {
       control: "radio",
@@ -36,6 +36,12 @@ const meta = {
       control: "text",
     },
   },
+  args: {
+    appearance: "soft",
+    shape: "rounded",
+    children: "Tag Text",
+    size: "md",
+  },
 } satisfies Meta<typeof Tag>;
 
 export default meta;
@@ -44,10 +50,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    appearance: "solid",
     color: "primary",
-    children: "sample",
-    shape: "rounded",
   },
   render: (args) => <Tag {...args} dir="auto" />,
 };
