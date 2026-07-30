@@ -26,8 +26,8 @@ const badgeVariants = cva(
       },
       size: {
         // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
-        sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)]",
-        md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)]",
+        sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0  [&_svg:not([class*='size-'])]:size-4",
+        md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1  [&_svg:not([class*='size-'])]:size-5",
       },
       shape: {
         rounded: "rounded-[var(--badge-radius)]",
@@ -45,7 +45,11 @@ const badgeVariants = cva(
 );
 
 type BadgeProps = React.ComponentProps<"span"> &
-  VariantProps<typeof badgeVariants> & { asChild?: boolean };
+  VariantProps<typeof badgeVariants> & {
+    asChild?: boolean;
+    startIcon?: React.ReactElement;
+    endIcon?: React.ReactElement;
+  };
 
 type BadgeVariants = VariantProps<typeof badgeVariants>;
 
@@ -58,6 +62,8 @@ function Badge({
   color = "primary",
   size = "sm",
   shape = "rounded",
+  startIcon,
+  endIcon,
   asChild = false,
   children,
   ...props
@@ -74,6 +80,8 @@ function Badge({
       data-color={color}
       data-size={size}
       data-shape={shape}
+      data-has-start-icon={!!startIcon || undefined}
+      data-has-end-icon={!!endIcon || undefined}
       className={cn(
         badgeVariants({ appearance, color, size, shape }),
         className,
@@ -93,7 +101,9 @@ function Badge({
           className="size-1.5 rounded-full bg-current animate-pulse"
         />
       )}
+      {startIcon && <span data-slot="badge-start-icon">{startIcon}</span>}
       <span data-slot="badge-label">{children}</span>
+      {endIcon && <span data-slot="badge-end-icon">{endIcon}</span>}
     </Comp>
   );
 }

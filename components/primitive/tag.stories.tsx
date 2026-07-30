@@ -68,6 +68,7 @@ export const Variants: Story = {
       <Tag {...args} appearance="outline" startIcon={<Flame/>} color="tertiary" />
       <Tag {...args} appearance="outline" startIcon={<Check/>} color="brand" />
       <Tag {...args} appearance="outline" startIcon={<Astroid/>} color="purple" />
+      <Tag {...args} appearance="outline" startIcon={<Astroid/>} color="violet" />
       <Tag {...args} appearance="outline" startIcon={<Check/>} color="green" />
     </div>
   ),
