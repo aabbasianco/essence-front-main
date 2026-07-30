@@ -9,67 +9,67 @@
      Colors
      ========================================================================== */
   /* Background */
-  --color-background: var(--background);
-  --color-background-foreground: var(--background-foreground);
+  --color-background: var(--color-background);
+  --color-background-foreground: var(--color-background-foreground);
 
   /* Surface */
-  --color-surface: var(--surface);
-  --color-surface-foreground: var(--surface-foreground);
+  --color-surface: var(--color-surface);
+  --color-surface-foreground: var(--color-surface-foreground);
 
-  --color-surface-subtle: var(--surface-subtle);
-  --color-surface-subtle-foreground: var(--background-foreground);
+  --color-surface-subtle: var(--color-surface-subtle);
+  --color-surface-subtle-foreground: var(--color-background-foreground);
 
   /* Brand */
-  --color-brand: var(--brand);
-  --color-brand-foreground: var(--brand-foreground);
+  --color-brand: var(--color-brand);
+  --color-brand-foreground: var(--color-brand-foreground);
 
-  --color-brand-subtle: var(--brand-subtle);
-  --color-brand-subtle-foreground: var(--brand-subtle-foreground);
+  --color-brand-subtle: var(--color-brand-subtle);
+  --color-brand-subtle-foreground: var(--color-brand-subtle-foreground);
 
   /* Primary */
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
 
-  --color-primary-subtle: var(--primary-subtle);
-  --color-primary-subtle-foreground: var(--primary-subtle-foreground);
+  --color-primary-subtle: var(--color-primary-subtle);
+  --color-primary-subtle-foreground: var(--color-primary-subtle-foreground);
 
   /* Secondary */
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-secondary-foreground);
 
-  --color-secondary-subtle: var(--secondary-subtle);
-  --color-secondary-subtle-foreground: var(--secondary-subtle-foreground);
+  --color-secondary-subtle: var(--color-secondary-subtle);
+  --color-secondary-subtle-foreground: var(--color-secondary-subtle-foreground);
 
   /* Tertiary */
-  --color-tertiary: var(--tertiary);
-  --color-tertiary-foreground: var(--tertiary-foreground);
+  --color-tertiary: var(--color-tertiary);
+  --color-tertiary-foreground: var(--color-tertiary-foreground);
 
-  --color-tertiary-subtle: var(--tertiary-subtle);
-  --color-tertiary-subtle-foreground: var(--tertiary-subtle-foreground);
+  --color-tertiary-subtle: var(--color-tertiary-subtle);
+  --color-tertiary-subtle-foreground: var(--color-tertiary-subtle-foreground);
 
   /* Muted */
-  --color-muted: var(--muted);
+  --color-muted: var(--color-muted);
 
   /* Support */
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-success-subtle: var(--success-subtle);
-  --color-success-subtle-foreground: var(--success-subtle-foreground);
+  --color-success: var(--color-success);
+  --color-success-foreground: var(--color-success-foreground);
+  --color-success-subtle: var(--color-success-subtle);
+  --color-success-subtle-foreground: var(--color-success-subtle-foreground);
 
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-warning-subtle: var(--warning-subtle);
-  --color-warning-subtle-foreground: var(--warning-subtle-foreground);
+  --color-warning: var(--color-warning);
+  --color-warning-foreground: var(--color-warning-foreground);
+  --color-warning-subtle: var(--color-warning-subtle);
+  --color-warning-subtle-foreground: var(--color-warning-subtle-foreground);
 
-  --color-danger: var(--danger);
-  --color-danger-foreground: var(--danger-foreground);
-  --color-danger-subtle: var(--danger-subtle);
-  --color-danger-subtle-foreground: var(--danger-subtle-foreground);
+  --color-danger: var(--color-danger);
+  --color-danger-foreground: var(--color-danger-foreground);
+  --color-danger-subtle: var(--color-danger-subtle);
+  --color-danger-subtle-foreground: var(--color-danger-subtle-foreground);
 
-  --color-info: var(--info);
-  --color-info-foreground: var(--info-foreground);
-  --color-info-subtle: var(--info-subtle);
-  --color-info-subtle-foreground: var(--info-subtle-foreground);
+  --color-info: var(--color-info);
+  --color-info-foreground: var(--color-info-foreground);
+  --color-info-subtle: var(--color-info-subtle);
+  --color-info-subtle-foreground: var(--color-info-subtle-foreground);
 
   /* Misc */
   --color-border: var(--border);
@@ -146,8 +146,8 @@
   --color-gray-950: #030712;
 
   /* Brand */
-  --color-brand-50: #96AFDB;
-  --color-brand-100: #87A4D6;
+  --color-brand-50: #EAEFF7;
+  --color-brand-100: #C0CFE9;
   --color-brand-150: #7999D1;
   --color-brand-200: #6A8ECC;
   --color-brand-250: #5B83C7;
@@ -294,6 +294,19 @@
   --color-green-900: #0d542b;
   --color-green-950: #032e15;
 
+  /* Emerald */
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d0fae5;
+  --color-emerald-200: #a4f4cf;
+  --color-emerald-300: #5ee9b5;
+  --color-emerald-400: #00d492;
+  --color-emerald-500: #00bc7d;
+  --color-emerald-600: #009966;
+  --color-emerald-700: #007a55;
+  --color-emerald-800: #006045;
+  --color-emerald-900: #004f3b;
+  --color-emerald-950: #002c22;
+
   /* Teal */
   --color-teal-50: #f0fdfa;
   --color-teal-100: #cbfbf1;
@@ -319,6 +332,19 @@
   --color-sky-800: #00598a;
   --color-sky-900: #024a70;
   --color-sky-950: #052f4a;
+
+  /* Indigo */
+  --color-indigo-50: #eef2ff;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-200: #c6d2ff;
+  --color-indigo-300: #a3b3ff;
+  --color-indigo-400: #7c86ff;
+  --color-indigo-500: #615fff;
+  --color-indigo-600: #4f39f6;
+  --color-indigo-700: #432dd7;
+  --color-indigo-800: #372aac;
+  --color-indigo-900: #312c85;
+  --color-indigo-950: #1e1a4d;
 
   /* Violet */
   --color-violet-50: #f5f3ff;
@@ -527,103 +553,155 @@
   --blur-none: 0;
   --blur-sm: 4px;
   --blur-md: 8px;
-  --blur-lg: 16px;
+    --blur-lg: 16px;
 
-  /* ==========================================================================
-   Semantic Tokens : Background & Foreground
-   ========================================================================== */
-  /* Backgrounds */
-  --background: var(--color-gray-50);
-  --background-foreground: var(--color-gray-950);
+    /* ==========================================================================
+    Semantic Tokens : Background & Foreground
+    ========================================================================== */
+    /* Backgrounds */
+    --color-background: var(--color-gray-50);
+    --color-background-foreground: var(--color-gray-950);
 
-  --surface: #FFFFFF;
-  --surface-foreground: var(--color-gray-900);
+    --color-surface: #FFFFFF;
+    --color-surface-foreground: var(--color-gray-900);
 
-  --surface-subtle: var(--color-gray-100);
+    --color-surface-subtle: var(--color-gray-100);
 
-  /* Brand */
-  --brand: var(--color-brand-850);
-  --brand-foreground: #FFFFFF;
+    /* Brand */
+    --color-brand: var(--color-brand-850);
+    --color-brand-foreground: #FFFFFF;
 
-  --brand-subtle: var(--color-brand-50);
-  --brand-subtle-foreground: var(--color-brand-850);
+    --color-brand-subtle: var(--color-brand-50);
+    --color-brand-subtle-foreground: var(--color-brand-700);
 
-  /* Primary */
-  --primary: var(--color-blue-500);
-  --primary-foreground: #FFFFFF;
+    /* Primary */
+    --color-primary: var(--color-blue-500);
+    --color-primary-foreground: #FFFFFF;
 
-  --primary-subtle: var(--color-blue-50);
-  --primary-subtle-foreground: var(--color-blue-500);
+    --color-primary-subtle: var(--color-blue-50);
+    --color-primary-subtle-foreground: var(--color-blue-500);
 
-  /* Secondary */
-  --secondary: var(--color-gray-900);
-  --secondary-foreground: #FFFFFF;
+    /* Secondary */
+    --color-secondary: var(--color-gray-900);
+    --color-secondary-foreground: #FFFFFF;
 
-  --secondary-subtle: var(--color-gray-100);
-  --secondary-subtle-foreground: var(--color-gray-900);
+    --color-secondary-subtle: var(--color-gray-100);
+    --color-secondary-subtle-foreground: var(--color-gray-900);
 
-  /* Tertiary */
-  --tertiary: var(--color-warm-sand-300);
-  --tertiary-foreground: var(--color-brand-850);
+    /* Tertiary */
+    --color-tertiary: var(--color-warm-sand-300);
+    --color-tertiary-foreground: var(--color-brand-850);
 
-  --tertiary-subtle: var(--color-warm-sand-100);
-  --tertiary-subtle-foreground: var(--color-warm-sand-90);
+    --color-tertiary-subtle: var(--color-warm-sand-100);
+    --color-tertiary-subtle-foreground: var(--color-warm-sand-900);
 
-  /* Muted */
-  --muted: var(--color-gray-500);
+    /* Muted */
+    --color-muted: var(--color-gray-500);
 
-  /* Body */
-  --body: var(--color-gray-700);
-  --body-foreground: var(--color-gray-950);
+    /* Body */
+    --body: var(--color-gray-700);
+    --body-foreground: var(--color-gray-950);
 
-  /* Success */
-  --success: var(--color-success-600);
-  --success-foreground: #FFFFFF;
+    /* Success */
+    --color-success: var(--color-success-600);
+    --color-success-foreground: #FFFFFF;
 
-  --success-subtle: var(--color-success-100);
-  --success-subtle-foreground: var(--color-success-900);
+    --color-success-subtle: var(--color-success-100);
+    --color-success-subtle-foreground: var(--color-success-900);
 
-  /* Warning */
-  --warning: var(--color-warning-500);
-  --warning-foreground: #FFFFFF;
+    /* Warning */
+    --color-warning: var(--color-warning-500);
+    --color-warning-foreground: #FFFFFF;
 
-  --warning-subtle: var(--color-warning-100);
-  --warning-subtle-foreground: var(--color-warning-900);
+    --color-warning-subtle: var(--color-warning-100);
+    --color-warning-subtle-foreground: var(--color-warning-900);
 
-  /* danger */
-  --danger: var(--color-danger-600);
-  --danger-foreground: #FFFFFF;
+    /* danger */
+    --color-danger: var(--color-danger-600);
+    --color-danger-foreground: #FFFFFF;
 
-  --danger-subtle: var(--color-danger-100);
-  --danger-subtle-foreground: var(--color-danger-900);
+    --color-danger-subtle: var(--color-danger-100);
+    --color-danger-subtle-foreground: var(--color-danger-900);
 
-  /* Info */
-  --info: var(--color-info-600);
-  --info-foreground: #FFFFFF;
+    /* Info */
+    --color-info: var(--color-info-600);
+    --color-info-foreground: #FFFFFF;
 
-  --info-subtle: var(--color-info-100);
-  --info-subtle-foreground: var(--color-info-800);
+    --color-info-subtle: var(--color-info-100);
+    --color-info-subtle-foreground: var(--color-info-800);
 
-  /* Green */
-  --green: var(--color-green-600);
-  --green-foreground: #FFFFFF;
+    /* ==========================================================================
+    Semantic Tokens : Colors
+    ========================================================================== */
+    /* Amber */
+    --color-amber: var(--color-amber-500);
+    --color-amber-foregound: #FFFFFF;
 
-  --green-subtle: var(--color-green-50);
-  --green-subtle-foreground: var(--color-green-900);
+    --color-amber-subtle: var(--color-amber-50);
+    --color-amber-subtle-foreground: var(--color-amber-900);
 
-  /* Violet */
-  --violet: var(--color-violet-600);
-  --violet-foreground: #FFFFFF;
+    /* Green */
+    --color-green: var(--color-green-600);
+    --color-green-foreground: #FFFFFF;
 
-  --violet-subtle: var(--color-violet-50);
-  --violet-subtle-foreground: var(--color-violet-900);
+    --color-green-subtle: var(--color-green-50);
+    --color-green-subtle-foreground: var(--color-green-900);
 
-  /* Purple */
-  --purple: var(--color-purple-600);
-  --purple-foreground: #FFFFFF;
+    /* Emerald */
+    --color-emerald: var(--color-emerald-600);
+    --color-emerald-foreground: #FFFFFF;
 
-  --purple-subtle: var(--color-purple-50);
-  --purple-subtle-foreground: var(--color-purple-900);
+    --color-emerald-subtle: var(--color-emerald-50);
+    --color-emerald-subtle-foreground: var(--color-emerald-900);
+
+    /* Teal */
+    --color-teal: var(--color-teal-600);
+    --color-teal-foreground: #FFFFFF;
+
+    --color-teal-subtle: var(--color-teal-50);
+    --color-teal-subtle-foreground: var(--color-teal-900);
+
+    /* Sky */
+    --color-sky: var(--color-sky-600);
+    --color-sky-foreground: #FFFFFF;
+
+    --color-sky-subtle: var(--color-sky-50);
+    --color-sky-subtle-foreground: var(--color-sky-900);
+
+    /* Indigo */
+    --color-indigo: var(--color-indigo-600);
+    --color-indigo-foreground: #FFFFFF;
+
+    --color-indigo-subtle: var(--color-indigo-50);
+    --color-indigo-subtle-foreground: var(--color-indigo-900);
+
+    /* Violet */
+    --color-violet: var(--color-violet-600);
+    --color-violet-foreground: #FFFFFF;
+
+    --color-violet-subtle: var(--color-violet-50);
+    --color-violet-subtle-foreground: var(--color-violet-900);
+
+    /* Purple */
+    --color-purple: var(--color-purple-600);
+    --color-purple-foreground: #FFFFFF;
+
+    --color-purple-subtle: var(--color-purple-50);
+    --color-purple-subtle-foreground: var(--color-purple-900);
+
+    /* Fuchsia */
+    --color-fuchsia: var(--color-fuchsia-600);
+    --color-fuchsia-foreground: #FFFFFF;
+
+    --color-fuchsia-subtle: var(--color-fuchsia-50);
+    --color-fuchsia-subtle-foreground: var(--color-fuchsia-900);
+
+    /* Rose */
+    --color-rose: var(--color-rose-500);
+    --color-rose-foreground: #FFFFFF;
+
+    --color-rose-subtle: var(--color-rose-50);
+    --color-rose-subtle-foreground: var(--color-rose-900);
 
   /* ==========================================================================
    Semantic Tokens : Border
@@ -639,6 +717,25 @@
    ========================================================================== */
   /* Overlay */
   --overlay: rgb(0 0 0 / 0.45);
+
+    /* ==========================================================================
+    Domain Tokens : tag
+    ========================================================================== */
+    /* Color */
+    --color-tag-gender: var(--color-primary-subtle);
+    --color-tag-gender-foreground: var(--color-primary-subtle-foreground);
+    
+    --color-tag-brand-type: var(--color-violet-subtle);
+    --color-tag-brand-type-foreground: var(--color-violet-subtle-foreground);
+    
+    --color-tag-origin: var(--color-indigo-subtle);
+    --color-tag-origin-foreground: var(--color-indigo-subtle-foreground);
+    
+    --color-tag-concentration: var(--color-sky-subtle);
+    --color-tag-concentration-foreground: var(--color-sky-subtle-foreground);
+    
+    --color-tag-performance: var(--color-teal-subtle);
+    --color-tag-performance-foreground: var(--color-teal-subtle-foreground);
 
   /* ==========================================================================
    State Tokens : Opacity

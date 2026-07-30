@@ -19,9 +19,16 @@ const tagVariants = cva(
         secondary: "",
         tertiary: "",
         brand: "",
+        amber: "",
+        green: "",
+        emerald: "",
+        teal: "",
+        sky: "",
+        indigo: "",
         violet: "",
         purple: "",
-        green: "",
+        fuchsia: "",
+        rose: "",
       },
       size: {
         // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
@@ -104,26 +111,26 @@ function GetTagPalette(appearance: TagAppearance, color: TagColor) {
   switch (appearance) {
     case "solid":
       return {
-        background: `var(--${color})`,
-        foreground: `var(--${color}-foreground)`,
+        background: `var(--color-${color})`,
+        foreground: `var(--color-${color}-foreground)`,
         border: "transparent",
       };
     case "soft":
       return {
-        background: `var(--${color}-subtle)`,
-        foreground: `var(--${color}-subtle-foreground)`,
+        background: `var(--color-${color}-subtle)`,
+        foreground: `var(--color-${color}-subtle-foreground)`,
         border: `transparent`,
       };
     case "outline":
       return {
-        background: `var(--${color}-subtle)`,
-        foreground: `var(--${color}-subtle-foreground)`,
+        background: `var(--color-${color}-subtle)`,
+        foreground: `var(--color-${color}-subtle-foreground)`,
         border: `var(--${color})`,
       };
     case "ghost":
       return {
         background: `transparent`,
-        foreground: `var(--${color})`,
+        foreground: `var(--color-${color})`,
         border: `transparent`,
       };
   }

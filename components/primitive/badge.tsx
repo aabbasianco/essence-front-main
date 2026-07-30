@@ -114,26 +114,26 @@ function GetBadgePalette(appearance: BadgeAppearance, color: BadgeColor) {
   switch (appearance) {
     case "solid":
       return {
-        background: `var(--${color})`,
-        foreground: `var(--${color}-foreground)`,
+        background: `var(--color-${color})`,
+        foreground: `var(--color-${color}-foreground)`,
         border: "transparent",
       };
     case "soft":
       return {
-        background: `var(--${color}-subtle)`,
-        foreground: `var(--${color}-subtle-foreground)`,
+        background: `var(--color-${color}-subtle)`,
+        foreground: `var(--color-${color}-subtle-foreground)`,
         border: `transparent`,
       };
     case "outline":
       return {
-        background: `var(--${color}-subtle)`,
-        foreground: `var(--${color}-subtle-foreground)`,
-        border: `var(--${color})`,
+        background: `var(--color-${color}-subtle)`,
+        foreground: `var(--color-${color}-subtle-foreground)`,
+        border: `var(--color-${color})`,
       };
     case "ghost":
       return {
         background: `transparent`,
-        foreground: `var(--${color})`,
+        foreground: `var(--color-${color})`,
         border: `transparent`,
       };
   }
