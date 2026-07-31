@@ -6,6 +6,13 @@ import { severities, appearances } from "@/lib/theme/palette";
 
 const meta = {
   component: Badge,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Highlights why the user should notice this Component right now.',
+      },
+    },
+  },
   argTypes: {
     appearance: {
       control: "select",

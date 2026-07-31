@@ -17,6 +17,13 @@ import { tagCategories } from "@/components/primitive/tag";
 
 const meta = {
   component: Tag,
+  parameters: {
+    docs: {
+      description: {
+        component: 'Describes what the perfume is.',
+      },
+    },
+  },
   argTypes: {
     category: {
       control: "select",

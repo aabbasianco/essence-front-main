@@ -39,6 +39,13 @@ const meta = {
         size: 'lg',
         layout: 'fit'
     },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Buttons are here.',
+      },
+    },
+  },
     decorators: [
         (Story) => (
             <div className="w-100 text-center">
