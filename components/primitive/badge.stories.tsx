@@ -1,27 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import { Badge } from "./badge";
-import { ArrowUp, Clock, Flame, Package } from "lucide-react";
+import { Check, Clock, Flame, Package } from "lucide-react";
+import { severities, appearances } from "@/lib/theme/palette";
 
 const meta = {
   component: Badge,
   argTypes: {
     appearance: {
       control: "select",
-      options: ["solid", "soft", "outline", "ghost"],
+      options: Object.keys(appearances),
     },
-    color: {
+    severity: {
       control: "select",
-      options: [
-        "primary",
-        "secondary",
-        "tertiary",
-        "brand",
-        "success",
-        "warning",
-        "danger",
-        "info",
-      ],
+      options: Object.keys(severities),
     },
     size: {
       control: "radio",
@@ -52,47 +44,90 @@ type Story = StoryObj<typeof meta>;
 
 export const Danger: Story = {
   args: {
-    color: "danger",
+    severity: "danger",
     startIcon: <Clock />,
   },
   render: (args) => <Badge {...args} dir="auto" />,
 };
 
-export const Variants: Story = {
+export const Application: Story = {
   render: (args) => (
-    <div className="inline-flex gap-4 justify-center">
-      <Badge {...args} color="secondary">
+    <div className="inline-flex gap-4 justify-center flex-wrap overflow-hidden">
+      <Badge {...args} severity="secondary">
         Featured
       </Badge>
-      <Badge {...args} color="primary">
+      <Badge {...args} severity="primary">
         New
       </Badge>
-      <Badge {...args} color="primary">
+      <Badge {...args} severity="primary">
         Best Seller
       </Badge>
-      <Badge {...args} color="danger" startIcon={<Flame />}>
+      <Badge {...args} severity="danger" startIcon={<Flame />}>
         Trending
       </Badge>
-      <Badge {...args} color="danger">
+      <Badge {...args} severity="danger">
         Limited
       </Badge>
-      <Badge {...args} color="danger" startIcon={<Clock />}>
+      <Badge {...args} severity="danger" startIcon={<Clock />}>
         10% off
       </Badge>
-      <Badge {...args} color="warning">
+      <Badge {...args} severity="warning">
         Pending
       </Badge>
-      <Badge {...args} color="success">
+      <Badge {...args} severity="success" startIcon={<Check />}>
         Delivered
       </Badge>
-      <Badge {...args} color="success" startIcon={<Package />} appearance="ghost">
+      <Badge
+        {...args}
+        severity="success"
+        startIcon={<Package />}
+        appearance="ghost"
+      >
         In Stock
       </Badge>
-      <Badge {...args} color="warning" startIcon={<Package />} appearance="ghost">
+      <Badge
+        {...args}
+        severity="warning"
+        startIcon={<Package />}
+        appearance="ghost"
+      >
         Low Stock
       </Badge>
-      <Badge {...args} color="danger" startIcon={<Package />} appearance="ghost">
+      <Badge
+        {...args}
+        severity="danger"
+        startIcon={<Package />}
+        appearance="ghost"
+      >
         Out of Stock
+      </Badge>
+    </div>
+  ),
+};
+
+export const Severities: Story = {
+  render: (args) => (
+    <div className="inline-flex gap-4 justify-center flex-wrap overflow-hidden">
+      <Badge {...args} severity="primary">
+        Primary
+      </Badge>
+      <Badge {...args} severity="secondary">
+        Secondary
+      </Badge>
+      <Badge {...args} severity="tertiary">
+        Tertiary
+      </Badge>
+      <Badge {...args} severity="success">
+        Success
+      </Badge>
+      <Badge {...args} severity="warning">
+        Warning
+      </Badge>
+      <Badge {...args} severity="danger">
+        Danger
+      </Badge>
+      <Badge {...args} severity="info">
+        Info
       </Badge>
     </div>
   ),

@@ -22,10 +22,6 @@ const meta = {
             options: ['fit', 'full'],
             description: 'Layout of the button',
         },
-        dir: {
-            control: 'select',
-            options: ['ltr', 'rtl'],
-        },
         children: {
             control: 'text',
             description: 'Content of the button',
@@ -63,6 +59,9 @@ export const Primary : Story = {
         // startIcon:<ArrowRight />,
         startIcon:<ShoppingBag />,
     },
+    render: (args)=>(
+        <Button {...args} dir='auto'/>
+    )
 }
 
 export const Variations : Story = {

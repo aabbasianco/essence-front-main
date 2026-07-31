@@ -1,29 +1,21 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
-import { Disc } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  GetPalette,
+  type Appearance,
+  type Severity,
+  severities,
+  appearances,
+} from "@/lib/theme/palette";
 
 const badgeVariants = cva(
   "bg-[var(--badge-background)] text-[var(--badge-foreground)] border-[var(--badge-border)] hover:cursor-pointer border-2 group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
-      appearance: {
-        solid: "",
-        soft: "",
-        outline: "",
-        ghost: "",
-      },
-      color: {
-        primary: "",
-        secondary: "",
-        tertiary: "",
-        brand: "",
-        success: "",
-        warning: "",
-        danger: "",
-        info: "",
-      },
+      appearance: appearances,
+      severity: severities,
       size: {
         // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
         sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0  [&_svg:not([class*='size-'])]:size-4",
@@ -37,7 +29,7 @@ const badgeVariants = cva(
     },
     defaultVariants: {
       appearance: "solid",
-      color: "primary",
+      severity: "info",
       size: "sm",
       shape: "rounded",
     },
@@ -51,15 +43,10 @@ type BadgeProps = React.ComponentProps<"span"> &
     endIcon?: React.ReactElement;
   };
 
-type BadgeVariants = VariantProps<typeof badgeVariants>;
-
-type BadgeAppearance = NonNullable<BadgeVariants["appearance"]>;
-type BadgeColor = NonNullable<BadgeVariants["color"]>;
-
 function Badge({
   className,
   appearance = "solid",
-  color = "primary",
+  severity = "info",
   size = "sm",
   shape = "rounded",
   startIcon,
@@ -69,21 +56,21 @@ function Badge({
   ...props
 }: BadgeProps) {
   const Comp = asChild ? Slot.Root : "span";
-  const appearanceValue = appearance ?? "solid";
-  const colorValue = color ?? "primary";
-  const palette = GetBadgePalette(appearanceValue, colorValue);
+  const resolvedAppearance: Appearance = appearance ?? "soft";
+  const resolvedSeverity: Severity = severity ?? "info";
+  const palette = GetPalette(resolvedAppearance, resolvedSeverity);
 
   return (
     <Comp
       data-slot="badge"
       data-appearance={appearance}
-      data-color={color}
+      data-severity={severity}
       data-size={size}
       data-shape={shape}
       data-has-start-icon={!!startIcon || undefined}
       data-has-end-icon={!!endIcon || undefined}
       className={cn(
-        badgeVariants({ appearance, color, size, shape }),
+        badgeVariants({ appearance, severity, size, shape }),
         className,
       )}
       style={
@@ -109,32 +96,3 @@ function Badge({
 }
 
 export { Badge, badgeVariants };
-
-function GetBadgePalette(appearance: BadgeAppearance, color: BadgeColor) {
-  switch (appearance) {
-    case "solid":
-      return {
-        background: `var(--color-${color})`,
-        foreground: `var(--color-${color}-foreground)`,
-        border: "transparent",
-      };
-    case "soft":
-      return {
-        background: `var(--color-${color}-subtle)`,
-        foreground: `var(--color-${color}-subtle-foreground)`,
-        border: `transparent`,
-      };
-    case "outline":
-      return {
-        background: `var(--color-${color}-subtle)`,
-        foreground: `var(--color-${color}-subtle-foreground)`,
-        border: `var(--color-${color})`,
-      };
-    case "ghost":
-      return {
-        background: `transparent`,
-        foreground: `var(--color-${color})`,
-        border: `transparent`,
-      };
-  }
-}

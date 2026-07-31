@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 import {
-  GetTonePalette,
+  GetPalette,
   type Appearance,
   type Tone,
   type Palette,
@@ -113,12 +113,12 @@ function Tag({
   ...props
 }: TagProps) {
   const Comp = asChild ? Slot.Root : "span";
-  const resolvedAppearance: Appearance = appearance ?? "soft";
   const resolvedTone: Tone = tone ?? "primary";
+  const resolvedAppearance: Appearance = appearance ?? "soft";
   const palette =
     category != null
       ? categoryPalettes[category]
-      : GetTonePalette(resolvedAppearance, resolvedTone);
+      : GetPalette(resolvedAppearance, resolvedTone);
 
   return (
     <Comp

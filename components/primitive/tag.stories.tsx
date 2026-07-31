@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import { Tag } from "./tag";
 import {
-  Clock,
   Clock3,
   Earth,
   Mars,
@@ -12,11 +11,9 @@ import {
   Wind,
   X,
 } from "lucide-react";
-import { Check } from "lucide-react";
-import { Flame } from "lucide-react";
 import { Astroid } from "lucide-react";
-import {tones, appearances} from "@/lib/theme/palette";
-import { tagCategories } from "@/components/primitive/tag"
+import { tones, appearances } from "@/lib/theme/palette";
+import { tagCategories } from "@/components/primitive/tag";
 
 const meta = {
   component: Tag,
@@ -78,24 +75,16 @@ export const Application: Story = {
       <Tag startIcon={<VenusAndMars />} category="gender">
         Unisex
       </Tag>
-      <Tag category="brandType" >
-        Niche
-      </Tag>
-      <Tag category="brandType">
-        Designer
-      </Tag>
-      <Tag category="brandType">
-        Arabian
-      </Tag>
+      <Tag category="brandType">Niche</Tag>
+      <Tag category="brandType">Designer</Tag>
+      <Tag category="brandType">Arabian</Tag>
       <Tag startIcon={<Earth />} category="origin">
         France
       </Tag>
       <Tag startIcon={<Earth />} category="origin">
         Italy
       </Tag>
-      <Tag category="concentration">
-        Concentration
-      </Tag>
+      <Tag category="concentration">Concentration</Tag>
       <Tag startIcon={<Clock3 />} category="performance">
         Longevity
       </Tag>
@@ -120,7 +109,6 @@ export const Application: Story = {
     </div>
   ),
 };
-
 
 export const Tones: Story = {
   render: () => (
