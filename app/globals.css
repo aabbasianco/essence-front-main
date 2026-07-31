@@ -633,6 +633,18 @@
     /* ==========================================================================
     Semantic Tokens : Colors
     ========================================================================== */
+    /* Orange */
+    --color-orange: var(--color-orange-500);
+    --color-orange-foregound: #FFFFFF;
+
+    --color-orange-subtle: var(--color-orange-50);
+    --color-orange-subtle-foreground: var(--color-orange-900);
+    /* Yellow */
+    --color-yellow: var(--color-yellow-500);
+    --color-yellow-foregound: #FFFFFF;
+
+    --color-yellow-subtle: var(--color-yellow-50);
+    --color-yellow-subtle-foreground: var(--color-yellow-900);
     /* Amber */
     --color-amber: var(--color-amber-500);
     --color-amber-foregound: #FFFFFF;
@@ -722,20 +734,20 @@
     Domain Tokens : tag
     ========================================================================== */
     /* Color */
-    --color-tag-gender: var(--color-primary-subtle);
-    --color-tag-gender-foreground: var(--color-primary-subtle-foreground);
+    --tag-gender-background: var(--color-primary-subtle);
+    --tag-gender-foreground: var(--color-primary-subtle-foreground);
     
-    --color-tag-brand-type: var(--color-violet-subtle);
-    --color-tag-brand-type-foreground: var(--color-violet-subtle-foreground);
+    --tag-brand-type-background: var(--color-violet-subtle);
+    --tag-brand-type-foreground: var(--color-violet-subtle-foreground);
     
-    --color-tag-origin: var(--color-indigo-subtle);
-    --color-tag-origin-foreground: var(--color-indigo-subtle-foreground);
+    --tag-origin-background: var(--color-indigo-subtle);
+    --tag-origin-foreground: var(--color-indigo-subtle-foreground);
     
-    --color-tag-concentration: var(--color-sky-subtle);
-    --color-tag-concentration-foreground: var(--color-sky-subtle-foreground);
+    --tag-concentration-background: var(--color-sky-subtle);
+    --tag-concentration-foreground: var(--color-sky-subtle-foreground);
     
-    --color-tag-performance: var(--color-teal-subtle);
-    --color-tag-performance-foreground: var(--color-teal-subtle-foreground);
+    --tag-performance-background: var(--color-teal-subtle);
+    --tag-performance-foreground: var(--color-teal-subtle-foreground);
 
   /* ==========================================================================
    State Tokens : Opacity

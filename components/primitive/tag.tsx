@@ -1,35 +1,29 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
-import { Disc } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  GetTonePalette,
+  type Appearance,
+  type Tone,
+  type Palette,
+  tones,
+  appearances,
+} from "@/lib/theme/palette";
 
 const tagVariants = cva(
-  "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)]/20 hover:cursor-pointer border-1 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] hover:cursor-pointer border-1 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
-      appearance: {
-        solid: "",
-        soft: "",
-        outline: "",
-        ghost: "",
+      category: {
+        gender: "",
+        brandType: "",
+        origin: "",
+        concentration: "",
+        performance: "",
       },
-      color: {
-        primary: "",
-        secondary: "",
-        tertiary: "",
-        brand: "",
-        amber: "",
-        green: "",
-        emerald: "",
-        teal: "",
-        sky: "",
-        indigo: "",
-        violet: "",
-        purple: "",
-        fuchsia: "",
-        rose: "",
-      },
+      tone: tones,
+      appearance: appearances,
       size: {
         // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
         sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0 [&_svg:not([class*='size-'])]:size-4",
@@ -42,30 +36,74 @@ const tagVariants = cva(
       },
     },
     defaultVariants: {
+      tone: "primary",
       appearance: "soft",
-      color: "primary",
       size: "md",
       shape: "rounded",
     },
   },
 );
 
-type TagProps = React.ComponentProps<"span"> &
-  VariantProps<typeof tagVariants> & {
+type TagVariants = VariantProps<typeof tagVariants>;
+type CommonTagProps = React.ComponentProps<"span"> &
+  Omit<VariantProps<typeof tagVariants>, "category" | "tone" | "appearance"> & {
     asChild?: boolean;
     startIcon?: React.ReactElement;
     endIcon?: React.ReactElement;
   };
+type TagProps =
+  | (CommonTagProps & {
+      category: TagCategory;
+      tone?: never;
+      appearance?: never;
+    })
+  | (CommonTagProps & {
+      category?: never;
+      tone?: Tone;
+      appearance?: Appearance;
+    });
+export const tagCategories = {
+  gender: "",
+  brandType: "",
+  origin: "",
+  concentration: "",
+  performance: "",
+} as const;
+export type TagCategory = keyof typeof tagCategories;
 
-type TagVariants = VariantProps<typeof tagVariants>;
-
-type TagAppearance = NonNullable<TagVariants["appearance"]>;
-type TagColor = NonNullable<TagVariants["color"]>;
+const categoryPalettes: Record<TagCategory, Palette> = {
+  gender: {
+    background: "var(--tag-gender-background)",
+    foreground: "var(--tag-gender-foreground)",
+    border: "transparent",
+  },
+  brandType: {
+    background: "var(--tag-brand-type-background)",
+    foreground: "var(--tag-brand-type-foreground)",
+    border: "transparent",
+  },
+  origin: {
+    background: "var(--tag-origin-background)",
+    foreground: "var(--tag-origin-foreground)",
+    border: "transparent",
+  },
+  concentration: {
+    background: "var(--tag-concentration-background)",
+    foreground: "var(--tag-concentration-foreground)",
+    border: "transparent",
+  },
+  performance: {
+    background: "var(--tag-performance-background)",
+    foreground: "var(--tag-performance-foreground)",
+    border: "transparent",
+  },
+};
 
 function Tag({
   className,
-  appearance = "solid",
-  color = "primary",
+  category,
+  tone,
+  appearance,
   size = "md",
   shape = "rounded",
   startIcon,
@@ -75,20 +113,33 @@ function Tag({
   ...props
 }: TagProps) {
   const Comp = asChild ? Slot.Root : "span";
-  const appearanceValue = appearance ?? "solid";
-  const colorValue = color ?? "primary";
-  const palette = GetTagPalette(appearanceValue, colorValue);
+  const resolvedAppearance: Appearance = appearance ?? "soft";
+  const resolvedTone: Tone = tone ?? "primary";
+  const palette =
+    category != null
+      ? categoryPalettes[category]
+      : GetTonePalette(resolvedAppearance, resolvedTone);
 
   return (
     <Comp
       data-slot="tag"
       data-appearance={appearance}
-      data-color={color}
+      data-category={category}
+      data-tone={tone}
       data-size={size}
       data-shape={shape}
       data-has-start-icon={!!startIcon || undefined}
       data-has-end-icon={!!endIcon || undefined}
-      className={cn(tagVariants({ appearance, color, size, shape }), className)}
+      className={cn(
+        tagVariants({
+          category,
+          tone: category ? undefined : tone,
+          appearance: category ? undefined : appearance,
+          size,
+          shape,
+        }),
+        className,
+      )}
       style={
         {
           "--tag-background": palette.background,
@@ -106,32 +157,3 @@ function Tag({
 }
 
 export { Tag, tagVariants };
-
-function GetTagPalette(appearance: TagAppearance, color: TagColor) {
-  switch (appearance) {
-    case "solid":
-      return {
-        background: `var(--color-${color})`,
-        foreground: `var(--color-${color}-foreground)`,
-        border: "transparent",
-      };
-    case "soft":
-      return {
-        background: `var(--color-${color}-subtle)`,
-        foreground: `var(--color-${color}-subtle-foreground)`,
-        border: `transparent`,
-      };
-    case "outline":
-      return {
-        background: `var(--color-${color}-subtle)`,
-        foreground: `var(--color-${color}-subtle-foreground)`,
-        border: `var(--${color})`,
-      };
-    case "ghost":
-      return {
-        background: `transparent`,
-        foreground: `var(--color-${color})`,
-        border: `transparent`,
-      };
-  }
-}
