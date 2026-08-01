@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import { Button } from "@/components/primitive/button";
+import { OverlayBadge } from "./badge";
 
 import { ArrowRight, Search, Heart, ShoppingBag } from "lucide-react";
 
@@ -87,7 +88,7 @@ export const Primary: Story = {
 
 export const Variations: Story = {
   args: {
-    size: "md",
+    // size: "lg",
   },
   render: (args) => (
     <div className="flex gap-4 justify-center">
@@ -115,21 +116,41 @@ export const Variations: Story = {
 
 export const IconSize: Story = {
   args: {
-    size: "md",
+    // size: "md",
   },
   render: (args) => (
     <div className="flex gap-4 justify-center items-center">
-      <Button {...args} variant="tertiary" size="icon-xs" startIcon={<ShoppingBag />} />
-      <Button {...args} variant="tertiary" size="icon-sm" startIcon={<ShoppingBag />} />
-      <Button {...args} variant="tertiary" size="icon-md" startIcon={<ShoppingBag />} />
-      <Button {...args} variant="tertiary" size="icon-lg" startIcon={<ShoppingBag />} />
+      <Button
+        {...args}
+        variant="tertiary"
+        size="icon-xs"
+        startIcon={<ShoppingBag />}
+      />
+      <Button
+        {...args}
+        variant="tertiary"
+        size="icon-sm"
+        startIcon={<ShoppingBag />}
+      />
+      <Button
+        {...args}
+        variant="tertiary"
+        size="icon-md"
+        startIcon={<ShoppingBag />}
+      />
+      <Button
+        {...args}
+        variant="tertiary"
+        size="icon-lg"
+        startIcon={<ShoppingBag />}
+      />
     </div>
   ),
 };
 
-export const Notification: Story = {
+export const BuiltInNotification: Story = {
   render: () => (
-    <div className="flex gap-4 justify-center flex-wrap overflow-hidden">
+    <div className="flex gap-4 justify-center items-center flex-wrap overflow-hidden">
       <Button variant="primary" badge={2}>
         Notification
       </Button>
@@ -148,6 +169,23 @@ export const Notification: Story = {
       <Button variant="link" badge={2}>
         Notification
       </Button>
+    </div>
+  ),
+};
+
+export const OveralyBadgeNotification: Story = {
+  render: () => (
+    <div className="flex gap-4 justify-center items-center flex-wrap">
+      <OverlayBadge>
+        <Button variant="tertiary">Notification</Button>
+      </OverlayBadge>
+      <OverlayBadge severity="primary" value={3}>
+        <Button
+          variant="ghost"
+          size="icon-md"
+          startIcon={<ShoppingBag />}
+        />
+      </OverlayBadge>
     </div>
   ),
 };

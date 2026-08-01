@@ -135,7 +135,7 @@ function OverlayBadge({
         shape={shape}
         className={cn(
           value == null
-            ? "absolute -top-0.5 -inset-e-0.5 z-10 size-2.5 rounded-full p-0 border border-surface"
+            ? "absolute -top-0.5 -inset-e-0.5 z-10 size-2.5 rounded-full p-0 border border-surface animate-pulse"
             : "absolute -top-2 -inset-e-2 z-10 min-h-5 min-w-5 text-xs border border-surface",
         )}
       >
