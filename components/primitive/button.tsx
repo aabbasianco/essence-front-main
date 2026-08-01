@@ -13,11 +13,11 @@ const buttonVariants = cva(
       variant: {
         primary: "[--button-background:var(--color-primary)] [--button-foreground:var(--color-primary-foreground)] [--button-effective-background:var(--color-primary)] hover:bg-primary/80",
         secondary:
-          "border-primary [--button-background:var(--color-transparent)] [--button-foreground:var(--color-primary)] bg-input/30 hover:bg-input/50 hover:text-foreground hover:bg-primary-subtle aria-expanded:bg-muted aria-expanded:text-foreground",
+          "border-primary [--button-background:var(--color-background)] [--button-foreground:var(--color-primary)] hover:text-foreground hover:bg-primary-subtle aria-expanded:bg-muted aria-expanded:text-foreground",
         tertiary:
-          "[--button-background:var(--color-transparent)] [--button-foreground:var(--color-secondary-subtle-foreground)] hover:bg-secondary-subtle aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
+          "[--button-background:var(--color-transparent)] [--button-foreground:var(--color-secondary-subtle-foreground)] border border-border hover:bg-secondary-subtle aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:
-          "[--button-background:var(--color-background)] [--button-foreground:var(--color-primary)] [--button-effective-background:var(--color-primary-foreground)] hover:bg-muted hover:text-foreground hover:bg-primary-subtle aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
+          "[--button-background:var(--color-transparent)] [--button-foreground:var(--color-secondary-subtle-foreground)] [--button-effective-background:var(--color-secondary-foreground)] hover:text-foreground hover:bg-secondary-subtle aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
         destructive:
           "[--button-background:var(--color-danger-subtle)] [--button-foreground:var(--color-danger-subtle-foreground)] [--button-effective-background:var(--color-danger-subtle)] hover:bg-danger/20 focus-visible:border-danger/40 focus-visible:ring-danger/20 dark:bg-danger/20 dark:hover:bg-danger/30 dark:focus-visible:ring-danger/40",
         link: "[--button-background:var(--color-transparent)] [--button-foreground:var(--color-primary)] underline-offset-4 hover:underline",

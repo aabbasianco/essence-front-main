@@ -72,7 +72,7 @@
   --color-info-subtle-foreground: var(--color-info-subtle-foreground);
 
   /* Misc */
-  --color-border: var(--border);
+  --color-border: var(--color-border);
   --color-separator: var(--separator);
   --color-focus-ring: var(--focus-ring);
   --color-overlay: var(--overlay);
@@ -721,7 +721,7 @@
   /* ==========================================================================
    Semantic Tokens : Border
    ========================================================================== */
-  --border: var(--color-gray-200);
+  --color-border: var(--color-gray-200);
 
   --focus-ring: var(--color-blue-400);
 
@@ -866,7 +866,7 @@
 
   --badge-font-weight: var(--font-weight-semibold);
 
-  --badge-border: var(--border) --badge-background: 000;
+  --badge-border: var(--color-border);
   --badge-foreground: 000;
 
   /* ==========================================================================
