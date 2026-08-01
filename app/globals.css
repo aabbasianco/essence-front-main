@@ -568,6 +568,8 @@
 
     --color-surface-subtle: var(--color-gray-100);
 
+    --color-transparent: transparent;
+
     /* Body */
     /* --body: var(--color-gray-700);
     --body-foreground: var(--color-gray-950); */
@@ -783,6 +785,10 @@
   --button-icon-size: 1rem;
 
   --button-border-width: var(--border-width-1);
+
+  --button-background: var(--primary);
+  --button-foreground: var(--primary-foreground);
+  --button-effective-background: var(--color-secondary-foreground);
 
   /* ==========================================================================
    Component Tokens : Typography

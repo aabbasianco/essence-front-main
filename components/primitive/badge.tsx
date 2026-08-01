@@ -46,7 +46,7 @@ type BadgeProps = React.ComponentProps<"span"> &
 function Badge({
   className,
   appearance = "solid",
-  severity = "info",
+  severity = "danger",
   size = "sm",
   shape = "rounded",
   startIcon,

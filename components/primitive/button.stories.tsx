@@ -1,123 +1,153 @@
-import type { Meta, StoryObj} from '@storybook/nextjs-vite'
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Button } from '@/components/primitive/button'
+import { Button } from "@/components/primitive/button";
 
 import { ArrowRight, Search, Heart, ShoppingBag } from "lucide-react";
 
 const meta = {
-    component: Button,
-    argTypes: {
-        variant: {
-            control: 'select',
-            options: ['primary',  'secondary', 'tertiary', 'ghost', 'destructive', 'link'],
-            description: 'Variant of the button',
-        },
-        size: {
-            control: 'select',
-            options: ['xs', 'sm', 'md', 'lg', 'xl', 'icon-md', 'icon-xs', 'icon-sm', 'icon-lg'],
-            description: 'Sizes of the Button',
-        },
-        layout: {
-            control: 'select',
-            options: ['fit', 'full'],
-            description: 'Layout of the button',
-        },
-        children: {
-            control: 'text',
-            description: 'Content of the button',
-        },
-        loading: {
-            controll: 'boolean',
-        },
-        disabled: {
-            control: 'boolean',
-            description: 'Disables the button',
-        },
+  component: Button,
+  argTypes: {
+    variant: {
+      control: "select",
+      options: [
+        "primary",
+        "secondary",
+        "tertiary",
+        "ghost",
+        "destructive",
+        "link",
+      ],
+      description: "Variant of the button",
     },
-    tags: [''],
-    args: {
-        size: 'lg',
-        layout: 'fit'
+    size: {
+      control: "select",
+      options: [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "icon-md",
+        "icon-xs",
+        "icon-sm",
+        "icon-lg",
+      ],
+      description: "Sizes of the Button",
     },
+    layout: {
+      control: "select",
+      options: ["fit", "full"],
+      description: "Layout of the button",
+    },
+    children: {
+      control: "text",
+      description: "Content of the button",
+    },
+    loading: {
+      controll: "boolean",
+    },
+    disabled: {
+      control: "boolean",
+      description: "Disables the button",
+    },
+  },
+  tags: [""],
+  args: {
+    size: "lg",
+    layout: "fit",
+  },
   parameters: {
     docs: {
       description: {
-        component: 'Buttons are here.',
+        component: "Buttons are here.",
       },
     },
   },
-    decorators: [
-        (Story) => (
-            <div className="w-100 text-center">
-                <Story/>
-            </div>
-        ),
-    ],
+  decorators: [
+    (Story) => (
+      <div className="w-100 text-center">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Button>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Primary : Story = {
-    args: {
-        variant: 'primary',
-        children: 'Primary',
-        // startIcon:<ArrowRight />,
-        startIcon:<ShoppingBag />,
-    },
-    render: (args)=>(
-        <Button {...args} dir='auto'/>
-    )
-}
+export const Primary: Story = {
+  args: {
+    variant: "primary",
+    children: "Primary",
+    startIcon: <ShoppingBag />,
+  },
+  render: (args) => <Button {...args} dir="auto" />,
+};
 
-export const Variations : Story = {
-    args: {
-        size: 'md',
-    },
-    render: (args) => (
-        <div className="flex gap-4 justify-center">
-            <Button {...args} variant="primary" startIcon={<Search />}>Primary</Button>
-            <Button {...args} variant="secondary" startIcon={<Heart />}>Secondary</Button>
-            <Button {...args} variant="tertiary" startIcon={<ArrowRight />}>Tertiary</Button>
-            <Button {...args} variant="ghost">Ghost</Button>
-            <Button {...args} variant="destructive">Destructive</Button>
-            <Button {...args} variant="link">Link</Button>
-        </div>
-    )
-}
+export const Variations: Story = {
+  args: {
+    size: "md",
+  },
+  render: (args) => (
+    <div className="flex gap-4 justify-center">
+      <Button {...args} variant="primary" startIcon={<Search />}>
+        Primary
+      </Button>
+      <Button {...args} variant="secondary" startIcon={<Heart />}>
+        Secondary
+      </Button>
+      <Button {...args} variant="tertiary" startIcon={<ArrowRight />}>
+        Tertiary
+      </Button>
+      <Button {...args} variant="ghost">
+        Ghost
+      </Button>
+      <Button {...args} variant="destructive">
+        Destructive
+      </Button>
+      <Button {...args} variant="link">
+        Link
+      </Button>
+    </div>
+  ),
+};
 
-export const Secondary : Story ={
-    args: {
-        variant: 'secondary',
-        children: 'Secondary',
-    }
-}
+export const IconSize: Story = {
+  args: {
+    size: "md",
+  },
+  render: (args) => (
+    <div className="flex gap-4 justify-center items-center">
+      <Button {...args} variant="tertiary" size="icon-xs" startIcon={<ShoppingBag />} />
+      <Button {...args} variant="tertiary" size="icon-sm" startIcon={<ShoppingBag />} />
+      <Button {...args} variant="tertiary" size="icon-md" startIcon={<ShoppingBag />} />
+      <Button {...args} variant="tertiary" size="icon-lg" startIcon={<ShoppingBag />} />
+    </div>
+  ),
+};
 
-export const Tertiary : Story = {
-    args : {
-        variant: 'tertiary',
-        children: 'Tertiary',
-    }
-}
-
-export const Ghost : Story = {
-    args: {
-        variant: 'ghost',
-        children: 'Ghost',
-    }
-}
-
-export const Destructive : Story = {
-    args : {
-        variant: 'destructive',
-        children: 'Destructive',
-    }
-}
-
-export const Link : Story = {
-    args : {
-        variant: 'link',
-        children: 'Link',
-    }
-}
+export const Notification: Story = {
+  render: () => (
+    <div className="flex gap-4 justify-center flex-wrap overflow-hidden">
+      <Button variant="primary" badge={2}>
+        Notification
+      </Button>
+      <Button variant="secondary" badge={2}>
+        اعلان ها
+      </Button>
+      <Button variant="tertiary" badge={2}>
+        Notification
+      </Button>
+      <Button variant="ghost" badge={2}>
+        Notification
+      </Button>
+      <Button variant="destructive" badge={2}>
+        Notification
+      </Button>
+      <Button variant="link" badge={2}>
+        Notification
+      </Button>
+    </div>
+  ),
+};
