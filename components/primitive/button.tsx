@@ -27,10 +27,10 @@ const buttonVariants = cva(
         sm: "h-8 gap-1 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2",
         lg: "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3",
         xl: "h-10 gap-1.5 px-8 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3",
-        "icon-md": "size-10 px-2.5 rounded-lg [&_svg]:size-5.5!",
+        "icon-md": "size-10 px-2.5 rounded-lg [&_svg]:size-6!",
         "icon-xs": "size-6 [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",
-        "icon-lg": "size-12 px-2.5 rounded-lg [&_svg]:size-5.5!",
+        "icon-lg": "size-12 px-2.5 rounded-lg [&_svg]:size-6!",
       },
       layout: {
         fit: "w-fit",

@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Badge } from "./badge";
-import { Check, Clock, Flame, Package } from "lucide-react";
+import { Badge, OverlayBadge } from "./badge";
+import { Button } from "./button";
+import { Check, Clock, Flame, Package, ShoppingBag, Mail, Calendar, Bell, BellRing } from "lucide-react";
 import { severities, appearances } from "@/lib/theme/palette";
 
 const meta = {
@@ -111,6 +112,25 @@ export const Application: Story = {
     </div>
   ),
 };
+
+export const Notification: Story = {
+  render: (args)=> (
+    <div className="inline-flex gap-4 justify-center flex-wrap">
+      <OverlayBadge>
+        <Button variant="tertiary" size="icon-md" startIcon={<ShoppingBag/>}></Button>
+      </OverlayBadge>
+      <OverlayBadge value={99}>
+        <Button variant="tertiary" size="icon-md" startIcon={<Mail/>}></Button>
+      </OverlayBadge>
+      <OverlayBadge>
+        <Button variant="tertiary" size="icon-md" startIcon={<Calendar/>}></Button>
+      </OverlayBadge>
+      <OverlayBadge value="5">
+        <Button variant="tertiary" size="icon-md" startIcon={<BellRing/>}></Button>
+      </OverlayBadge>
+      </div>
+  )
+}
 
 export const Severities: Story = {
   render: (args) => (

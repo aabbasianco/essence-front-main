@@ -11,7 +11,7 @@ import {
 } from "@/lib/theme/palette";
 
 const badgeVariants = cva(
-  "bg-[var(--badge-background)] text-[var(--badge-foreground)] border-[var(--badge-border)] hover:cursor-pointer border-2 group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "bg-[var(--badge-background)] text-[var(--badge-foreground)] border-[var(--badge-border)] border-2 group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all pointer-events-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       appearance: appearances,
@@ -59,6 +59,8 @@ function Badge({
   const resolvedAppearance: Appearance = appearance ?? "soft";
   const resolvedSeverity: Severity = severity ?? "info";
   const palette = GetPalette(resolvedAppearance, resolvedSeverity);
+  const hasValue =
+    children !== undefined && children !== null && children !== "";
 
   return (
     <Comp
@@ -89,10 +91,56 @@ function Badge({
         />
       )}
       {startIcon && <span data-slot="badge-start-icon">{startIcon}</span>}
-      <span data-slot="badge-label">{children}</span>
+      {hasValue && <span data-slot="badge-label">{children}</span>}
       {endIcon && <span data-slot="badge-end-icon">{endIcon}</span>}
     </Comp>
   );
 }
 
-export { Badge, badgeVariants };
+export { Badge, badgeVariants, OverlayBadge };
+
+type OverlayBadgeProps = React.ComponentProps<"span"> & {
+  children: React.ReactNode;
+
+  value?: React.ReactNode;
+
+  severity?: Severity;
+
+  appearance?: Appearance;
+
+  size?: BadgeProps["size"];
+
+  shape?: BadgeProps["shape"];
+
+  className?: string;
+};
+
+function OverlayBadge({
+  children,
+  value,
+  severity = "danger",
+  appearance = "solid",
+  size = "sm",
+  shape = "pill",
+  className,
+}: OverlayBadgeProps) {
+  return (
+    <span className={cn("relative inline-flex", className)}>
+      {children}
+
+      <Badge
+        appearance={appearance}
+        severity={severity}
+        size={size}
+        shape={shape}
+        className={cn(
+          value == null
+            ? "absolute -top-0.5 -inset-e-0.5 z-10 size-2.5 rounded-full p-0 border border-surface"
+            : "absolute -top-2 -inset-e-2 z-10 min-h-5 min-w-5 text-xs border border-surface",
+        )}
+      >
+        {value}
+      </Badge>
+    </span>
+  );
+}
