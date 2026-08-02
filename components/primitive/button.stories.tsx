@@ -114,7 +114,57 @@ export const Variations: Story = {
   ),
 };
 
-export const IconSize: Story = {
+export const ButtonSizes: Story = {
+  args: {
+    // size: "md",
+  },
+  render: (args) => (
+    <div className="flex gap-4 justify-center items-center">
+      <Button
+        {...args}
+        variant="tertiary"
+        size="xs"
+        startIcon={<ShoppingBag />}
+      >
+        xs
+      </Button>
+      <Button
+        {...args}
+        variant="tertiary"
+        size="sm"
+        startIcon={<ShoppingBag />}
+      >
+        sm
+      </Button>
+      <Button
+        {...args}
+        variant="tertiary"
+        size="md"
+        startIcon={<ShoppingBag />}
+      >
+        md
+      </Button>
+      <Button
+        {...args}
+        variant="tertiary"
+        size="lg"
+        startIcon={<ShoppingBag />}
+      >
+        lg
+      </Button>
+      <Button
+        {...args}
+        variant="tertiary"
+        size="xl"
+        startIcon={<ShoppingBag />}
+      >
+        xl
+      </Button>
+    </div>
+  ),
+};
+
+export const IconSizes: Story = {
   args: {
     // size: "md",
   },
@@ -180,11 +230,7 @@ export const OveralyBadgeNotification: Story = {
         <Button variant="tertiary">Notification</Button>
       </OverlayBadge>
       <OverlayBadge severity="primary" value={3}>
-        <Button
-          variant="ghost"
-          size="icon-md"
-          startIcon={<ShoppingBag />}
-        />
+        <Button variant="ghost" size="icon-md" startIcon={<ShoppingBag />} />
       </OverlayBadge>
     </div>
   ),
