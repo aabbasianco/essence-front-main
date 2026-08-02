@@ -81,7 +81,7 @@ export const Primary: Story = {
     children: "Primary",
     startIcon: <ShoppingBag />,
   },
-  render: (args) => <Button {...args} dir="auto" />,
+  render: (args) => <Button {...args} />,
 };
 
 export const Variations: Story = {

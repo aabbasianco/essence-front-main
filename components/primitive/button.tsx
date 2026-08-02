@@ -79,7 +79,7 @@ function Button({
       data-has-start-icon={!!startIcon || undefined}
       data-has-end-icon={!!endIcon || undefined}
       disabled={disabled || loading}
-      dir="auto"
+      // dir="auto"
       className={cn(
         buttonVariants({ variant, size, className }),
         fluid && "w-full",

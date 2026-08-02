@@ -7,8 +7,8 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <div
-        dir="ltr"
-        lang="fa"
+        dir="auto"
+        // lang="fa"
         className={`${notoSans.variable} font-sans antialiased`}
       >
         <Story />

@@ -20,7 +20,7 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       lang="fa"
-      dir="rtl"
+      dir="auto"
       className={cn("h-full", "antialiased", notoSans.variable, "font-sans")}
     >
       <body className="min-h-full flex flex-col">
