@@ -43,7 +43,7 @@ export const Default: Story = {
       <CardContent>(stars)</CardContent>
       <CardFooter className="flex-row flex-wrap gap-5">
         <CardAction className="w-full">
-          <Button layout="full">Some Action</Button>
+          <Button fluid>Some Action</Button>
         </CardAction>
       </CardFooter>
     </Card>

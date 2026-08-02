@@ -11,7 +11,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "[--button-background:var(--color-primary)] [--button-foreground:var(--color-primary-foreground)] [--button-effective-background:var(--color-primary)] hover:bg-primary/80",
+        primary:
+          "[--button-background:var(--color-primary)] [--button-foreground:var(--color-primary-foreground)] [--button-effective-background:var(--color-primary)] hover:bg-primary/80",
         secondary:
           "border-primary [--button-background:var(--color-background)] [--button-foreground:var(--color-primary)] hover:text-foreground hover:bg-primary-subtle aria-expanded:bg-muted aria-expanded:text-foreground",
         tertiary:
@@ -33,15 +34,10 @@ const buttonVariants = cva(
         "icon-sm": "size-8 px-1.5 [&_svg:not([class*='size-'])]:size-4.5!",
         "icon-lg": "size-12 px-2.5 rounded-lg [&_svg]:size-7!",
       },
-      layout: {
-        fit: "w-fit",
-        full: "w-full",
-      },
     },
     defaultVariants: {
       variant: "primary",
       size: "lg",
-      layout: "fit",
     },
   },
 );
@@ -53,13 +49,14 @@ type ButtonProps = React.ComponentProps<"button"> &
     loading?: boolean;
     startIcon?: React.ReactElement;
     endIcon?: React.ReactElement;
+    fluid?: boolean;
   };
 
 function Button({
   className,
   variant = "primary",
   size = "lg",
-  layout = "fit",
+  fluid = false,
   badge,
   asChild = false,
   loading = false,
@@ -76,14 +73,17 @@ function Button({
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      data-layout={layout}
+      data-fluid={fluid}
       data-has-badge={!!badge || undefined}
       data-loading={loading || undefined}
       data-has-start-icon={!!startIcon || undefined}
       data-has-end-icon={!!endIcon || undefined}
       disabled={disabled || loading}
       dir="auto"
-      className={cn(buttonVariants({ variant, size, layout, className }))}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        fluid && "w-full",
+      )}
       {...props}
     >
       {loading ? (

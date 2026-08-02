@@ -35,9 +35,8 @@ const meta = {
       ],
       description: "Sizes of the Button",
     },
-    layout: {
-      control: "select",
-      options: ["fit", "full"],
+    fluid: {
+      control: "boolean",
       description: "Layout of the button",
     },
     children: {
@@ -55,7 +54,6 @@ const meta = {
   tags: [""],
   args: {
     size: "lg",
-    layout: "fit",
   },
   parameters: {
     docs: {
