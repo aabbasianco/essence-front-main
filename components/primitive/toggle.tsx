@@ -11,27 +11,27 @@ const toggleVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-transparent",
-        outline: "border border-input bg-transparent hover:bg-muted",
+        ghost: "bg-transparent",
+        outline: "border border-strong bg-transparent hover:bg-muted-subtle",
       },
       size: {
-        default:
+        md:
           "h-9 min-w-9 px-3 has-data-[icon=inline-end]:pe-2.5 has-data-[icon=inline-start]:ps-2.5",
         sm: "h-8 min-w-8 px-3 has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2",
         lg: "h-10 min-w-10 px-4 has-data-[icon=inline-end]:pe-3 has-data-[icon=inline-start]:ps-3",
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: "ghost",
+      size: "md",
     },
   }
 )
 
 function Toggle({
   className,
-  variant = "default",
-  size = "default",
+  variant = "ghost",
+  size = "md",
   ...props
 }: React.ComponentProps<typeof TogglePrimitive.Root> &
   VariantProps<typeof toggleVariants>) {

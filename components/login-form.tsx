@@ -14,7 +14,7 @@ import {
   FieldLabel,
   FieldSeparator,
 } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/primitive/input";
 
 // Theme mode toggle
 import { ArrowRight } from "lucide-react";
