@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Outline: Story = {
   args:{
-    children:"test",
-    variant:"outline"
+    // children:"test",
+    preset:"default"
   }
 };

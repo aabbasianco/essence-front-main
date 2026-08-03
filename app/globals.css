@@ -642,7 +642,7 @@
 
   /* Muted */
   --color-muted: var(--color-gray-500);
-  --color-muted-subtle: var(--color-gray-300);
+  --color-muted-subtle: var(--color-gray-200);
 
   /* Success */
   --color-success: var(--color-success-600);
