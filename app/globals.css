@@ -135,7 +135,8 @@
    Primitive Tokens : Colors
    ========================================================================== */
   /* Gray */
-  --color-gray-50: #f9fafb;
+  /* --color-gray-50: #f9fafb; */
+  --color-gray-50: #fefefe;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
   --color-gray-300: #d1d5db;
@@ -400,6 +401,45 @@
   --color-rose-900: #8b0836;
   --color-rose-950: #4d0218;
 
+  /* Primary */
+  --color-primary-50: var(--color-blue-50);
+  --color-primary-100: var(--color-blue-100);
+  --color-primary-200: var(--color-blue-200);
+  --color-primary-300: var(--color-blue-300);
+  --color-primary-400: var(--color-blue-400);
+  --color-primary-500: var(--color-blue-500);
+  --color-primary-600: var(--color-blue-600);
+  --color-primary-700: var(--color-blue-700);
+  --color-primary-800: var(--color-blue-800);
+  --color-primary-900: var(--color-blue-900);
+  --color-primary-950: var(--color-blue-950);
+
+  /* Secondary */
+  --color-secondary-50: var(--color-gray-50);
+  --color-secondary-100: var(--color-gray-100);
+  --color-secondary-200: var(--color-gray-200);
+  --color-secondary-300: var(--color-gray-300);
+  --color-secondary-400: var(--color-gray-400);
+  --color-secondary-500: var(--color-gray-500);
+  --color-secondary-600: var(--color-gray-600);
+  --color-secondary-700: var(--color-gray-700);
+  --color-secondary-800: var(--color-gray-800);
+  --color-secondary-900: var(--color-gray-900);
+  --color-secondary-950: var(--color-gray-950);
+
+  /* Tertiary */
+  --color-tertiary-50: var(--color-warm-sand-50);
+  --color-tertiary-100: var(--color-warm-sand-100);
+  --color-tertiary-200: var(--color-warm-sand-200);
+  --color-tertiary-300: var(--color-warm-sand-300);
+  --color-tertiary-400: var(--color-warm-sand-400);
+  --color-tertiary-500: var(--color-warm-sand-500);
+  --color-tertiary-600: var(--color-warm-sand-600);
+  --color-tertiary-700: var(--color-warm-sand-700);
+  --color-tertiary-800: var(--color-warm-sand-800);
+  --color-tertiary-900: var(--color-warm-sand-900);
+  --color-tertiary-950: var(--color-warm-sand-950);
+
   /* Success */
   --color-success-50: var(--color-emerald-50);
   --color-success-100: var(--color-emerald-100);
@@ -580,25 +620,25 @@
   --color-brand-subtle-foreground: var(--color-brand-700);
 
   /* Primary */
-  --color-primary: var(--color-blue-500);
+  --color-primary: var(--color-primary-500);
   --color-primary-foreground: #FFFFFF;
 
-  --color-primary-subtle: var(--color-blue-50);
-  --color-primary-subtle-foreground: var(--color-blue-500);
+  --color-primary-subtle: var(--color-primary-50);
+  --color-primary-subtle-foreground: var(--color-primary-500);
 
   /* Secondary */
-  --color-secondary: var(--color-gray-900);
+  --color-secondary: var(--color-secondary-900);
   --color-secondary-foreground: #FFFFFF;
 
-  --color-secondary-subtle: var(--color-gray-100);
-  --color-secondary-subtle-foreground: var(--color-gray-900);
+  --color-secondary-subtle: var(--color-secondary-100);
+  --color-secondary-subtle-foreground: var(--color-secondary-900);
 
   /* Tertiary */
-  --color-tertiary: var(--color-warm-sand-300);
-  --color-tertiary-foreground: var(--color-brand-850);
+  --color-tertiary: var(--color-tertiary-300);
+  --color-tertiary-foreground: var(--color-tertiary-850);
 
-  --color-tertiary-subtle: var(--color-warm-sand-100);
-  --color-tertiary-subtle-foreground: var(--color-warm-sand-900);
+  --color-tertiary-subtle: var(--color-tertiary-100);
+  --color-tertiary-subtle-foreground: var(--color-tertiary-900);
 
   /* Muted */
   --color-muted: var(--color-gray-500);
@@ -787,6 +827,7 @@
 
   --button-icon-size: 1rem;
 
+  --button-border: var(--color-border);
   --button-border-width: var(--border-width-1);
 
   --button-background: var(--primary);
@@ -821,7 +862,7 @@
   --input-padding-x: --spacing(3);
   --input-padding-y: --spacing(2);
 
-  --input-radius: var(--radius);
+  --input-radius: var(--radius-lg);
 
   --input-border: var(--color-border);
   --input-background: var(--color-surface-subtle);
@@ -829,6 +870,11 @@
   --input-font-size: var(--font-size-sm);
 
   --input-border-width: var(--border-width-1);
+
+  /* ==========================================================================
+   Component Tokens : Input Group
+   ========================================================================== */
+   --input-group-background:var(--input-background);
 
   /* ==========================================================================
    Component Tokens : Label

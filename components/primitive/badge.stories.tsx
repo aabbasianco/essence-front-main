@@ -114,19 +114,19 @@ export const Application: Story = {
 };
 
 export const Notification: Story = {
-  render: (args)=> (
+  render: ()=> (
     <div className="inline-flex gap-4 justify-center flex-wrap">
       <OverlayBadge>
-        <Button variant="tertiary" size="icon-md" startIcon={<ShoppingBag/>}></Button>
+        <Button preset="tertiary" size="icon-md" startIcon={<ShoppingBag/>}></Button>
       </OverlayBadge>
       <OverlayBadge value={99}>
-        <Button variant="tertiary" size="icon-md" startIcon={<Mail/>}></Button>
+        <Button preset="tertiary" size="icon-md" startIcon={<Mail/>}></Button>
       </OverlayBadge>
       <OverlayBadge>
-        <Button variant="tertiary" size="icon-md" startIcon={<Calendar/>}></Button>
+        <Button preset="tertiary" size="icon-md" startIcon={<Calendar/>}></Button>
       </OverlayBadge>
       <OverlayBadge value="5">
-        <Button variant="tertiary" size="icon-md" startIcon={<BellRing/>}></Button>
+        <Button preset="tertiary" size="icon-md" startIcon={<BellRing/>}></Button>
       </OverlayBadge>
       </div>
   )

@@ -11,17 +11,20 @@ import {
   appearances,
 } from "@/lib/theme/palette";
 
+export const tagCategories = {
+  gender: "",
+  brandType: "",
+  origin: "",
+  concentration: "",
+  performance: "",
+} as const;
+export type TagCategory = keyof typeof tagCategories;
+
 const tagVariants = cva(
   "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] hover:cursor-pointer border-1 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
-      category: {
-        gender: "",
-        brandType: "",
-        origin: "",
-        concentration: "",
-        performance: "",
-      },
+      category: tagCategories,
       tone: tones,
       appearance: appearances,
       size: {
@@ -44,7 +47,6 @@ const tagVariants = cva(
   },
 );
 
-type TagVariants = VariantProps<typeof tagVariants>;
 type CommonTagProps = React.ComponentProps<"span"> &
   Omit<VariantProps<typeof tagVariants>, "category" | "tone" | "appearance"> & {
     asChild?: boolean;
@@ -62,14 +64,6 @@ type TagProps =
       tone?: Tone;
       appearance?: Appearance;
     });
-export const tagCategories = {
-  gender: "",
-  brandType: "",
-  origin: "",
-  concentration: "",
-  performance: "",
-} as const;
-export type TagCategory = keyof typeof tagCategories;
 
 const categoryPalettes: Record<TagCategory, Palette> = {
   gender: {

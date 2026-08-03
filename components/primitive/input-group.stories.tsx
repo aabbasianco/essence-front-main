@@ -1,0 +1,43 @@
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/primitive/input-group";
+import { Search } from "lucide-react";
+import { inputPresets, inputShapes } from "./input";
+
+const meta = {
+  component: InputGroup,
+  argTypes: {
+    preset: {
+      control: "radio",
+      options: Object.keys(inputPresets),
+    },
+    shape: {
+      control: "radio",
+      options: Object.keys(inputShapes),
+    },
+  },
+} satisfies Meta<typeof InputGroup>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <div className="grid w-full max-w-sm gap-6">
+      <InputGroup {...args}>
+        <InputGroupInput placeholder="Type to search..." />
+        <InputGroupAddon align="inline-end">
+          <InputGroupButton >
+            <Search />
+          </InputGroupButton>
+        </InputGroupAddon>
+      </InputGroup>
+    </div>
+  ),
+};

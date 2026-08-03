@@ -1,24 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Button } from "@/components/primitive/button";
+import { Button, buttonPresets } from "@/components/primitive/button";
 import { OverlayBadge } from "./badge";
-
+import { appearances, tones } from "@/lib/theme/palette";
 import { ArrowRight, Search, Heart, ShoppingBag } from "lucide-react";
 
 const meta = {
   component: Button,
   argTypes: {
-    variant: {
+    preset: {
       control: "select",
-      options: [
-        "primary",
-        "secondary",
-        "tertiary",
-        "ghost",
-        "destructive",
-        "link",
-      ],
-      description: "Variant of the button",
+      options: Object.keys(buttonPresets),
+      description: "Preset styles of the button",
+    },
+    tone: {
+      control: "select",
+      options: Object.keys(tones),
+      description: "Tones of the button",
+    },
+    appearance: {
+      control: "select",
+      options: Object.keys(appearances),
+      description: "Appeanaces of the button",
     },
     size: {
       control: "select",
@@ -77,7 +80,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    variant: "primary",
+    preset: "primary",
     children: "Primary",
     startIcon: <ShoppingBag />,
   },
@@ -90,22 +93,22 @@ export const Variations: Story = {
   },
   render: (args) => (
     <div className="flex gap-4 justify-center">
-      <Button {...args} variant="primary" startIcon={<Search />}>
+      <Button {...args} preset="primary" startIcon={<Search />}>
         Primary
       </Button>
-      <Button {...args} variant="secondary" startIcon={<Heart />}>
+      <Button {...args} preset="secondary" startIcon={<Heart />}>
         Secondary
       </Button>
-      <Button {...args} variant="tertiary" startIcon={<ArrowRight />}>
+      <Button {...args} preset="tertiary" startIcon={<ArrowRight />}>
         Tertiary
       </Button>
-      <Button {...args} variant="ghost">
+      <Button {...args} preset="ghost">
         Ghost
       </Button>
-      <Button {...args} variant="destructive">
+      <Button {...args} preset="destructive">
         Destructive
       </Button>
-      <Button {...args} variant="link">
+      <Button {...args} preset="link">
         Link
       </Button>
     </div>
@@ -120,7 +123,7 @@ export const ButtonSizes: Story = {
     <div className="flex gap-4 justify-center items-center">
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="xs"
         startIcon={<ShoppingBag />}
       >
@@ -128,7 +131,7 @@ export const ButtonSizes: Story = {
       </Button>
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="sm"
         startIcon={<ShoppingBag />}
       >
@@ -136,7 +139,7 @@ export const ButtonSizes: Story = {
       </Button>
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="md"
         startIcon={<ShoppingBag />}
       >
@@ -144,7 +147,7 @@ export const ButtonSizes: Story = {
       </Button>
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="lg"
         startIcon={<ShoppingBag />}
       >
@@ -152,7 +155,7 @@ export const ButtonSizes: Story = {
       </Button>
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="xl"
         startIcon={<ShoppingBag />}
       >
@@ -170,25 +173,25 @@ export const IconSizes: Story = {
     <div className="flex gap-4 justify-center items-center">
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="icon-xs"
         startIcon={<ShoppingBag />}
       />
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="icon-sm"
         startIcon={<ShoppingBag />}
       />
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="icon-md"
         startIcon={<ShoppingBag />}
       />
       <Button
         {...args}
-        variant="tertiary"
+        preset="tertiary"
         size="icon-lg"
         startIcon={<ShoppingBag />}
       />
@@ -199,22 +202,22 @@ export const IconSizes: Story = {
 export const BuiltInNotification: Story = {
   render: () => (
     <div className="flex gap-4 justify-center items-center flex-wrap overflow-hidden">
-      <Button variant="primary" badge={2}>
+      <Button preset="primary" badge={2}>
         Notification
       </Button>
-      <Button variant="secondary" badge={2}>
+      <Button preset="secondary" badge={2}>
         اعلان ها
       </Button>
-      <Button variant="tertiary" badge={2}>
+      <Button preset="tertiary" badge={2}>
         Notification
       </Button>
-      <Button variant="ghost" badge={2}>
+      <Button preset="ghost" badge={2}>
         Notification
       </Button>
-      <Button variant="destructive" badge={2}>
+      <Button preset="destructive" badge={2}>
         Notification
       </Button>
-      <Button variant="link" badge={2}>
+      <Button preset="link" badge={2}>
         Notification
       </Button>
     </div>
@@ -225,10 +228,10 @@ export const OveralyBadgeNotification: Story = {
   render: () => (
     <div className="flex gap-4 justify-center items-center flex-wrap">
       <OverlayBadge>
-        <Button variant="tertiary">Notification</Button>
+        <Button preset="tertiary">Notification</Button>
       </OverlayBadge>
       <OverlayBadge severity="primary" value={3}>
-        <Button variant="ghost" size="icon-md" startIcon={<ShoppingBag />} />
+        <Button preset="ghost" size="icon-md" startIcon={<ShoppingBag />} />
       </OverlayBadge>
     </div>
   ),
