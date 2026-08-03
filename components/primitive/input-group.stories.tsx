@@ -21,6 +21,10 @@ const meta = {
       options: Object.keys(inputShapes),
     },
   },
+  args: {
+    preset: "searchBox",
+    shape: "pill",
+  },
 } satisfies Meta<typeof InputGroup>;
 
 export default meta;
@@ -28,12 +32,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    
+  },
   render: (args) => (
     <div className="grid w-full max-w-sm gap-6">
       <InputGroup {...args}>
-        <InputGroupInput placeholder="Type to search..." />
+        <InputGroupInput placeholder="Type to search..."/>
         <InputGroupAddon align="inline-end">
-          <InputGroupButton >
+          <InputGroupButton>
             <Search />
           </InputGroupButton>
         </InputGroupAddon>
