@@ -101,59 +101,47 @@ export const Application: Story = {
       <Tag startIcon={<Wind />} category="performance">
         Sillage
       </Tag>
-      {/* <Tag tone="amber" appearance="outline">
-        Admin
-      </Tag>
-      <Tag tone="teal" appearance="outline">
-        Content Creator
-      </Tag>
-      <Tag tone="primary" appearance="outline">
-        Customer
-      </Tag>
-      <Tag tone="secondary" appearance="outline">
-        Guest
-      </Tag> */}
     </div>
   ),
 };
 
 export const Tones: Story = {
-  render: () => (
+  render: (args) => (
     <div className="flex gap-4 justify-center overflow-hidden flex-wrap">
-      <Tag startIcon={<Astroid />} tone="brand">
+      <Tag startIcon={<Astroid />} tone="brand" {...args}>
         Brand
       </Tag>
-      <Tag startIcon={<Astroid />} tone="orange">
+      <Tag startIcon={<Astroid />} tone="orange" {...args}>
         Orange
       </Tag>
-      <Tag startIcon={<Astroid />} tone="yellow">
+      <Tag startIcon={<Astroid />} tone="yellow" {...args}>
         Yellow
       </Tag>
-      <Tag startIcon={<Astroid />} tone="amber">
+      <Tag startIcon={<Astroid />} tone="amber" {...args}>
         Amber
       </Tag>
-      <Tag startIcon={<Astroid />} tone="emerald">
+      <Tag startIcon={<Astroid />} tone="emerald" {...args}>
         Emerald
       </Tag>
-      <Tag startIcon={<Astroid />} tone="teal">
+      <Tag startIcon={<Astroid />} tone="teal" {...args}>
         Teal
       </Tag>
-      <Tag startIcon={<Astroid />} tone="sky">
+      <Tag startIcon={<Astroid />} tone="sky" {...args}>
         Sky
       </Tag>
-      <Tag startIcon={<Astroid />} tone="indigo">
+      <Tag startIcon={<Astroid />} tone="indigo" {...args}>
         Indigo
       </Tag>
-      <Tag startIcon={<Astroid />} tone="violet">
+      <Tag startIcon={<Astroid />} tone="violet" {...args}>
         Violet
       </Tag>
-      <Tag startIcon={<Astroid />} tone="purple">
+      <Tag startIcon={<Astroid />} tone="purple" {...args}>
         Purple
       </Tag>
-      <Tag startIcon={<Astroid />} tone="fuchsia">
+      <Tag startIcon={<Astroid />} tone="fuchsia" {...args}>
         Fuchsia
       </Tag>
-      <Tag startIcon={<Astroid />} tone="rose">
+      <Tag startIcon={<Astroid />} tone="rose" {...args}>
         Rose
       </Tag>
     </div>

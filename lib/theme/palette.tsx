@@ -1,8 +1,9 @@
 export const appearances = {
   solid: "",
   soft: "",
-  outline: "",
+  "soft-outline": "",
   ghost: "",
+  "ghost-outline": "",
 } as const;
 export type Appearance = keyof typeof appearances;
 
@@ -61,17 +62,23 @@ export function GetPalette(
         foreground: `var(--color-${palette}-subtle-foreground)`,
         border: `transparent`,
       };
-    case "outline":
+    case "soft-outline":
       return {
         background: `var(--color-${palette}-subtle)`,
         foreground: `var(--color-${palette}-subtle-foreground)`,
-        border: `var(--${palette})`,
+        border: `var(--color-${palette}-subtle-foreground)`,
       };
     case "ghost":
       return {
         background: `transparent`,
         foreground: `var(--color-${palette})`,
         border: `transparent`,
+      };
+    case "ghost-outline":
+      return {
+        background: `transparent`,
+        foreground: `var(--color-${palette})`,
+        border: `var(--color-${palette})`, 
       };
   }
 }

@@ -47,23 +47,12 @@ const tagVariants = cva(
   },
 );
 
-type CommonTagProps = React.ComponentProps<"span"> &
-  Omit<VariantProps<typeof tagVariants>, "category" | "tone" | "appearance"> & {
+type TagProps = React.ComponentProps<"span"> &
+  VariantProps<typeof tagVariants> & {
     asChild?: boolean;
     startIcon?: React.ReactElement;
     endIcon?: React.ReactElement;
   };
-type TagProps =
-  | (CommonTagProps & {
-      category: TagCategory;
-      tone?: never;
-      appearance?: never;
-    })
-  | (CommonTagProps & {
-      category?: never;
-      tone?: Tone;
-      appearance?: Appearance;
-    });
 
 const categoryPalettes: Record<TagCategory, Palette> = {
   gender: {
