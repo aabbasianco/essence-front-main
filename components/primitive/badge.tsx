@@ -9,6 +9,19 @@ import {
   tones,
   appearances,
 } from "@/lib/design-system/palette";
+import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
+
+const badgeSizes = {
+  // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
+  sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0  [&_svg:not([class*='size-'])]:size-4",
+  md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1  [&_svg:not([class*='size-'])]:size-5",
+};
+type BadgeSize = keyof typeof badgeSizes;
+
+const badgeShapes = ExtendVariants(defaultShapes, {
+  rounded: "rounded-[var(--badge-radius)]",
+});
+type BadgeShape = keyof typeof badgeShapes;
 
 const badgeVariants = cva(
   "bg-[var(--badge-background)] text-[var(--badge-foreground)] border-[var(--badge-border)] border-2 group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all pointer-events-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
@@ -16,16 +29,8 @@ const badgeVariants = cva(
     variants: {
       appearance: appearances,
       tone: tones,
-      size: {
-        // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
-        sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0  [&_svg:not([class*='size-'])]:size-4",
-        md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1  [&_svg:not([class*='size-'])]:size-5",
-      },
-      shape: {
-        rounded: "rounded-[var(--badge-radius)]",
-        pill: "rounded-full",
-        square: "",
-      },
+      size: badgeSizes,
+      shape: badgeShapes,
     },
     defaultVariants: {
       appearance: "solid",
@@ -97,23 +102,14 @@ function Badge({
   );
 }
 
-export { Badge, badgeVariants, OverlayBadge };
+export { Badge, badgeVariants, OverlayBadge, badgeShapes, badgeSizes };
 
-type OverlayBadgeProps = React.ComponentProps<"span"> & {
-  children: React.ReactNode;
-
-  value?: React.ReactNode;
-
-  tone?: Tone;
-
-  appearance?: Appearance;
-
-  size?: BadgeProps["size"];
-
-  shape?: BadgeProps["shape"];
-
-  className?: string;
-};
+type OverlayBadgeProps = React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & {
+    children: React.ReactNode;
+    value?: React.ReactNode;
+    className?: string;
+  };
 
 function OverlayBadge({
   children,

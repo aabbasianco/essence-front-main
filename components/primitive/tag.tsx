@@ -10,15 +10,31 @@ import {
   tones,
   appearances,
 } from "@/lib/design-system/palette";
+import {
+  defaultShapes,
+  ExtendVariants,
+} from "@/lib/design-system/variants";
 
-export const tagCategories = {
+const tagCategories = {
   gender: "",
   brandType: "",
   origin: "",
   concentration: "",
   performance: "",
 } as const;
-export type TagCategory = keyof typeof tagCategories;
+type TagCategory = keyof typeof tagCategories;
+
+const tagSizes = {
+  // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
+  sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0 [&_svg:not([class*='size-'])]:size-4",
+  md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1 [&_svg:not([class*='size-'])]:size-5",
+};
+type TagSize = keyof typeof tagSizes;
+
+const tagShapes = ExtendVariants(defaultShapes, {
+  rounded: "rounded-[var(--badge-radius)]",
+});
+type TagShape = keyof typeof tagShapes;
 
 const tagVariants = cva(
   "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] hover:cursor-pointer border-1 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
@@ -27,16 +43,8 @@ const tagVariants = cva(
       category: tagCategories,
       tone: tones,
       appearance: appearances,
-      size: {
-        // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
-        sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0 [&_svg:not([class*='size-'])]:size-4",
-        md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1 [&_svg:not([class*='size-'])]:size-5",
-      },
-      shape: {
-        rounded: "rounded-[var(--badge-radius)]",
-        pill: "rounded-full",
-        square: "",
-      },
+      size: tagSizes,
+      shape: tagShapes,
     },
     defaultVariants: {
       tone: "primary",
@@ -139,4 +147,11 @@ function Tag({
   );
 }
 
-export { Tag, tagVariants };
+export {
+  Tag,
+  tagVariants,
+  tagCategories,
+  type TagCategory,
+  tagShapes,
+  tagSizes,
+};

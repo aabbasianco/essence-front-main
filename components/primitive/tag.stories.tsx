@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Astroid } from "lucide-react";
 import { tones, appearances } from "@/lib/design-system/palette";
-import { tagCategories } from "@/components/primitive/tag";
+import { tagCategories, tagShapes, tagSizes } from "@/components/primitive/tag";
 
 const meta = {
   component: Tag,
@@ -39,11 +39,11 @@ const meta = {
     },
     size: {
       control: "radio",
-      options: ["sm", "md"],
+      options: Object.keys(tagSizes),
     },
     shape: {
       control: "radio",
-      options: ["rounded", "pill", "square"],
+      options: Object.keys(tagShapes),
     },
     asChild: {
       control: "boolean",

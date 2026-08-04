@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Badge, OverlayBadge } from "./badge";
+import { Badge, OverlayBadge, badgeShapes, badgeSizes } from "./badge";
 import { Button } from "./button";
 import { Check, Clock, Flame, Package, ShoppingBag, Mail, Calendar, Bell, BellRing } from "lucide-react";
 import { tones, appearances } from "@/lib/design-system/palette";
@@ -25,11 +25,11 @@ const meta = {
     },
     size: {
       control: "radio",
-      options: ["sm", "md"],
+      options: Object.keys(badgeSizes),
     },
     shape: {
       control: "radio",
-      options: ["rounded", "pill", "square"],
+      options: Object.keys(badgeShapes),
     },
     asChild: {
       control: "boolean",
