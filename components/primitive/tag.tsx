@@ -12,51 +12,6 @@ import {
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 
-const tagDefaultPresets = {
-  appearance: "soft",
-  tone: "primary",
-  shape: "rounded",
-  size: "md",
-};
-
-const tagPresets = {
-  gender: {
-    appearance: "soft",
-    tone: "primary",
-    shape: "rounded",
-    size: "md",
-  },
-
-  brandType: {
-    appearance: "soft",
-    tone: "violet",
-    shape: "rounded",
-    size: "md",
-  },
-
-  origin: {
-    appearance: "soft",
-    tone: "indigo",
-    shape: "rounded",
-    size: "md",
-  },
-
-  concentration: {
-    appearance: "soft",
-    tone: "sky",
-    shape: "rounded",
-    size: "md",
-  },
-
-  performance: {
-    appearance: "soft",
-    tone: "teal",
-    shape: "rounded",
-    size: "md",
-  },
-} as const;
-type TagPreset = keyof typeof tagPresets;
-
 const tagSizes = {
   // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
   sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0 [&_svg:not([class*='size-'])]:size-4",
@@ -69,20 +24,72 @@ const tagShapes = ExtendVariants(defaultShapes, {
 });
 type TagShape = keyof typeof tagShapes;
 
+const tagDefaultPresets = {
+  appearance: "soft",
+  tone: "primary",
+  shape: "rounded",
+  size: "md",
+} satisfies {
+  appearance: Appearance;
+  tone: Tone;
+  shape: TagShape;
+  size: TagSize;
+};
+
+const tagPresets = {
+  gender: {
+    appearance: tagDefaultPresets.appearance,
+    tone: "primary",
+    shape: "rounded",
+    size: tagDefaultPresets.size,
+  },
+
+  brandType: {
+    appearance: tagDefaultPresets.appearance,
+    tone: "violet",
+    shape: "rounded",
+    size: tagDefaultPresets.size,
+  },
+
+  origin: {
+    appearance: tagDefaultPresets.appearance,
+    tone: "indigo",
+    shape: "rounded",
+    size: tagDefaultPresets.size,
+  },
+
+  concentration: {
+    appearance: tagDefaultPresets.appearance,
+    tone: "sky",
+    shape: "rounded",
+    size: tagDefaultPresets.size,
+  },
+
+  performance: {
+    appearance: tagDefaultPresets.appearance,
+    tone: "teal",
+    shape: "rounded",
+    size: tagDefaultPresets.size,
+  },
+} satisfies Record<
+  string,
+  {
+    appearance: Appearance;
+    tone: Tone;
+    shape: TagShape;
+    size: TagSize;
+  }
+>;
+type TagPreset = keyof typeof tagPresets;
+
 const tagVariants = cva(
-  "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] hover:cursor-pointer border-1 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] hover:cursor-pointer border-2 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       tone: tones,
       appearance: appearances,
       size: tagSizes,
       shape: tagShapes,
-    },
-    defaultVariants: {
-      tone: "primary",
-      appearance: "soft",
-      size: "md",
-      shape: "rounded",
     },
   },
 );
@@ -98,10 +105,10 @@ type TagProps = React.ComponentProps<"span"> &
 function Tag({
   className,
   preset,
-  tone = "primary",
-  appearance = "soft",
-  size = "md",
-  shape = "rounded",
+  tone,
+  appearance,
+  size,
+  shape,
   startIcon,
   endIcon,
   asChild = false,
@@ -120,18 +127,18 @@ function Tag({
     <Comp
       data-slot="tag"
       data-preset={preset}
-      data-appearance={appearance}
-      data-tone={tone}
-      data-size={size}
-      data-shape={shape}
+      data-appearance={resolvedAppearance}
+      data-tone={resolvedTone}
+      data-size={resolvedSize}
+      data-shape={resolvedShape}
       data-has-start-icon={!!startIcon || undefined}
       data-has-end-icon={!!endIcon || undefined}
       className={cn(
         tagVariants({
           tone: preset ? undefined : tone,
           appearance: preset ? undefined : appearance,
-          shape: preset ? undefined : shape,
-          size: preset ? undefined : size,
+          shape: resolvedShape,
+          size: resolvedSize,
         }),
         className,
       )}
@@ -151,10 +158,4 @@ function Tag({
   );
 }
 
-export {
-  Tag,
-  tagVariants,
-  tagPresets,
-  tagShapes,
-  tagSizes,
-};
+export { Tag, tagVariants, tagPresets, tagShapes, tagSizes };
