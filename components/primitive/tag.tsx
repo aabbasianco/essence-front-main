@@ -9,7 +9,7 @@ import {
   type Palette,
   tones,
   appearances,
-} from "@/lib/theme/palette";
+} from "@/lib/design-system/palette";
 
 export const tagCategories = {
   gender: "",

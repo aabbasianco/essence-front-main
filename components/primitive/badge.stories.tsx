@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Badge, OverlayBadge } from "./badge";
 import { Button } from "./button";
 import { Check, Clock, Flame, Package, ShoppingBag, Mail, Calendar, Bell, BellRing } from "lucide-react";
-import { tones, appearances } from "@/lib/theme/palette";
+import { tones, appearances } from "@/lib/design-system/palette";
 
 const meta = {
   component: Badge,

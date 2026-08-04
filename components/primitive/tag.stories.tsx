@@ -12,7 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { Astroid } from "lucide-react";
-import { tones, appearances } from "@/lib/theme/palette";
+import { tones, appearances } from "@/lib/design-system/palette";
 import { tagCategories } from "@/components/primitive/tag";
 
 const meta = {
@@ -55,6 +55,7 @@ const meta = {
   args: {
     children: "Tag",
     size: "md",
+    shape: "rounded",
   },
 } satisfies Meta<typeof Tag>;
 
@@ -71,34 +72,34 @@ export const Primary: Story = {
 };
 
 export const Application: Story = {
-  render: () => (
+  render: (args) => (
     <div className="flex gap-4 justify-center overflow-hidden flex-wrap">
-      <Tag startIcon={<Mars />} category="gender">
+      <Tag startIcon={<Mars />} category="gender" {...args}>
         Men
       </Tag>
-      <Tag startIcon={<Venus />} category="gender">
+      <Tag startIcon={<Venus />} category="gender" {...args}>
         Women
       </Tag>
-      <Tag startIcon={<VenusAndMars />} category="gender">
+      <Tag startIcon={<VenusAndMars />} category="gender" {...args}>
         Unisex
       </Tag>
-      <Tag category="brandType">Niche</Tag>
-      <Tag category="brandType">Designer</Tag>
-      <Tag category="brandType">Arabian</Tag>
-      <Tag startIcon={<Earth />} category="origin">
+      <Tag category="brandType" {...args}>Niche</Tag>
+      <Tag category="brandType" {...args}>Designer</Tag>
+      <Tag category="brandType" {...args}>Arabian</Tag>
+      <Tag startIcon={<Earth />} category="origin" {...args}>
         France
       </Tag>
-      <Tag startIcon={<Earth />} category="origin">
+      <Tag startIcon={<Earth />} category="origin" {...args}>
         Italy
       </Tag>
-      <Tag category="concentration">Concentration</Tag>
-      <Tag startIcon={<Clock3 />} category="performance">
+      <Tag category="concentration" {...args}>Concentration</Tag>
+      <Tag startIcon={<Clock3 />} category="performance" {...args}>
         Longevity
       </Tag>
-      <Tag startIcon={<Radio />} category="performance">
+      <Tag startIcon={<Radio />} category="performance" {...args}>
         Projection
       </Tag>
-      <Tag startIcon={<Wind />} category="performance">
+      <Tag startIcon={<Wind />} category="performance" {...args}>
         Sillage
       </Tag>
     </div>

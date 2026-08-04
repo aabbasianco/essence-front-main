@@ -8,7 +8,7 @@ import {
   type Tone,
   tones,
   appearances,
-} from "@/lib/theme/palette";
+} from "@/lib/design-system/palette";
 
 const badgeVariants = cva(
   "bg-[var(--badge-background)] text-[var(--badge-foreground)] border-[var(--badge-border)] border-2 group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all pointer-events-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",

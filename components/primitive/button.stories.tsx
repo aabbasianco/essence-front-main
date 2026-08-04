@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import { Button, buttonPresets } from "@/components/primitive/button";
 import { OverlayBadge } from "./badge";
-import { appearances, tones } from "@/lib/theme/palette";
+import { appearances, tones } from "@/lib/design-system/palette";
 import { ArrowRight, Search, Heart, ShoppingBag } from "lucide-react";
 
 const meta = {
