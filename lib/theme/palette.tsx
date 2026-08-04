@@ -4,6 +4,7 @@ export const appearances = {
   "soft-outline": "",
   ghost: "",
   "ghost-outline": "",
+  text:"",
 } as const;
 export type Appearance = keyof typeof appearances;
 
@@ -76,6 +77,12 @@ export function GetPalette(
         background: `transparent`,
         foreground: `var(--color-${palette})`,
         border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+      };
+    case "text":
+      return {
+        background: `transparent`,
+        foreground: `var(--color-${palette})`,
+        border: `transparent`,
       };
   }
 }
