@@ -24,7 +24,7 @@ const tagShapes = ExtendVariants(defaultShapes, {
 });
 type TagShape = keyof typeof tagShapes;
 
-const tagDefaultPresets = {
+const tagDefaults = {
   appearance: "soft",
   tone: "primary",
   shape: "rounded",
@@ -38,38 +38,38 @@ const tagDefaultPresets = {
 
 const tagPresets = {
   gender: {
-    appearance: tagDefaultPresets.appearance,
+    appearance: tagDefaults.appearance,
     tone: "primary",
     shape: "rounded",
-    size: tagDefaultPresets.size,
+    size: tagDefaults.size,
   },
 
   brandType: {
-    appearance: tagDefaultPresets.appearance,
+    appearance: tagDefaults.appearance,
     tone: "violet",
     shape: "rounded",
-    size: tagDefaultPresets.size,
+    size: tagDefaults.size,
   },
 
   origin: {
-    appearance: tagDefaultPresets.appearance,
+    appearance: tagDefaults.appearance,
     tone: "indigo",
     shape: "rounded",
-    size: tagDefaultPresets.size,
+    size: tagDefaults.size,
   },
 
   concentration: {
-    appearance: tagDefaultPresets.appearance,
+    appearance: tagDefaults.appearance,
     tone: "sky",
     shape: "rounded",
-    size: tagDefaultPresets.size,
+    size: tagDefaults.size,
   },
 
   performance: {
-    appearance: tagDefaultPresets.appearance,
+    appearance: tagDefaults.appearance,
     tone: "teal",
     shape: "rounded",
-    size: tagDefaultPresets.size,
+    size: tagDefaults.size,
   },
 } satisfies Record<
   string,
@@ -90,6 +90,12 @@ const tagVariants = cva(
       appearance: appearances,
       size: tagSizes,
       shape: tagShapes,
+    },
+    defaultVariants: {
+      tone: tagDefaults.tone,
+      appearance: tagDefaults.appearance,
+      size: tagDefaults.size,
+      shape: tagDefaults.shape,
     },
   },
 );
@@ -117,28 +123,29 @@ function Tag({
 }: TagProps) {
   const Comp = asChild ? Slot.Root : "span";
   const presetValues = preset ? tagPresets[preset] : undefined;
-  const resolvedTone = presetValues?.tone ?? tone ?? "primary";
-  const resolvedAppearance = presetValues?.appearance ?? appearance ?? "soft";
-  const resolvedShape = presetValues?.shape ?? shape ?? "rounded";
-  const resolvedSize = presetValues?.size ?? size ?? "md";
+  const resolvedTone = presetValues?.tone ?? tone ?? tagDefaults.tone;
+  const resolvedAppearance =
+    presetValues?.appearance ?? appearance ?? tagDefaults.appearance;
+  const resolvedSize = presetValues?.size ?? size ?? tagDefaults.size;
+  const resolvedShape = presetValues?.shape ?? shape ?? tagDefaults.shape;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
 
   return (
     <Comp
       data-slot="tag"
       data-preset={preset}
-      data-appearance={resolvedAppearance}
       data-tone={resolvedTone}
+      data-appearance={resolvedAppearance}
       data-size={resolvedSize}
       data-shape={resolvedShape}
       data-has-start-icon={!!startIcon || undefined}
       data-has-end-icon={!!endIcon || undefined}
       className={cn(
         tagVariants({
-          tone: preset ? undefined : tone,
-          appearance: preset ? undefined : appearance,
-          shape: resolvedShape,
+          tone: resolvedTone,
+          appearance: resolvedAppearance,
           size: resolvedSize,
+          shape: resolvedShape,
         }),
         className,
       )}
