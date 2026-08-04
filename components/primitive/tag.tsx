@@ -10,19 +10,52 @@ import {
   tones,
   appearances,
 } from "@/lib/design-system/palette";
-import {
-  defaultShapes,
-  ExtendVariants,
-} from "@/lib/design-system/variants";
+import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 
-const tagCategories = {
-  gender: "",
-  brandType: "",
-  origin: "",
-  concentration: "",
-  performance: "",
+const tagDefaultPresets = {
+  appearance: "soft",
+  tone: "primary",
+  shape: "rounded",
+  size: "md",
+};
+
+const tagPresets = {
+  gender: {
+    appearance: "soft",
+    tone: "primary",
+    shape: "rounded",
+    size: "md",
+  },
+
+  brandType: {
+    appearance: "soft",
+    tone: "violet",
+    shape: "rounded",
+    size: "md",
+  },
+
+  origin: {
+    appearance: "soft",
+    tone: "indigo",
+    shape: "rounded",
+    size: "md",
+  },
+
+  concentration: {
+    appearance: "soft",
+    tone: "sky",
+    shape: "rounded",
+    size: "md",
+  },
+
+  performance: {
+    appearance: "soft",
+    tone: "teal",
+    shape: "rounded",
+    size: "md",
+  },
 } as const;
-type TagCategory = keyof typeof tagCategories;
+type TagPreset = keyof typeof tagPresets;
 
 const tagSizes = {
   // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
@@ -40,7 +73,6 @@ const tagVariants = cva(
   "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] hover:cursor-pointer border-1 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
-      category: tagCategories,
       tone: tones,
       appearance: appearances,
       size: tagSizes,
@@ -57,44 +89,17 @@ const tagVariants = cva(
 
 type TagProps = React.ComponentProps<"span"> &
   VariantProps<typeof tagVariants> & {
+    preset?: TagPreset;
     asChild?: boolean;
     startIcon?: React.ReactElement;
     endIcon?: React.ReactElement;
   };
 
-const categoryPalettes: Record<TagCategory, Palette> = {
-  gender: {
-    background: "var(--tag-gender-background)",
-    foreground: "var(--tag-gender-foreground)",
-    border: "transparent",
-  },
-  brandType: {
-    background: "var(--tag-brand-type-background)",
-    foreground: "var(--tag-brand-type-foreground)",
-    border: "transparent",
-  },
-  origin: {
-    background: "var(--tag-origin-background)",
-    foreground: "var(--tag-origin-foreground)",
-    border: "transparent",
-  },
-  concentration: {
-    background: "var(--tag-concentration-background)",
-    foreground: "var(--tag-concentration-foreground)",
-    border: "transparent",
-  },
-  performance: {
-    background: "var(--tag-performance-background)",
-    foreground: "var(--tag-performance-foreground)",
-    border: "transparent",
-  },
-};
-
 function Tag({
   className,
-  category,
-  tone,
-  appearance,
+  preset,
+  tone = "primary",
+  appearance = "soft",
   size = "md",
   shape = "rounded",
   startIcon,
@@ -104,18 +109,18 @@ function Tag({
   ...props
 }: TagProps) {
   const Comp = asChild ? Slot.Root : "span";
-  const resolvedTone: Tone = tone ?? "primary";
-  const resolvedAppearance: Appearance = appearance ?? "soft";
-  const palette =
-    category != null
-      ? categoryPalettes[category]
-      : GetPalette(resolvedAppearance, resolvedTone);
+  const presetValues = preset ? tagPresets[preset] : undefined;
+  const resolvedTone = presetValues?.tone ?? tone ?? "primary";
+  const resolvedAppearance = presetValues?.appearance ?? appearance ?? "soft";
+  const resolvedShape = presetValues?.shape ?? shape ?? "rounded";
+  const resolvedSize = presetValues?.size ?? size ?? "md";
+  const palette = GetPalette(resolvedAppearance, resolvedTone);
 
   return (
     <Comp
       data-slot="tag"
+      data-preset={preset}
       data-appearance={appearance}
-      data-category={category}
       data-tone={tone}
       data-size={size}
       data-shape={shape}
@@ -123,11 +128,10 @@ function Tag({
       data-has-end-icon={!!endIcon || undefined}
       className={cn(
         tagVariants({
-          category,
-          tone: category ? undefined : tone,
-          appearance: category ? undefined : appearance,
-          size,
-          shape,
+          tone: preset ? undefined : tone,
+          appearance: preset ? undefined : appearance,
+          shape: preset ? undefined : shape,
+          size: preset ? undefined : size,
         }),
         className,
       )}
@@ -150,8 +154,7 @@ function Tag({
 export {
   Tag,
   tagVariants,
-  tagCategories,
-  type TagCategory,
+  tagPresets,
   tagShapes,
   tagSizes,
 };

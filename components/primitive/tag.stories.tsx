@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Astroid } from "lucide-react";
 import { tones, appearances } from "@/lib/design-system/palette";
-import { tagCategories, tagShapes, tagSizes } from "@/components/primitive/tag";
+import { tagPresets, tagShapes, tagSizes } from "@/components/primitive/tag";
 
 const meta = {
   component: Tag,
@@ -25,9 +25,9 @@ const meta = {
     },
   },
   argTypes: {
-    category: {
+    preset: {
       control: "select",
-      options: Object.keys(tagCategories),
+      options: Object.keys(tagPresets),
     },
     tone: {
       control: "select",
@@ -74,32 +74,32 @@ export const Primary: Story = {
 export const Application: Story = {
   render: (args) => (
     <div className="flex gap-4 justify-center overflow-hidden flex-wrap">
-      <Tag startIcon={<Mars />} category="gender" {...args}>
+      <Tag startIcon={<Mars />} preset="gender" {...args}>
         Men
       </Tag>
-      <Tag startIcon={<Venus />} category="gender" {...args}>
+      <Tag startIcon={<Venus />} preset="gender" {...args}>
         Women
       </Tag>
-      <Tag startIcon={<VenusAndMars />} category="gender" {...args}>
+      <Tag startIcon={<VenusAndMars />} preset="gender" {...args}>
         Unisex
       </Tag>
-      <Tag category="brandType" {...args}>Niche</Tag>
-      <Tag category="brandType" {...args}>Designer</Tag>
-      <Tag category="brandType" {...args}>Arabian</Tag>
-      <Tag startIcon={<Earth />} category="origin" {...args}>
+      <Tag preset="brandType" {...args}>Niche</Tag>
+      <Tag preset="brandType" {...args}>Designer</Tag>
+      <Tag preset="brandType" {...args}>Arabian</Tag>
+      <Tag startIcon={<Earth />} preset="origin" {...args}>
         France
       </Tag>
-      <Tag startIcon={<Earth />} category="origin" {...args}>
+      <Tag startIcon={<Earth />} preset="origin" {...args}>
         Italy
       </Tag>
-      <Tag category="concentration" {...args}>Concentration</Tag>
-      <Tag startIcon={<Clock3 />} category="performance" {...args}>
+      <Tag preset="concentration" {...args}>Concentration</Tag>
+      <Tag startIcon={<Clock3 />} preset="performance" {...args}>
         Longevity
       </Tag>
-      <Tag startIcon={<Radio />} category="performance" {...args}>
+      <Tag startIcon={<Radio />} preset="performance" {...args}>
         Projection
       </Tag>
-      <Tag startIcon={<Wind />} category="performance" {...args}>
+      <Tag startIcon={<Wind />} preset="performance" {...args}>
         Sillage
       </Tag>
     </div>
