@@ -66,7 +66,7 @@ export function GetPalette(
       return {
         background: `var(--color-${palette}-subtle)`,
         foreground: `var(--color-${palette}-subtle-foreground)`,
-        border: `var(--color-${palette}-subtle-foreground)`,
+        border: `rgba(var(--color-${palette}-subtle-foreground-rgb), 0.3)`,
       };
     case "ghost":
       return {
@@ -78,7 +78,7 @@ export function GetPalette(
       return {
         background: `transparent`,
         foreground: `var(--color-${palette})`,
-        border: `var(--color-${palette})`, 
+        border: `rgba(var(--color-${palette}-rgb), 0.3)`,
       };
   }
 }

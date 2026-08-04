@@ -352,28 +352,28 @@
   --color-yellow-950-rgb: 67, 32, 4;
 
   /* Amber */
-  --color-ambeer-50: #fffbeb;
-  --color-ambeer-50-rgb: 255, 251, 235;
-  --color-ambeer-100: #fef3c6;
-  --color-ambeer-100-rgb: 254, 243, 198;
-  --color-ambeer-200: #fee685;
-  --color-ambeer-200-rgb: 254, 230, 133;
-  --color-ambeer-300: #ffd230;
-  --color-ambeer-300-rgb: 255, 210, 48;
-  --color-ambeer-400: #ffb900;
-  --color-ambeer-400-rgb: 255, 185, 0;
-  --color-ambeer-500: #fe9a00;
-  --color-ambeer-500-rgb: 254, 154, 0;
-  --color-ambeer-600: #e17100;
-  --color-ambeer-600-rgb: 225, 113, 0;
-  --color-ambeer-700: #bb4d00;
-  --color-ambeer-700-rgb: 187, 77, 0;
-  --color-ambeer-800: #973c00;
-  --color-ambeer-800-rgb: 151, 60, 0;
-  --color-ambeer-900: #7b3306;
-  --color-ambeer-900-rgb: 123, 51, 6;
-  --color-ambeer-950: #461901;
-  --color-ambeer-950-rgb: 70, 25, 1;
+  --color-amber-50: #fffbeb;
+  --color-amber-50-rgb: 255, 251, 235;
+  --color-amber-100: #fef3c6;
+  --color-amber-100-rgb: 254, 243, 198;
+  --color-amber-200: #fee685;
+  --color-amber-200-rgb: 254, 230, 133;
+  --color-amber-300: #ffd230;
+  --color-amber-300-rgb: 255, 210, 48;
+  --color-amber-400: #ffb900;
+  --color-amber-400-rgb: 255, 185, 0;
+  --color-amber-500: #fe9a00;
+  --color-amber-500-rgb: 254, 154, 0;
+  --color-amber-600: #e17100;
+  --color-amber-600-rgb: 225, 113, 0;
+  --color-amber-700: #bb4d00;
+  --color-amber-700-rgb: 187, 77, 0;
+  --color-amber-800: #973c00;
+  --color-amber-800-rgb: 151, 60, 0;
+  --color-amber-900: #7b3306;
+  --color-amber-900-rgb: 123, 51, 6;
+  --color-amber-950: #461901;
+  --color-amber-950-rgb: 70, 25, 1;
 
   /* Green */
   --color-green-50: #f0fdf4;

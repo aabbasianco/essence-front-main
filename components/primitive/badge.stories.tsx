@@ -61,51 +61,51 @@ export const Danger: Story = {
 export const Application: Story = {
   render: (args) => (
     <div className="inline-flex gap-4 justify-center flex-wrap overflow-hidden">
-      <Badge {...args} severity="secondary">
+      <Badge severity="secondary" {...args}>
         Featured
       </Badge>
-      <Badge {...args} severity="primary">
+      <Badge severity="primary" {...args}>
         New
       </Badge>
-      <Badge {...args} severity="primary">
+      <Badge severity="primary" {...args}>
         Best Seller
       </Badge>
-      <Badge {...args} severity="danger" startIcon={<Flame />}>
+      <Badge severity="danger" startIcon={<Flame />} {...args}>
         Trending
       </Badge>
-      <Badge {...args} severity="danger">
+      <Badge severity="danger" {...args}>
         Limited
       </Badge>
-      <Badge {...args} severity="danger" startIcon={<Clock />}>
+      <Badge severity="danger" startIcon={<Clock />} {...args}>
         10% off
       </Badge>
-      <Badge {...args} severity="warning">
+      <Badge severity="warning" {...args}>
         Pending
       </Badge>
-      <Badge {...args} severity="success" startIcon={<Check />}>
+      <Badge severity="success" startIcon={<Check />} {...args}>
         Delivered
       </Badge>
       <Badge
-        {...args}
         severity="success"
         startIcon={<Package />}
         appearance="ghost"
+        {...args}
       >
         In Stock
       </Badge>
       <Badge
-        {...args}
         severity="warning"
         startIcon={<Package />}
         appearance="ghost"
+        {...args}
       >
         Low Stock
       </Badge>
       <Badge
-        {...args}
         severity="danger"
         startIcon={<Package />}
         appearance="ghost"
+        {...args}
       >
         Out of Stock
       </Badge>
@@ -135,25 +135,25 @@ export const Notification: Story = {
 export const Severities: Story = {
   render: (args) => (
     <div className="inline-flex gap-4 justify-center flex-wrap overflow-hidden">
-      <Badge {...args} severity="primary">
+      <Badge severity="primary" {...args}>
         Primary
       </Badge>
-      <Badge {...args} severity="secondary">
+      <Badge severity="secondary" {...args}>
         Secondary
       </Badge>
-      <Badge {...args} severity="tertiary">
+      <Badge severity="tertiary" {...args}>
         Tertiary
       </Badge>
-      <Badge {...args} severity="success">
+      <Badge severity="success" {...args}>
         Success
       </Badge>
-      <Badge {...args} severity="warning">
+      <Badge severity="warning" {...args}>
         Warning
       </Badge>
-      <Badge {...args} severity="danger">
+      <Badge severity="danger" {...args}>
         Danger
       </Badge>
-      <Badge {...args} severity="info">
+      <Badge severity="info" {...args}>
         Info
       </Badge>
     </div>
