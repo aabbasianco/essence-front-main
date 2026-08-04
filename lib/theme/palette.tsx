@@ -8,10 +8,19 @@ export const appearances = {
 export type Appearance = keyof typeof appearances;
 
 export const tones = {
+  // Semantic Tones
   primary: "",
   secondary: "",
   tertiary: "",
   brand: "",
+
+  // Support Tones
+  success: "",
+  warning: "",
+  danger: "",
+  info: "",
+
+  // Color Tones
   orange: "",
   yellow: "",
   amber: "",
@@ -27,18 +36,6 @@ export const tones = {
 } as const;
 export type Tone = keyof typeof tones;
 
-export const severities = {
-  primary: "",
-  secondary: "",
-  tertiary: "",
-  brand: "",
-  success: "",
-  warning: "",
-  danger: "",
-  info: "",
-};
-export type Severity = keyof typeof severities;
-
 export type Palette = {
   background: string;
   foreground: string;
@@ -47,7 +44,7 @@ export type Palette = {
 
 export function GetPalette(
   appearance: Appearance,
-  palette: Tone | Severity,
+  palette: Tone,
 ): Palette {
   switch (appearance) {
     case "solid":

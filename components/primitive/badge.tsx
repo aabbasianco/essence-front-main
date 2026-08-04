@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 import {
   GetPalette,
   type Appearance,
-  type Severity,
-  severities,
+  type Tone,
+  tones,
   appearances,
 } from "@/lib/theme/palette";
 
@@ -15,7 +15,7 @@ const badgeVariants = cva(
   {
     variants: {
       appearance: appearances,
-      severity: severities,
+      tone: tones,
       size: {
         // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
         sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0  [&_svg:not([class*='size-'])]:size-4",
@@ -29,7 +29,7 @@ const badgeVariants = cva(
     },
     defaultVariants: {
       appearance: "solid",
-      severity: "info",
+      tone: "info",
       size: "sm",
       shape: "rounded",
     },
@@ -46,7 +46,7 @@ type BadgeProps = React.ComponentProps<"span"> &
 function Badge({
   className,
   appearance = "solid",
-  severity = "danger",
+  tone = "danger",
   size = "sm",
   shape = "rounded",
   startIcon,
@@ -57,8 +57,8 @@ function Badge({
 }: BadgeProps) {
   const Comp = asChild ? Slot.Root : "span";
   const resolvedAppearance: Appearance = appearance ?? "soft";
-  const resolvedSeverity: Severity = severity ?? "info";
-  const palette = GetPalette(resolvedAppearance, resolvedSeverity);
+  const resolvedTone: Tone = tone ?? "info";
+  const palette = GetPalette(resolvedAppearance, resolvedTone);
   const hasValue =
     children !== undefined && children !== null && children !== "";
 
@@ -66,13 +66,13 @@ function Badge({
     <Comp
       data-slot="badge"
       data-appearance={appearance}
-      data-severity={severity}
+      data-Tone={tone}
       data-size={size}
       data-shape={shape}
       data-has-start-icon={!!startIcon || undefined}
       data-has-end-icon={!!endIcon || undefined}
       className={cn(
-        badgeVariants({ appearance, severity, size, shape }),
+        badgeVariants({ appearance, tone, size, shape }),
         className,
       )}
       style={
@@ -104,7 +104,7 @@ type OverlayBadgeProps = React.ComponentProps<"span"> & {
 
   value?: React.ReactNode;
 
-  severity?: Severity;
+  tone?: Tone;
 
   appearance?: Appearance;
 
@@ -118,7 +118,7 @@ type OverlayBadgeProps = React.ComponentProps<"span"> & {
 function OverlayBadge({
   children,
   value,
-  severity = "danger",
+  tone = "danger",
   appearance = "solid",
   size = "sm",
   shape = "pill",
@@ -130,7 +130,7 @@ function OverlayBadge({
 
       <Badge
         appearance={appearance}
-        severity={severity}
+        tone={tone}
         size={size}
         shape={shape}
         className={cn(
