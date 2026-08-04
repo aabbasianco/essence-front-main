@@ -5,6 +5,7 @@ import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 import { Spinner } from "./spinner";
 import { Badge } from "./badge";
+import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 
 export const buttonPresets = {
   primary:
@@ -25,25 +26,35 @@ export const buttonPresets = {
 };
 export type ButtonPreset = keyof typeof buttonPresets;
 
+const buttonShapes = ExtendVariants(defaultShapes, {
+  rounded: "rounded-[var(--button-radius)]",
+});
+type ButtonShape = keyof typeof buttonShapes;
+
+const buttonSizes = {
+  md: "h-9 gap-1.5 px-4 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
+  xs: "h-6 gap-1 px-2.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2 [&_svg:not([class*='size-'])]:size-3",
+  sm: "h-8 gap-1 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
+  lg: "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
+  xl: "h-11 gap-1.5 px-6.5 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
+  "icon-md": "size-10 px-2 rounded-lg [&_svg]:size-6!",
+  "icon-xs": "size-6 px-1 [&_svg:not([class*='size-'])]:size-3.5!",
+  "icon-sm": "size-8 px-1.5 [&_svg:not([class*='size-'])]:size-4.5!",
+  "icon-lg": "size-12 px-2.5 rounded-lg [&_svg]:size-7!",
+};
+type ButtonSize = keyof typeof buttonSizes;
+
 const buttonVariants = cva(
-  "group/button inline-flex bg-(--button-background) text-(--button-foreground) shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex bg-(--button-background) text-(--button-foreground) shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       preset: buttonPresets,
-      size: {
-        md: "h-9 gap-1.5 px-4 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
-        xs: "h-6 gap-1 px-2.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-8 gap-1 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
-        lg: "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
-        xl: "h-11 gap-1.5 px-6.5 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
-        "icon-md": "size-10 px-2 rounded-lg [&_svg]:size-6!",
-        "icon-xs": "size-6 px-1 [&_svg:not([class*='size-'])]:size-3.5!",
-        "icon-sm": "size-8 px-1.5 [&_svg:not([class*='size-'])]:size-4.5!",
-        "icon-lg": "size-12 px-2.5 rounded-lg [&_svg]:size-7!",
-      },
+      shape: buttonShapes,
+      size: buttonSizes,
     },
     defaultVariants: {
       preset: "primary",
+      shape:"rounded",
       size: "lg",
     },
   },
@@ -62,6 +73,7 @@ type ButtonProps = React.ComponentProps<"button"> &
 function Button({
   className,
   preset = "primary",
+  shape="rounded",
   size = "lg",
   fluid = false,
   badge,
@@ -79,6 +91,7 @@ function Button({
     <Comp
       data-slot="button"
       data-preset={preset}
+      data-shape={shape}
       data-size={size}
       data-fluid={fluid}
       data-has-badge={!!badge || undefined}
@@ -87,7 +100,7 @@ function Button({
       data-has-end-icon={!!endIcon || undefined}
       disabled={disabled || loading}
       className={cn(
-        buttonVariants({ preset, size, className }),
+        buttonVariants({ preset, shape, size, className }),
         fluid && "w-full",
       )}
       {...props}
@@ -124,4 +137,4 @@ function Button({
   );
 }
 
-export { Button, buttonVariants };
+export { Button, buttonVariants, buttonShapes, buttonSizes };

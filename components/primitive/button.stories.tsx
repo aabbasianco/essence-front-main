@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Button, buttonPresets } from "@/components/primitive/button";
+import { Button, buttonPresets, buttonShapes, buttonSizes } from "@/components/primitive/button";
 import { OverlayBadge } from "./badge";
 import { appearances, tones } from "@/lib/design-system/palette";
 import { ArrowRight, Search, Heart, ShoppingBag } from "lucide-react";
@@ -13,29 +13,14 @@ const meta = {
       options: Object.keys(buttonPresets),
       description: "Preset styles of the button",
     },
-    tone: {
+    shape: {
       control: "select",
-      options: Object.keys(tones),
-      description: "Tones of the button",
-    },
-    appearance: {
-      control: "select",
-      options: Object.keys(appearances),
-      description: "Appeanaces of the button",
+      options: Object.keys(buttonShapes),
+      description: "Shape of the button",
     },
     size: {
       control: "select",
-      options: [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "icon-md",
-        "icon-xs",
-        "icon-sm",
-        "icon-lg",
-      ],
+      options: Object.keys(buttonSizes),
       description: "Sizes of the Button",
     },
     fluid: {
