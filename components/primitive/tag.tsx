@@ -189,8 +189,8 @@ function Tag({
       data-appearance={resolvedAppearance}
       data-size={resolvedSize}
       data-shape={resolvedShape}
-      data-has-start-icon={resolvedStartIcon}
-      data-has-end-icon={resolvedEndIcon}
+      data-has-start-icon={!!resolvedStartIcon || undefined}
+      data-has-end-icon={!!resolvedEndIcon || undefined}
       className={cn(
         tagVariants({
           tone: resolvedTone,

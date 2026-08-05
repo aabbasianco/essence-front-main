@@ -13,17 +13,22 @@ import {
   appearances,
   tones,
 } from "@/lib/design-system/palette";
+import { AlertCircle, AlertTriangle, FileWarning, Stars } from "lucide-react";
 
 const buttonDefaults = {
   appearance: "solid",
   tone: "primary",
   shape: "rounded",
   size: "lg",
+  startIcon: undefined,
+  endIcon: undefined,
 } satisfies {
   appearance: Appearance;
   tone: Tone;
   shape: ButtonShape;
   size: ButtonSize;
+  startIcon?: React.ReactElement;
+  endIcon?: React.ReactElement;
 };
 
 const buttonPresets = {
@@ -32,6 +37,8 @@ const buttonPresets = {
     tone: "primary",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
+    startIcon: buttonDefaults.startIcon,
+    endIcon: buttonDefaults.endIcon,
   },
 
   secondary: {
@@ -39,6 +46,8 @@ const buttonPresets = {
     tone: "primary",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
+    startIcon: buttonDefaults.startIcon,
+    endIcon: buttonDefaults.endIcon,
   },
 
   tertiary: {
@@ -46,6 +55,8 @@ const buttonPresets = {
     tone: "secondary",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
+    startIcon: buttonDefaults.startIcon,
+    endIcon: buttonDefaults.endIcon,
   },
 
   ghost: {
@@ -53,6 +64,8 @@ const buttonPresets = {
     tone: "secondary",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
+    startIcon: buttonDefaults.startIcon,
+    endIcon: buttonDefaults.endIcon,
   },
 
   link: {
@@ -60,6 +73,17 @@ const buttonPresets = {
     tone: "secondary",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
+    startIcon: buttonDefaults.startIcon,
+    endIcon: buttonDefaults.endIcon,
+  },
+
+  warning: {
+    appearance: "soft",
+    tone: "warning",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+    startIcon: <AlertTriangle />,
+    endIcon: buttonDefaults.endIcon,
   },
 
   destructive: {
@@ -67,6 +91,8 @@ const buttonPresets = {
     tone: "danger",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
+    startIcon: <AlertCircle />,
+    endIcon: buttonDefaults.endIcon,
   },
 
   inputSoft: {
@@ -74,6 +100,8 @@ const buttonPresets = {
     tone: "secondary",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
+    startIcon: buttonDefaults.startIcon,
+    endIcon: buttonDefaults.endIcon,
   },
 
   inputGhost: {
@@ -81,6 +109,8 @@ const buttonPresets = {
     tone: "secondary",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
+    startIcon: buttonDefaults.startIcon,
+    endIcon: buttonDefaults.endIcon,
   },
 } satisfies Record<
   string,
@@ -89,6 +119,8 @@ const buttonPresets = {
     tone: Tone;
     shape: ButtonShape;
     size: ButtonSize;
+    startIcon?: React.ReactElement;
+    endIcon?: React.ReactElement;
   }
 >;
 type ButtonPreset = keyof typeof buttonPresets;
@@ -163,8 +195,10 @@ function Button({
   const resolvedAppearance =
     presetValues?.appearance ?? appearance ?? buttonDefaults.appearance;
   const resolvedTone = presetValues?.tone ?? tone ?? buttonDefaults.tone;
-  const resolvedShape = presetValues?.shape ?? shape ?? buttonDefaults.shape;
-  const resolvedSize = presetValues?.size ?? size ?? buttonDefaults.size;
+  const resolvedShape = shape ?? presetValues?.shape ?? buttonDefaults.shape;
+  const resolvedSize = size ?? presetValues?.size ?? buttonDefaults.size;
+  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? undefined;
+  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? undefined;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
   return (
     <Comp
@@ -177,8 +211,8 @@ function Button({
       data-fluid={fluid}
       data-has-badge={!!badge || undefined}
       data-loading={loading || undefined}
-      data-has-start-icon={!!startIcon || undefined}
-      data-has-end-icon={!!endIcon || undefined}
+      data-has-start-icon={!!resolvedStartIcon || undefined}
+      data-has-end-icon={!!resolvedEndIcon || undefined}
       disabled={disabled || loading}
       className={cn(
         buttonVariants({
@@ -202,12 +236,7 @@ function Button({
 
           "--button-border-hover": palette.hover?.border,
 
-          "--button-effective-background":
-            resolvedAppearance === "ghost" ||
-            resolvedAppearance === "ghost-outline" ||
-            resolvedAppearance === "text"
-              ? (palette.hover?.background ?? palette.background)
-              : palette.background,
+          "--button-effective-background": palette.effectiveBackground,
         } as React.CSSProperties
       }
       {...props}
@@ -215,14 +244,16 @@ function Button({
       {loading ? (
         <Spinner data-icon="inline-start" />
       ) : (
-        startIcon && <span data-slot="button-start-icon">{startIcon}</span>
+        resolvedStartIcon && (
+          <span data-slot="button-start-icon">{resolvedStartIcon}</span>
+        )
       )}
 
       {!isIconButton && <span data-slot="button-label">{children}</span>}
 
-      {endIcon && !loading && (
+      {resolvedEndIcon && !loading && (
         <span className="" data-slot="button-end-icon">
-          {endIcon}
+          {resolvedEndIcon}
         </span>
       )}
 

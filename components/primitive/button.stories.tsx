@@ -89,18 +89,21 @@ export const Presets: Story = {
     // size: "lg",
   },
   render: (args) => (
-    <div className="flex gap-4 justify-center">
-      <Button preset="primary" startIcon={<Search />} {...args}>
+    <div className="flex gap-4 justify-center flex-wrap">
+      <Button preset="primary" {...args}>
         Primary
       </Button>
-      <Button preset="secondary" startIcon={<Heart />} {...args}>
+      <Button preset="secondary" {...args}>
         Secondary
       </Button>
-      <Button preset="tertiary" startIcon={<ArrowRight />} {...args}>
+      <Button preset="tertiary" {...args}>
         Tertiary
       </Button>
       <Button preset="ghost" {...args}>
         Ghost
+      </Button>
+      <Button preset="warning" {...args}>
+        Destructive
       </Button>
       <Button preset="destructive" {...args}>
         Destructive
@@ -146,23 +149,23 @@ export const IconSizes: Story = {
     <div className="flex gap-4 justify-center items-center">
       <Button
         startIcon={<ShoppingBag />}
-        {...args}
         size="icon-xs"
+        {...args}
       />
       <Button
         startIcon={<ShoppingBag />}
-        {...args}
         size="icon-sm"
+        {...args}
       />
       <Button
         startIcon={<ShoppingBag />}
-        {...args}
         size="icon-md"
+        {...args}
       />
       <Button
         startIcon={<ShoppingBag />}
-        {...args}
         size="icon-lg"
+        {...args}
       />
     </div>
   ),
@@ -172,22 +175,22 @@ export const BuiltInNotification: Story = {
   render: () => (
     <div className="flex gap-4 justify-center items-center flex-wrap overflow-hidden">
       <Button preset="primary" badge={2}>
-        Notification
+        Primary
       </Button>
       <Button preset="secondary" badge={2}>
-        اعلان ها
+        Secondary
       </Button>
       <Button preset="tertiary" badge={2}>
-        Notification
+        Tertiary
       </Button>
       <Button preset="ghost" badge={2}>
-        Notification
+        Ghost
       </Button>
       <Button preset="destructive" badge={2}>
-        Notification
+        destrictive
       </Button>
       <Button preset="link" badge={2}>
-        Notification
+        Link
       </Button>
     </div>
   ),

@@ -210,8 +210,8 @@ function Badge({
       data-tone={resolvedTone}
       data-size={resolvedSize}
       data-shape={resolvedShape}
-      data-has-start-icon={resolvedStartIcon}
-      data-has-end-icon={resolvedEndIcon}
+      data-has-start-icon={!!resolvedStartIcon || undefined}
+      data-has-end-icon={!!resolvedEndIcon || undefined}
       className={cn(
         badgeVariants({
           appearance: resolvedAppearance,

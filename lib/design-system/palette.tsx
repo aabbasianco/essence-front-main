@@ -41,6 +41,7 @@ export type Palette = {
   background: string;
   foreground: string;
   border: string;
+  effectiveBackground: string;
 
   hover?: {
     background?: string;
@@ -66,6 +67,7 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
         background: `var(--color-${palette})`,
         foreground: `var(--color-${palette}-foreground)`,
         border: "transparent",
+        effectiveBackground:`var(--color-${palette})`,
 
         hover: {
           background: `rgba(var(--color-${palette}-rgb), 0.8)`,
@@ -78,6 +80,7 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
         background: `var(--color-${palette}-subtle)`,
         foreground: `var(--color-${palette}-subtle-foreground)`,
         border: `transparent`,
+        effectiveBackground:`var(--color-${palette}-foreground)`,
 
         hover: {
           background: `rgba(var(--color-${palette}-rgb), 0.2)`,
@@ -90,6 +93,7 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
         background: `var(--color-${palette}-subtle)`,
         foreground: `var(--color-${palette}-subtle-foreground)`,
         border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+        effectiveBackground:`var(--color-${palette}-foreground)`,
 
         hover: {
           background: `rgba(var(--color-${palette}-rgb), 0.2)`,
@@ -102,6 +106,7 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
         background: `transparent`,
         foreground: `var(--color-${palette})`,
         border: `transparent`,
+        effectiveBackground:`var(--color-${palette}-foreground)`,
 
         hover: {
           background: `var(--color-${palette}-subtle)`,
@@ -114,6 +119,7 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
         background: `transparent`,
         foreground: `var(--color-${palette})`,
         border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+        effectiveBackground:`var(--color-${palette}-foreground)`,
 
         hover: {
           background: `var(--color-${palette}-subtle)`,
@@ -126,6 +132,7 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
         background: `transparent`,
         foreground: `var(--color-${palette})`,
         border: `transparent`,
+        effectiveBackground:`var(--color-${palette}-foreground)`,
 
         // hover: {
         //   background: `transparent`,
