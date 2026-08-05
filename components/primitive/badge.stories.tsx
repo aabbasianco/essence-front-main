@@ -88,13 +88,16 @@ export const Application: Story = {
       <Badge preset="best-seller" {...args}>
         Best Seller
       </Badge>
-      <Badge preset="trending" startIcon={<Flame />} {...args}>
+      <Badge preset="trending" {...args}>
         Trending
       </Badge>
-      <Badge preset="limited" {...args} startIcon={<Clock />}>
+      <Badge preset="limited" {...args}>
         Limited
       </Badge>
-      <Badge preset="discount"{...args}>
+      <Badge preset="limited" {...args}>
+        10%
+      </Badge>
+      <Badge preset="discount" {...args}>
         10%
       </Badge>
       <Badge preset="in-stock" startIcon={<Package />} {...args}>

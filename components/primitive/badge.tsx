@@ -10,9 +10,10 @@ import {
   appearances,
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
+import { Clock, Flame, Star } from "lucide-react";
 
 const badgeSizes = {
-  sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0.5 [&_svg:not([class*='size-'])]:size-4",
+  sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0.5 data-[has-start-icon=true]:ps-0.5 [&_svg:not([class*='size-'])]:size-4",
   md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1 [&_svg:not([class*='size-'])]:size-5",
 };
 type BadgeSize = keyof typeof badgeSizes;
@@ -27,11 +28,15 @@ const badgeDefaults = {
   tone: "primary",
   size: "sm",
   shape: "rounded",
+  startIcon: undefined,
+  endIcon: undefined,
 } satisfies {
   appearance: Appearance;
   tone: Tone;
   size: BadgeSize;
   shape: BadgeShape;
+  startIcon?: React.ReactElement;
+  endIcon?: React.ReactElement;
 };
 
 const badgePresets = {
@@ -41,36 +46,48 @@ const badgePresets = {
     tone: "secondary",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: badgeDefaults.startIcon,
+    endIcon: badgeDefaults.endIcon,
   },
   new: {
     appearance: badgeDefaults.appearance,
     tone: "primary",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: badgeDefaults.startIcon,
+    endIcon: badgeDefaults.endIcon,
   },
   "best-seller": {
     appearance: badgeDefaults.appearance,
     tone: "primary",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: <Star />,
+    endIcon: badgeDefaults.endIcon,
   },
   trending: {
     appearance: badgeDefaults.appearance,
     tone: "violet",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: <Flame />,
+    endIcon: badgeDefaults.endIcon,
   },
   limited: {
     appearance: badgeDefaults.appearance,
     tone: "danger",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: <Clock />,
+    endIcon: badgeDefaults.endIcon,
   },
   discount: {
     appearance: badgeDefaults.appearance,
     tone: "danger",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: badgeDefaults.startIcon,
+    endIcon: badgeDefaults.endIcon,
   },
 
   // Availability
@@ -79,32 +96,42 @@ const badgePresets = {
     tone: "success",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: badgeDefaults.startIcon,
+    endIcon: badgeDefaults.endIcon,
   },
   "low-stock": {
     appearance: "ghost",
     tone: "warning",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: badgeDefaults.startIcon,
+    endIcon: badgeDefaults.endIcon,
   },
   "out-of-stock": {
     appearance: "ghost",
     tone: "danger",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: badgeDefaults.startIcon,
+    endIcon: badgeDefaults.endIcon,
   },
   "pre-order": {
     appearance: "ghost",
     tone: "info",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: badgeDefaults.startIcon,
+    endIcon: badgeDefaults.endIcon,
   },
 
   // Shipping
-  "express": {
+  express: {
     appearance: "ghost",
     tone: "primary",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
+    startIcon: badgeDefaults.startIcon,
+    endIcon: badgeDefaults.endIcon,
   },
 
   // Order Status
@@ -117,6 +144,8 @@ const badgePresets = {
     tone: Tone;
     size: BadgeSize;
     shape: BadgeShape;
+    startIcon?: React.ReactElement;
+    endIcon?: React.ReactElement;
   }
 >;
 
@@ -169,6 +198,8 @@ function Badge({
   const resolvedTone = presetValues?.tone ?? tone ?? badgeDefaults.tone;
   const resolvedSize = size ?? presetValues?.size ?? badgeDefaults.size;
   const resolvedShape = shape ?? presetValues?.shape ?? badgeDefaults.shape;
+  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? undefined;
+  const resolvedEndIcon = presetValues?.endIcon ?? startIcon ?? undefined;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
   const hasValue =
     children !== undefined && children !== null && children !== "";
@@ -181,8 +212,8 @@ function Badge({
       data-tone={resolvedTone}
       data-size={resolvedSize}
       data-shape={resolvedShape}
-      data-has-start-icon={!!startIcon || undefined}
-      data-has-end-icon={!!endIcon || undefined}
+      data-has-start-icon={resolvedStartIcon}
+      data-has-end-icon={resolvedEndIcon}
       className={cn(
         badgeVariants({
           appearance: resolvedAppearance,
@@ -209,11 +240,13 @@ function Badge({
         />
       )}
 
-      {startIcon && <span data-slot="badge-start-icon">{startIcon}</span>}
+      {resolvedStartIcon && (
+        <span data-slot="badge-start-icon">{resolvedStartIcon}</span>
+      )}
 
       {hasValue && <span data-slot="badge-label">{children}</span>}
 
-      {endIcon && <span data-slot="badge-end-icon">{endIcon}</span>}
+      {resolvedEndIcon && <span data-slot="badge-end-icon">{resolvedEndIcon}</span>}
     </Comp>
   );
 }
