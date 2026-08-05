@@ -18,6 +18,14 @@ const meta = {
       options: Object.keys(buttonPresets),
       description: "Preset styles of the button",
     },
+    tone: {
+      control: "select",
+      options: Object.keys(tones),
+    },
+    appearance: {
+      control: "select",
+      options: Object.keys(appearances),
+    },
     shape: {
       control: "select",
       options: Object.keys(buttonShapes),
@@ -46,7 +54,7 @@ const meta = {
   },
   tags: [""],
   args: {
-    size: "lg",
+    // size: "lg",
   },
   parameters: {
     docs: {
@@ -70,13 +78,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    preset: "primary",
+    tone: "primary",
     children: "Primary",
     startIcon: <ShoppingBag />,
   },
 };
 
-export const Variations: Story = {
+export const Presets: Story = {
   args: {
     // size: "lg",
   },
@@ -131,30 +139,27 @@ export const ButtonSizes: Story = {
 
 export const IconSizes: Story = {
   args: {
-    // size: "md",
+    tone:"secondary",
+    appearance:"ghost-outline",
   },
   render: (args) => (
     <div className="flex gap-4 justify-center items-center">
       <Button
-        preset="tertiary"
         startIcon={<ShoppingBag />}
         {...args}
         size="icon-xs"
       />
       <Button
-        preset="tertiary"
         startIcon={<ShoppingBag />}
         {...args}
         size="icon-sm"
       />
       <Button
-        preset="tertiary"
         startIcon={<ShoppingBag />}
         {...args}
         size="icon-md"
       />
       <Button
-        preset="tertiary"
         startIcon={<ShoppingBag />}
         {...args}
         size="icon-lg"
@@ -195,7 +200,7 @@ export const OveralyBadgeNotification: Story = {
         <Button preset="tertiary">Notification</Button>
       </OverlayBadge>
       <OverlayBadge tone="primary" value={3}>
-        <Button preset="ghost" size="icon-md" startIcon={<ShoppingBag />} />
+        <Button tone="secondary" appearance="ghost-outline" size="icon-md" startIcon={<ShoppingBag />} />
       </OverlayBadge>
     </div>
   ),

@@ -4,7 +4,7 @@ export const appearances = {
   "soft-outline": "",
   ghost: "",
   "ghost-outline": "",
-  text:"",
+  text: "",
 } as const;
 export type Appearance = keyof typeof appearances;
 
@@ -43,62 +43,95 @@ export type Palette = {
   border: string;
 
   hover?: {
-        background?: string;
-        foreground?: string;
-        border?: string;
-    };
-  pressed?: {
-        background?: string;
-        foreground?: string;
-        border?: string;
-    };
-  selected?: {
-        background?: string;
-        foreground?: string;
-        border?: string;
-    };
+    background?: string;
+    foreground?: string;
+    border?: string;
+  };
+  // pressed?: {
+  //       background?: string;
+  //       foreground?: string;
+  //       border?: string;
+  //   };
+  // selected?: {
+  //       background?: string;
+  //       foreground?: string;
+  //       border?: string;
+  //   };
 };
 
-export function GetPalette(
-  appearance: Appearance,
-  palette: Tone,
-): Palette {
+export function GetPalette(appearance: Appearance, palette: Tone): Palette {
   switch (appearance) {
     case "solid":
       return {
         background: `var(--color-${palette})`,
         foreground: `var(--color-${palette}-foreground)`,
         border: "transparent",
+
+        hover: {
+          background: `rgba(var(--color-${palette}-rgb), 0.8)`,
+          foreground: `var(--color-${palette}-foreground)`,
+          border: "transparent",
+        },
       };
     case "soft":
       return {
         background: `var(--color-${palette}-subtle)`,
         foreground: `var(--color-${palette}-subtle-foreground)`,
         border: `transparent`,
+
+        hover: {
+          background: `rgba(var(--color-${palette}-rgb), 0.2)`,
+          foreground: `var(--color-${palette}-subtle-foreground)`,
+          border: "transparent",
+        },
       };
     case "soft-outline":
       return {
         background: `var(--color-${palette}-subtle)`,
         foreground: `var(--color-${palette}-subtle-foreground)`,
-        border: `rgba(var(--color-${palette}-subtle-foreground-rgb), 0.3)`,
+        border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+
+        hover: {
+          background: `rgba(var(--color-${palette}-rgb), 0.2)`,
+          foreground: `var(--color-${palette}-subtle-foreground)`,
+          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+        },
       };
     case "ghost":
       return {
         background: `transparent`,
         foreground: `var(--color-${palette})`,
         border: `transparent`,
+
+        hover: {
+          background: `var(--color-${palette}-subtle)`,
+          foreground: `var(--color-${palette})`,
+          border: "transparent",
+        },
       };
     case "ghost-outline":
       return {
         background: `transparent`,
         foreground: `var(--color-${palette})`,
         border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+
+        hover: {
+          background: `var(--color-${palette}-subtle)`,
+          foreground: `var(--color-${palette})`,
+          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+        },
       };
     case "text":
       return {
         background: `transparent`,
         foreground: `var(--color-${palette})`,
         border: `transparent`,
+
+        // hover: {
+        //   background: `transparent`,
+        //   foreground: `var(--color-${palette})`,
+        //   border: `transparent`,
+        // },
       };
   }
 }

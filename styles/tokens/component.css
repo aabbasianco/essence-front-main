@@ -21,10 +21,14 @@
 
     --button-border: var(--color-border);
     --button-border-width: var(--border-width-1);
-
+    
     --button-background: var(--primary);
     --button-foreground: var(--primary-foreground);
     --button-effective-background: var(--color-secondary-foreground);
+    
+    --button-background-hover: var(--primary);
+    --button-foreground-hover: var(--primary-foreground);
+    --button-border-hover: transparent;
 
     /* ==========================================================================
    Component Tokens : Typography

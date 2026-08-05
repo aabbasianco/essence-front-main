@@ -1,30 +1,97 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
-
 import { cn } from "@/lib/utils";
+
 import { Spinner } from "./spinner";
 import { Badge } from "./badge";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
+import {
+  GetPalette,
+  type Appearance,
+  type Tone,
+  appearances,
+  tones,
+} from "@/lib/design-system/palette";
 
-export const buttonPresets = {
-  primary:
-    "[--button-background:var(--color-primary)] [--button-foreground:var(--color-primary-foreground)] [--button-effective-background:var(--color-primary)] hover:bg-primary/80",
-  secondary:
-    "border-primary [--button-background:var(--color-background)] [--button-foreground:var(--color-primary)] hover:text-foreground hover:bg-primary-subtle aria-expanded:bg-muted aria-expanded:text-foreground",
-  tertiary:
-    "[--button-background:var(--color-transparent)] [--button-foreground:var(--color-secondary-subtle-foreground)] border border-border hover:bg-secondary-subtle aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-  ghost:
-    "[--button-background:var(--color-transparent)] [--button-foreground:var(--color-secondary-subtle-foreground)] [--button-effective-background:var(--color-secondary-foreground)] hover:text-foreground hover:bg-secondary-subtle aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
-  destructive:
-    "[--button-background:var(--color-danger-subtle)] [--button-foreground:var(--color-danger-subtle-foreground)] hover:bg-danger/20 focus-visible:border-danger/40 focus-visible:ring-danger/20 dark:bg-danger/20 dark:hover:bg-danger/30 dark:focus-visible:ring-danger/40",
-  link: "[--button-background:var(--color-transparent)] [--button-foreground:var(--color-primary)] underline-offset-4 hover:underline",
-  inputSoft:
-    "[--button-background:var(--color-secondary-100)] [--button-foreground:var(--color-secondary-subtle-foreground)] hover:bg-secondary/10 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-  inputGhost:
-    "[--button-background:var(--color-transparent)] [--button-foreground:var(--color-secondary-subtle-foreground)] hover:bg-[var(--color-secondary-200)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
+const buttonDefaults = {
+  appearance: "solid",
+  tone: "primary",
+  shape: "rounded",
+  size: "lg",
+} satisfies {
+  appearance: Appearance;
+  tone: Tone;
+  shape: ButtonShape;
+  size: ButtonSize;
 };
-export type ButtonPreset = keyof typeof buttonPresets;
+
+const buttonPresets = {
+  primary: {
+    appearance: "solid",
+    tone: "primary",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+  },
+
+  secondary: {
+    appearance: "ghost-outline",
+    tone: "primary",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+  },
+
+  tertiary: {
+    appearance: "ghost-outline",
+    tone: "secondary",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+  },
+
+  ghost: {
+    appearance: "ghost",
+    tone: "secondary",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+  },
+
+  link: {
+    appearance: "text",
+    tone: "secondary",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+  },
+
+  destructive: {
+    appearance: "soft",
+    tone: "danger",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+  },
+
+  inputSoft: {
+    appearance: "soft",
+    tone: "secondary",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+  },
+
+  inputGhost: {
+    appearance: "ghost",
+    tone: "secondary",
+    shape: buttonDefaults.shape,
+    size: buttonDefaults.size,
+  },
+} satisfies Record<
+  string,
+  {
+    appearance: Appearance;
+    tone: Tone;
+    shape: ButtonShape;
+    size: ButtonSize;
+  }
+>;
+type ButtonPreset = keyof typeof buttonPresets;
 
 const buttonShapes = ExtendVariants(defaultShapes, {
   rounded: "rounded-[var(--button-radius)]",
@@ -45,23 +112,26 @@ const buttonSizes = {
 type ButtonSize = keyof typeof buttonSizes;
 
 const buttonVariants = cva(
-  "group/button inline-flex bg-(--button-background) text-(--button-foreground) shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex bg-(--button-background) text-(--button-foreground) border-[var(--button-border)] hover:bg-(--button-background-hover) hover:text-(--button-foreground-hover) hover:border-[var(--button-border-hover)] border-2 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
-      preset: buttonPresets,
+      appearance: appearances,
+      tone: tones,
       shape: buttonShapes,
       size: buttonSizes,
     },
     defaultVariants: {
-      preset: "primary",
-      shape:"rounded",
-      size: "lg",
+      appearance: buttonDefaults.appearance,
+      tone: buttonDefaults.tone,
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
     },
   },
 );
 
 type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
+    preset?: ButtonPreset;
     badge?: React.ReactNode;
     asChild?: boolean;
     loading?: boolean;
@@ -72,9 +142,11 @@ type ButtonProps = React.ComponentProps<"button"> &
 
 function Button({
   className,
-  preset = "primary",
-  shape="rounded",
-  size = "lg",
+  preset,
+  tone,
+  appearance,
+  size,
+  shape,
   fluid = false,
   badge,
   asChild = false,
@@ -87,12 +159,21 @@ function Button({
 }: ButtonProps) {
   const Comp = asChild ? Slot.Root : "button";
   const isIconButton = size?.startsWith("icon");
+  const presetValues = preset ? buttonPresets[preset] : undefined;
+  const resolvedAppearance =
+    presetValues?.appearance ?? appearance ?? buttonDefaults.appearance;
+  const resolvedTone = presetValues?.tone ?? tone ?? buttonDefaults.tone;
+  const resolvedShape = presetValues?.shape ?? shape ?? buttonDefaults.shape;
+  const resolvedSize = presetValues?.size ?? size ?? buttonDefaults.size;
+  const palette = GetPalette(resolvedAppearance, resolvedTone);
   return (
     <Comp
       data-slot="button"
       data-preset={preset}
-      data-shape={shape}
-      data-size={size}
+      data-appearance={resolvedAppearance}
+      data-tone={resolvedTone}
+      data-shape={resolvedShape}
+      data-size={resolvedSize}
       data-fluid={fluid}
       data-has-badge={!!badge || undefined}
       data-loading={loading || undefined}
@@ -100,9 +181,35 @@ function Button({
       data-has-end-icon={!!endIcon || undefined}
       disabled={disabled || loading}
       className={cn(
-        buttonVariants({ preset, shape, size, className }),
+        buttonVariants({
+          appearance: resolvedAppearance,
+          tone: resolvedTone,
+          shape: resolvedShape,
+          size: resolvedSize,
+        }),
         fluid && "w-full",
+        className,
       )}
+      style={
+        {
+          "--button-background": palette.background,
+          "--button-foreground": palette.foreground,
+          "--button-border": palette.border,
+
+          "--button-background-hover": palette.hover?.background,
+
+          "--button-foreground-hover": palette.hover?.foreground,
+
+          "--button-border-hover": palette.hover?.border,
+
+          "--button-effective-background":
+            resolvedAppearance === "ghost" ||
+            resolvedAppearance === "ghost-outline" ||
+            resolvedAppearance === "text"
+              ? (palette.hover?.background ?? palette.background)
+              : palette.background,
+        } as React.CSSProperties
+      }
       {...props}
     >
       {loading ? (
@@ -137,4 +244,4 @@ function Button({
   );
 }
 
-export { Button, buttonVariants, buttonShapes, buttonSizes };
+export { Button, buttonVariants, buttonPresets, buttonShapes, buttonSizes };
