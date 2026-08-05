@@ -1,0 +1,20 @@
+:root {
+    /* ==========================================================================
+    Domain Tokens : tag
+    ========================================================================== */
+    /* Color */
+    --tag-gender-background: var(--color-primary-subtle);
+    --tag-gender-foreground: var(--color-primary-subtle-foreground);
+
+    --tag-brand-type-background: var(--color-violet-subtle);
+    --tag-brand-type-foreground: var(--color-violet-subtle-foreground);
+
+    --tag-origin-background: var(--color-indigo-subtle);
+    --tag-origin-foreground: var(--color-indigo-subtle-foreground);
+
+    --tag-concentration-background: var(--color-sky-subtle);
+    --tag-concentration-foreground: var(--color-sky-subtle-foreground);
+
+    --tag-performance-background: var(--color-teal-subtle);
+    --tag-performance-foreground: var(--color-teal-subtle-foreground);
+}

@@ -1,0 +1,176 @@
+:root {
+    /* ==========================================================================
+   Component Tokens : Button
+   ========================================================================== */
+    --button-height-sm: 2rem;
+    --button-height-md: 2.5rem;
+    --button-height-lg: 3rem;
+
+    --button-padding-x-sm: --spacing(3);
+    --button-padding-x-md: --spacing(4);
+    --button-padding-x-lg: --spacing(6);
+
+    --button-gap: --spacing(2);
+
+    --button-radius: var(--radius-lg);
+
+    --button-font-size: var(--font-size-sm);
+    --button-font-weight: var(--font-weight-medium);
+
+    --button-icon-size: 1rem;
+
+    --button-border: var(--color-border);
+    --button-border-width: var(--border-width-1);
+
+    --button-background: var(--primary);
+    --button-foreground: var(--primary-foreground);
+    --button-effective-background: var(--color-secondary-foreground);
+
+    /* ==========================================================================
+   Component Tokens : Typography
+   ========================================================================== */
+    --text-line-height: 1.5;
+
+    --heading-line-height: 1.2;
+
+    --heading-letter-spacing: var(--letter-spacing-tight);
+
+    /* ==========================================================================
+   Component Tokens : Icon
+   ========================================================================== */
+    --icon-size-xs: 0.75rem;
+    --icon-size-sm: 1rem;
+    --icon-size-md: 1.25rem;
+    --icon-size-lg: 1.5rem;
+    --icon-size-xl: 2rem;
+
+    --icon-stroke-width: 2;
+
+    /* ==========================================================================
+   Component Tokens : Input
+   ========================================================================== */
+    --input-height: 2.5rem;
+
+    --input-padding-x: --spacing(3);
+    --input-padding-y: --spacing(2);
+
+    --input-radius: var(--radius-lg);
+
+    --input-border: var(--color-border);
+    --input-background: var(--color-surface-subtle);
+
+    --input-font-size: var(--font-size-sm);
+
+    --input-border-width: var(--border-width-1);
+
+    /* ==========================================================================
+   Component Tokens : Input Group
+   ========================================================================== */
+    --input-group-background: var(--input-background);
+
+    /* ==========================================================================
+   Component Tokens : Label
+   ========================================================================== */
+    --label-font-size: var(--font-size-sm);
+    --label-font-weight: var(--font-weight-medium);
+
+    --label-gap: --spacing(2);
+
+    /* ==========================================================================
+   Component Tokens : Card
+   ========================================================================== */
+    --card-padding-sm: --spacing(4);
+    --card-padding-md: --spacing(6);
+
+    --card-gap-sm: --spacing(4);
+    --card-gap-md: --spacing(6);
+
+    --card-radius: var(--radius-xl);
+
+    --card-border-width: var(--border-width-1);
+
+    --card-shadow: var(--shadow-sm);
+
+    --card-title-font-size: var(--font-size-xl);
+    --card-title-font-weight: var(--font-weight-semibold);
+
+    /* ==========================================================================
+   Component Tokens : Badge
+   ========================================================================== */
+    --badge-height: 1.5rem;
+
+    --badge-padding-x: --spacing(2);
+    --badge-padding-y: --spacing(1);
+
+    --badge-gap: --spacing(1);
+
+    --badge-radius: var(--radius);
+
+    --badge-font-size: var(--font-size-xs);
+
+    --badge-font-weight: var(--font-weight-semibold);
+
+    --badge-border: var(--color-border);
+    --badge-foreground: 000;
+
+    /* ==========================================================================
+   Component Tokens : Separator
+   ========================================================================== */
+    --separator-thickness: 1px;
+
+    /* ==========================================================================
+   Component Tokens : Spinner
+   ========================================================================== */
+    --spinner-size-sm: 1rem;
+    --spinner-size-md: 1.5rem;
+    --spinner-size-lg: 2rem;
+
+    --spinner-border-width: 2px;
+
+    /* ==========================================================================
+   Component Tokens : Skeleton
+   ========================================================================== */
+    --skeleton-radius: var(--radius);
+
+    /* ==========================================================================
+   Component Tokens : Avatar
+   ========================================================================== */
+    --avatar-size-xs: 1.5rem;
+    --avatar-size-sm: 2rem;
+    --avatar-size-md: 2.5rem;
+    --avatar-size-lg: 3rem;
+    --avatar-size-xl: 4rem;
+
+    --avatar-radius: var(--radius-full);
+
+    /* ==========================================================================
+   Component Tokens : Hero
+   ========================================================================== */
+    --hero-title-font-size: var(--font-size-5xl);
+    --hero-title-font-weight: var(--font-weight-bold);
+    --hero-title-font-line-height: 1.05;
+
+    /* ==========================================================================
+   Component Tokens : Page
+   ========================================================================== */
+    --page-title-font-size: var(--font-size-4xl);
+    --page-title-font-weight: var(--font-weight-bold);
+
+    /* ==========================================================================
+   Component Tokens : Section
+   ========================================================================== */
+    --section-title-font-size: var(--font-size-3xl);
+    --section-title-font-weight: var(--font-weight-semibold);
+
+    /* ==========================================================================
+   Component Tokens : Body
+   ========================================================================== */
+    --body-font-size: var(--font-size-md);
+    --body-font-weight: var(--font-weight-regular);
+
+    /* ==========================================================================
+   Component Tokens : description
+   ========================================================================== */
+    --description-font-size: var(--font-size-xs);
+    --description-font-weight: var(--font-weight-medium);
+}

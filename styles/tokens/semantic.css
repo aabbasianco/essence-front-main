@@ -1,0 +1,266 @@
+:root {
+    /* ==========================================================================
+    Semantic Tokens : Background & Foreground
+    ========================================================================== */
+    /* Backgrounds */
+    --color-background: var(--color-gray-50);
+    --color-background-rgb: var(--color-gray-50-rgb);
+    --color-background-foreground: var(--color-gray-950);
+    --color-background-foreground-rgb: var(--color-gray-950-rgb);
+
+    --color-surface: #FFFFFF;
+    --color-surface-rgb: 255, 255, 255;
+    --color-surface-foreground: var(--color-gray-900);
+    --color-surface-foreground-rgb: var(--color-gray-900-rgb);
+
+    --color-surface-subtle: var(--color-gray-100);
+    --color-surface-subtle-rgb: var(--color-gray-100-rgb);
+
+    --color-transparent: transparent;
+
+    /* Brand */
+    --color-brand: var(--color-brand-850);
+    --color-brand-rgb: var(--color-brand-850-rgb);
+    --color-brand-foreground: #FFFFFF;
+    --color-brand-foreground-rgb: 255, 255, 255;
+
+    --color-brand-subtle: var(--color-brand-50);
+    --color-brand-subtle-rgb: var(--color-brand-50-rgb);
+    --color-brand-subtle-foreground: var(--color-brand-700);
+    --color-brand-subtle-foreground-rgb: var(--color-brand-700-rgb);
+
+    /* Primary */
+    --color-primary: var(--color-primary-500);
+    --color-primary-rgb: var(--color-primary-500-rgb);
+    --color-primary-foreground: #FFFFFF;
+    --color-primary-foreground-rgb: 255, 255, 255;
+
+    --color-primary-subtle: var(--color-primary-50);
+    --color-primary-subtle-rgb: var(--color-primary-50-rgb);
+    --color-primary-subtle-foreground: var(--color-primary-500);
+    --color-primary-subtle-foreground-rgb: var(--color-primary-500-rgb);
+
+    /* Secondary */
+    --color-secondary: var(--color-secondary-900);
+    --color-secondary-rgb: var(--color-secondary-900-rgb);
+    --color-secondary-foreground: #FFFFFF;
+    --color-secondary-foreground-rgb: 255, 255, 255;
+
+    --color-secondary-subtle: var(--color-secondary-100);
+    --color-secondary-subtle-rgb: var(--color-secondary-100-rgb);
+    --color-secondary-subtle-foreground: var(--color-secondary-900);
+    --color-secondary-subtle-foreground-rgb: var(--color-secondary-900-rgb);
+
+    /* Tertiary */
+    --color-tertiary: var(--color-tertiary-300);
+    --color-tertiary-rgb: var(--color-tertiary-300-rgb);
+    --color-tertiary-foreground: var(--color-tertiary-850);
+    --color-tertiary-foreground-rgb: var(--color-tertiary-850-rgb);
+
+    --color-tertiary-subtle: var(--color-tertiary-100);
+    --color-tertiary-subtle-rgb: var(--color-tertiary-100-rgb);
+    --color-tertiary-subtle-foreground: var(--color-tertiary-900);
+    --color-tertiary-subtle-foreground-rgb: var(--color-tertiary-900-rgb);
+
+    /* Muted */
+    --color-muted: var(--color-gray-500);
+    --color-muted-rgb: var(--color-gray-500-rgb);
+    --color-muted-subtle: var(--color-gray-200);
+    --color-muted-subtle-rgb: var(--color-gray-200-rgb);
+
+    /* Success */
+    --color-success: var(--color-success-600);
+    --color-success-rgb: var(--color-success-600-rgb);
+    --color-success-foreground: #FFFFFF;
+    --color-success-foreground-rgb: 255, 255, 255;
+
+    --color-success-subtle: var(--color-success-100);
+    --color-success-subtle-rgb: var(--color-success-100-rgb);
+    --color-success-subtle-foreground: var(--color-success-900);
+    --color-success-subtle-foreground-rgb: var(--color-success-900-rgb);
+
+    /* Warning */
+    --color-warning: var(--color-warning-500);
+    --color-warning-rgb: var(--color-warning-500-rgb);
+    --color-warning-foreground: #FFFFFF;
+    --color-warning-foreground-rgb: 255, 255, 255;
+
+    --color-warning-subtle: var(--color-warning-100);
+    --color-warning-subtle-rgb: var(--color-warning-100-rgb);
+    --color-warning-subtle-foreground: var(--color-warning-900);
+    --color-warning-subtle-foreground-rgb: var(--color-warning-900-rgb);
+
+    /* danger */
+    --color-danger: var(--color-danger-600);
+    --color-danger-rgb: var(--color-danger-600-rgb);
+    --color-danger-foreground: #FFFFFF;
+    --color-danger-foreground-rgb: 255, 255, 255;
+
+    --color-danger-subtle: var(--color-danger-100);
+    --color-danger-subtle-rgb: var(--color-danger-100-rgb);
+    --color-danger-subtle-foreground: var(--color-danger-800);
+    --color-danger-subtle-foreground-rgb: var(--color-danger-800-rgb);
+
+    /* Info */
+    --color-info: var(--color-info-600);
+    --color-info-rgb: var(--color-info-600-rgb);
+    --color-info-foreground: #FFFFFF;
+    --color-info-foreground-rgb: 255, 255, 255;
+
+    --color-info-subtle: var(--color-info-100);
+    --color-info-subtle-rgb: var(--color-info-100-rgb);
+    --color-info-subtle-foreground: var(--color-info-800);
+    --color-info-subtle-foreground-rgb: var(--color-info-800-rgb);
+
+    /* ==========================================================================
+    Semantic Tokens : Colors
+    ========================================================================== */
+    /* Orange */
+    --color-orange: var(--color-orange-500);
+    --color-orange-rgb: var(--color-orange-500-rgb);
+    --color-orange-foregound: #FFFFFF;
+    --color-orange-foregound-rgb: 255, 255, 255;
+
+    --color-orange-subtle: var(--color-orange-50);
+    --color-orange-subtle-rgb: var(--color-orange-50-rgb);
+    --color-orange-subtle-foreground: var(--color-orange-900);
+    --color-orange-subtle-foreground-rgb: var(--color-orange-900-rgb);
+    /* Yellow */
+    --color-yellow: var(--color-yellow-500);
+    --color-yellow-rgb: var(--color-yellow-500-rgb);
+    --color-yellow-foregound: #FFFFFF;
+    --color-yellow-foregound-rgb: 255, 255, 255;
+
+    --color-yellow-subtle: var(--color-yellow-50);
+    --color-yellow-subtle-rgb: var(--color-yellow-50-rgb);
+    --color-yellow-subtle-foreground: var(--color-yellow-900);
+    --color-yellow-subtle-foreground-rgb: var(--color-yellow-900-rgb);
+    /* Amber */
+    --color-amber: var(--color-amber-500);
+    --color-amber-rgb: var(--color-amber-500-rgb);
+    --color-amber-foregound: #FFFFFF;
+    --color-amber-foregound-rgb: 255, 255, 255;
+
+    --color-amber-subtle: var(--color-amber-50);
+    --color-amber-subtle-rgb: var(--color-amber-50-rgb);
+    --color-amber-subtle-foreground: var(--color-amber-900);
+    --color-amber-subtle-foreground-rgb: var(--color-amber-900-rgb);
+
+    /* Green */
+    --color-green: var(--color-green-600);
+    --color-green-rgb: var(--color-green-600-rgb);
+    --color-green-foreground: #FFFFFF;
+    --color-green-foreground-rgb: 255, 255, 255;
+
+    --color-green-subtle: var(--color-green-50);
+    --color-green-subtle-rgb: var(--color-green-50-rgb);
+    --color-green-subtle-foreground: var(--color-green-900);
+    --color-green-subtle-foreground-rgb: var(--color-green-900-rgb);
+
+    /* Emerald */
+    --color-emerald: var(--color-emerald-600);
+    --color-emerald-rgb: var(--color-emerald-600-rgb);
+    --color-emerald-foreground: #FFFFFF;
+    --color-emerald-foreground-rgb: 255, 255, 255;
+
+    --color-emerald-subtle: var(--color-emerald-50);
+    --color-emerald-subtle-rgb: var(--color-emerald-50-rgb);
+    --color-emerald-subtle-foreground: var(--color-emerald-900);
+    --color-emerald-subtle-foreground-rgb: var(--color-emerald-900-rgb);
+
+    /* Teal */
+    --color-teal: var(--color-teal-600);
+    --color-teal-rgb: var(--color-teal-600-rgb);
+    --color-teal-foreground: #FFFFFF;
+    --color-teal-foreground-rgb: 255, 255, 255;
+
+    --color-teal-subtle: var(--color-teal-50);
+    --color-teal-subtle-rgb: var(--color-teal-50-rgb);
+    --color-teal-subtle-foreground: var(--color-teal-900);
+    --color-teal-subtle-foreground-rgb: var(--color-teal-900-rgb);
+
+    /* Sky */
+    --color-sky: var(--color-sky-600);
+    --color-sky-rgb: var(--color-sky-600-rgb);
+    --color-sky-foreground: #FFFFFF;
+    --color-sky-foreground-rgb: 255, 255, 255;
+
+    --color-sky-subtle: var(--color-sky-50);
+    --color-sky-subtle-rgb: var(--color-sky-50-rgb);
+    --color-sky-subtle-foreground: var(--color-sky-900);
+    --color-sky-subtle-foreground-rgb: var(--color-sky-900-rgb);
+
+    /* Indigo */
+    --color-indigo: var(--color-indigo-600);
+    --color-indigo-rgb: var(--color-indigo-600-rgb);
+    --color-indigo-foreground: #FFFFFF;
+    --color-indigo-foreground-rgb: 255, 255, 255;
+
+    --color-indigo-subtle: var(--color-indigo-50);
+    --color-indigo-subtle-rgb: var(--color-indigo-50-rgb);
+    --color-indigo-subtle-foreground: var(--color-indigo-900);
+    --color-indigo-subtle-foreground-rgb: var(--color-indigo-900-rgb);
+
+    /* Violet */
+    --color-violet: var(--color-violet-600);
+    --color-violet-rgb: var(--color-violet-600-rgb);
+    --color-violet-foreground: #FFFFFF;
+    --color-violet-foreground-rgb: 255, 255, 255;
+
+    --color-violet-subtle: var(--color-violet-50);
+    --color-violet-subtle-rgb: var(--color-violet-50-rgb);
+    --color-violet-subtle-foreground: var(--color-violet-900);
+    --color-violet-subtle-foreground-rgb: var(--color-violet-900-rgb);
+
+    /* Purple */
+    --color-purple: var(--color-purple-600);
+    --color-purple-rgb: var(--color-purple-600-rgb);
+    --color-purple-foreground: #FFFFFF;
+    --color-purple-foreground-rgb: 255, 255, 255;
+
+    --color-purple-subtle: var(--color-purple-50);
+    --color-purple-subtle-rgb: var(--color-purple-50-rgb);
+    --color-purple-subtle-foreground: var(--color-purple-900);
+    --color-purple-subtle-foreground-rgb: var(--color-purple-900-rgb);
+
+    /* Fuchsia */
+    --color-fuchsia: var(--color-fuchsia-600);
+    --color-fuchsia-rgb: var(--color-fuchsia-600-rgb);
+    --color-fuchsia-foreground: #FFFFFF;
+    --color-fuchsia-foreground-rgb: 255, 255, 255;
+
+    --color-fuchsia-subtle: var(--color-fuchsia-50);
+    --color-fuchsia-subtle-rgb: var(--color-fuchsia-50-rgb);
+    --color-fuchsia-subtle-foreground: var(--color-fuchsia-900);
+    --color-fuchsia-subtle-foreground-rgb: var(--color-fuchsia-900-rgb);
+
+    /* Rose */
+    --color-rose: var(--color-rose-500);
+    --color-rose-rgb: var(--color-rose-500-rgb);
+    --color-rose-foreground: #FFFFFF;
+    --color-rose-foreground-rgb: 255, 255, 255;
+
+    --color-rose-subtle: var(--color-rose-50);
+    --color-rose-subtle-rgb: var(--color-rose-50-rgb);
+    --color-rose-subtle-foreground: var(--color-rose-900);
+    --color-rose-subtle-foreground-rgb: var(--color-rose-900-rgb);
+
+    /* ==========================================================================
+   Semantic Tokens : Radius
+   ========================================================================== */
+    --radius: var(--radius-md);
+
+    /* ==========================================================================
+   Semantic Tokens : Border
+   ========================================================================== */
+    --color-border: var(--color-gray-300);
+    --color-border-strong: var(--color-gray-500);
+
+    --separator: var(--color-gray-200);
+
+    /* ==========================================================================
+   Semantic Tokens : Overlay
+   ========================================================================== */
+    /* Color */
+    --color-overlay: rgb(0 0 0 / 0.45);
+}

@@ -41,6 +41,22 @@ export type Palette = {
   background: string;
   foreground: string;
   border: string;
+
+  hover?: {
+        background?: string;
+        foreground?: string;
+        border?: string;
+    };
+  pressed?: {
+        background?: string;
+        foreground?: string;
+        border?: string;
+    };
+  selected?: {
+        background?: string;
+        foreground?: string;
+        border?: string;
+    };
 };
 
 export function GetPalette(
