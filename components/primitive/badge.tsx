@@ -11,11 +11,9 @@ import {
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 import { Clock, Flame, Star } from "lucide-react";
+import { tagSizes } from "./tag";
 
-const badgeSizes = {
-  sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0.5 data-[has-start-icon=true]:ps-0.5 [&_svg:not([class*='size-'])]:size-4",
-  md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1 [&_svg:not([class*='size-'])]:size-5",
-};
+const badgeSizes = tagSizes;
 type BadgeSize = keyof typeof badgeSizes;
 
 const badgeShapes = ExtendVariants(defaultShapes, {
@@ -199,7 +197,7 @@ function Badge({
   const resolvedSize = size ?? presetValues?.size ?? badgeDefaults.size;
   const resolvedShape = shape ?? presetValues?.shape ?? badgeDefaults.shape;
   const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? undefined;
-  const resolvedEndIcon = presetValues?.endIcon ?? startIcon ?? undefined;
+  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? undefined;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
   const hasValue =
     children !== undefined && children !== null && children !== "";

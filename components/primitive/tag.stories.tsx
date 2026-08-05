@@ -74,32 +74,32 @@ export const Primary: Story = {
 export const Application: Story = {
   render: (args) => (
     <div className="flex gap-4 justify-center overflow-hidden flex-wrap">
-      <Tag startIcon={<Mars />} preset="gender" {...args}>
+      <Tag preset="gender-men" {...args}>
         Men
       </Tag>
-      <Tag startIcon={<Venus />} preset="gender" {...args}>
+      <Tag preset="gender-women" {...args}>
         Women
       </Tag>
-      <Tag startIcon={<VenusAndMars />} preset="gender" {...args}>
+      <Tag preset="gender-unisex" {...args}>
         Unisex
       </Tag>
       <Tag preset="brandType" {...args}>Niche</Tag>
       <Tag preset="brandType" {...args}>Designer</Tag>
       <Tag preset="brandType" {...args}>Arabian</Tag>
-      <Tag startIcon={<Earth />} preset="origin" {...args}>
+      <Tag preset="origin" {...args}>
         France
       </Tag>
-      <Tag startIcon={<Earth />} preset="origin" {...args}>
+      <Tag preset="origin" {...args}>
         Italy
       </Tag>
       <Tag preset="concentration" {...args}>Concentration</Tag>
-      <Tag startIcon={<Clock3 />} preset="performance" {...args}>
+      <Tag preset="performance-longevity" {...args}>
         Longevity
       </Tag>
-      <Tag startIcon={<Radio />} preset="performance" {...args}>
+      <Tag preset="performance-projection" {...args}>
         Projection
       </Tag>
-      <Tag startIcon={<Wind />} preset="performance" {...args}>
+      <Tag preset="performance-sillage" {...args}>
         Sillage
       </Tag>
     </div>

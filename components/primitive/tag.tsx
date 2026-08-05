@@ -11,10 +11,11 @@ import {
   appearances,
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
+import { Clock3, Earth, Mars, Radio, Venus, VenusAndMars, Wind } from "lucide-react";
 
 const tagSizes = {
   // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
-  sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0 data-[has-start-icon=true]:ps-0 [&_svg:not([class*='size-'])]:size-4",
+  sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0.5 data-[has-start-icon=true]:ps-0.5 [&_svg:not([class*='size-'])]:size-4",
   md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1 [&_svg:not([class*='size-'])]:size-5",
 };
 type TagSize = keyof typeof tagSizes;
@@ -29,19 +30,41 @@ const tagDefaults = {
   tone: "primary",
   shape: "rounded",
   size: "md",
+  startIcon: undefined,
+  endIcon: undefined,
 } satisfies {
   appearance: Appearance;
   tone: Tone;
   shape: TagShape;
   size: TagSize;
+  startIcon?: React.ReactElement;
+  endIcon?: React.ReactElement;
 };
 
 const tagPresets = {
-  gender: {
+  "gender-men": {
     appearance: tagDefaults.appearance,
     tone: "primary",
     shape: "rounded",
     size: tagDefaults.size,
+    startIcon: <Mars />,
+    endIcon: tagDefaults.endIcon,
+  },
+  "gender-women": {
+    appearance: tagDefaults.appearance,
+    tone: "primary",
+    shape: "rounded",
+    size: tagDefaults.size,
+    startIcon: <Venus />,
+    endIcon: tagDefaults.endIcon,
+  },
+  "gender-unisex": {
+    appearance: tagDefaults.appearance,
+    tone: "primary",
+    shape: "rounded",
+    size: tagDefaults.size,
+    startIcon: <VenusAndMars />,
+    endIcon: tagDefaults.endIcon,
   },
 
   brandType: {
@@ -49,6 +72,8 @@ const tagPresets = {
     tone: "violet",
     shape: "rounded",
     size: tagDefaults.size,
+    startIcon: tagDefaults.startIcon,
+    endIcon: tagDefaults.endIcon,
   },
 
   origin: {
@@ -56,6 +81,8 @@ const tagPresets = {
     tone: "indigo",
     shape: "rounded",
     size: tagDefaults.size,
+    startIcon: <Earth />,
+    endIcon: tagDefaults.endIcon,
   },
 
   concentration: {
@@ -63,13 +90,33 @@ const tagPresets = {
     tone: "sky",
     shape: "rounded",
     size: tagDefaults.size,
+    startIcon: tagDefaults.startIcon,
+    endIcon: tagDefaults.endIcon,
   },
 
-  performance: {
+  "performance-longevity": {
     appearance: tagDefaults.appearance,
     tone: "teal",
     shape: "rounded",
     size: tagDefaults.size,
+    startIcon: <Clock3 />,
+    endIcon: tagDefaults.endIcon,
+  },
+  "performance-projection": {
+    appearance: tagDefaults.appearance,
+    tone: "teal",
+    shape: "rounded",
+    size: tagDefaults.size,
+    startIcon: <Radio />,
+    endIcon: tagDefaults.endIcon,
+  },
+  "performance-sillage": {
+    appearance: tagDefaults.appearance,
+    tone: "teal",
+    shape: "rounded",
+    size: tagDefaults.size,
+    startIcon: <Wind />,
+    endIcon: tagDefaults.endIcon,
   },
 } satisfies Record<
   string,
@@ -78,6 +125,8 @@ const tagPresets = {
     tone: Tone;
     shape: TagShape;
     size: TagSize;
+    startIcon?: React.ReactElement;
+    endIcon?: React.ReactElement;
   }
 >;
 type TagPreset = keyof typeof tagPresets;
@@ -128,6 +177,8 @@ function Tag({
     presetValues?.appearance ?? appearance ?? tagDefaults.appearance;
   const resolvedSize = presetValues?.size ?? size ?? tagDefaults.size;
   const resolvedShape = presetValues?.shape ?? shape ?? tagDefaults.shape;
+  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? undefined;
+  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? undefined;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
 
   return (
@@ -138,8 +189,8 @@ function Tag({
       data-appearance={resolvedAppearance}
       data-size={resolvedSize}
       data-shape={resolvedShape}
-      data-has-start-icon={!!startIcon || undefined}
-      data-has-end-icon={!!endIcon || undefined}
+      data-has-start-icon={resolvedStartIcon}
+      data-has-end-icon={resolvedEndIcon}
       className={cn(
         tagVariants({
           tone: resolvedTone,
@@ -158,9 +209,13 @@ function Tag({
       }
       {...props}
     >
-      {startIcon && <span data-slot="tag-start-icon">{startIcon}</span>}
+      {resolvedStartIcon && (
+        <span data-slot="tag-start-icon">{resolvedStartIcon}</span>
+      )}
       <span data-slot="tag-label">{children}</span>
-      {endIcon && <span data-slot="tag-end-icon">{endIcon}</span>}
+      {resolvedEndIcon && (
+        <span data-slot="tag-end-icon">{resolvedEndIcon}</span>
+      )}
     </Comp>
   );
 }
