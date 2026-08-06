@@ -52,10 +52,10 @@
     --color-secondary-subtle-foreground-rgb: var(--color-secondary-900-rgb);
 
     /* Tertiary */
-    --color-tertiary: var(--color-tertiary-300);
-    --color-tertiary-rgb: var(--color-tertiary-300-rgb);
-    --color-tertiary-foreground: var(--color-tertiary-850);
-    --color-tertiary-foreground-rgb: var(--color-tertiary-850-rgb);
+    --color-tertiary: var(--color-tertiary-600);
+    --color-tertiary-rgb: var(--color-tertiary-600-rgb);
+    --color-tertiary-foreground: #FFFFFF;
+    --color-tertiary-foreground-rgb: 255,255,255;
 
     --color-tertiary-subtle: var(--color-tertiary-100);
     --color-tertiary-subtle-rgb: var(--color-tertiary-100-rgb);
@@ -118,8 +118,8 @@
     /* Orange */
     --color-orange: var(--color-orange-500);
     --color-orange-rgb: var(--color-orange-500-rgb);
-    --color-orange-foregound: #FFFFFF;
-    --color-orange-foregound-rgb: 255, 255, 255;
+    --color-orange-foreground: #FFFFFF;
+    --color-orange-foreground-rgb: 255, 255, 255;
 
     --color-orange-subtle: var(--color-orange-50);
     --color-orange-subtle-rgb: var(--color-orange-50-rgb);
@@ -128,8 +128,8 @@
     /* Yellow */
     --color-yellow: var(--color-yellow-500);
     --color-yellow-rgb: var(--color-yellow-500-rgb);
-    --color-yellow-foregound: #FFFFFF;
-    --color-yellow-foregound-rgb: 255, 255, 255;
+    --color-yellow-foreground: #FFFFFF;
+    --color-yellow-foreground-rgb: 255, 255, 255;
 
     --color-yellow-subtle: var(--color-yellow-50);
     --color-yellow-subtle-rgb: var(--color-yellow-50-rgb);
@@ -138,8 +138,8 @@
     /* Amber */
     --color-amber: var(--color-amber-500);
     --color-amber-rgb: var(--color-amber-500-rgb);
-    --color-amber-foregound: #FFFFFF;
-    --color-amber-foregound-rgb: 255, 255, 255;
+    --color-amber-foreground: #FFFFFF;
+    --color-amber-foreground-rgb: 255, 255, 255;
 
     --color-amber-subtle: var(--color-amber-50);
     --color-amber-subtle-rgb: var(--color-amber-50-rgb);

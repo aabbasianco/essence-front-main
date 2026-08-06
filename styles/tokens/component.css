@@ -21,14 +21,35 @@
 
     --button-border: var(--color-border);
     --button-border-width: var(--border-width-1);
-    
+
     --button-background: var(--primary);
     --button-foreground: var(--primary-foreground);
     --button-effective-background: var(--color-secondary-foreground);
-    
+
     --button-background-hover: var(--primary);
     --button-foreground-hover: var(--primary-foreground);
     --button-border-hover: transparent;
+
+    /* ==========================================================================
+   Component Tokens : Toggle
+   ========================================================================== */
+    /* --toggle-background: var(--color-surface-subtle); */
+    /* --toggle-foreground: var(--primary-foreground); */
+    --toggle-border: transparent;
+    /* --toggle-effective-background: var(--color-secondary-foreground); */
+
+    --toggle-background-hover: var(--primary);
+    --toggle-foreground-hover: var(--primary-foreground);
+    --toggle-border-hover: transparent;
+
+    --toggle-pressed-border: transparent;
+
+    --toggle-radius: var(--radius-lg);
+
+    /* ==========================================================================
+   Component Tokens : Icon
+   ========================================================================== */
+   --icon-foreground:var(--color-primary);
 
     /* ==========================================================================
    Component Tokens : Typography
