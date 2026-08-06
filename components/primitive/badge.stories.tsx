@@ -8,20 +8,6 @@ import {
   badgeSizes,
 } from "./badge";
 import { Button } from "./button";
-import {
-  Check,
-  Clock,
-  Flame,
-  Package,
-  ShoppingBag,
-  Mail,
-  Calendar,
-  Bell,
-  BellRing,
-  BadgePercent,
-  CirclePercent,
-  Percent,
-} from "lucide-react";
 import { tones, appearances } from "@/lib/design-system/palette";
 
 const meta = {
@@ -100,16 +86,16 @@ export const Application: Story = {
       <Badge preset="discount" {...args}>
         10%
       </Badge>
-      <Badge preset="in-stock" startIcon={<Package />} {...args}>
+      <Badge preset="in-stock" startIcon="package" {...args}>
         In Stock
       </Badge>
-      <Badge preset="low-stock" startIcon={<Package />} {...args}>
+      <Badge preset="low-stock" startIcon="package" {...args}>
         Low Stock
       </Badge>
-      <Badge preset="out-of-stock" startIcon={<Package />} {...args}>
+      <Badge preset="out-of-stock" startIcon="package" {...args}>
         Out of Stock
       </Badge>
-      <Badge preset="pre-order" startIcon={<Package />} {...args}>
+      <Badge preset="pre-order" startIcon="package" {...args}>
         Pre-Order
       </Badge>
     </div>
@@ -123,24 +109,24 @@ export const Notification: Story = {
         <Button
           preset="tertiary"
           size="icon-md"
-          startIcon={<ShoppingBag />}
+          startIcon="shopping-bag"
         ></Button>
       </OverlayBadge>
       <OverlayBadge value={99}>
-        <Button preset="tertiary" size="icon-md" startIcon={<Mail />}></Button>
+        <Button preset="tertiary" size="icon-md" startIcon="mail"></Button>
       </OverlayBadge>
       <OverlayBadge>
         <Button
           preset="tertiary"
           size="icon-md"
-          startIcon={<Calendar />}
+          startIcon="calendar"
         ></Button>
       </OverlayBadge>
       <OverlayBadge value="5">
         <Button
           preset="tertiary"
           size="icon-md"
-          startIcon={<BellRing />}
+          startIcon="bell-ring"
         ></Button>
       </OverlayBadge>
     </div>

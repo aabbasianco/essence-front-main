@@ -10,8 +10,8 @@ import {
   appearances,
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
-import { Clock, Flame, Star } from "lucide-react";
 import { tagSizes } from "./tag";
+import { IconDefinition, RenderIcon } from "./icon";
 
 const badgeSizes = tagSizes;
 type BadgeSize = keyof typeof badgeSizes;
@@ -33,8 +33,8 @@ const badgeDefaults = {
   tone: Tone;
   size: BadgeSize;
   shape: BadgeShape;
-  startIcon?: React.ReactElement;
-  endIcon?: React.ReactElement;
+  startIcon?: IconDefinition;
+  endIcon?: IconDefinition;
 };
 
 const badgePresets = {
@@ -60,7 +60,7 @@ const badgePresets = {
     tone: "primary",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
-    startIcon: <Star />,
+    startIcon: "star",
     endIcon: badgeDefaults.endIcon,
   },
   trending: {
@@ -68,7 +68,7 @@ const badgePresets = {
     tone: "violet",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
-    startIcon: <Flame />,
+    startIcon: "flame",
     endIcon: badgeDefaults.endIcon,
   },
   limited: {
@@ -76,7 +76,7 @@ const badgePresets = {
     tone: "danger",
     size: badgeDefaults.size,
     shape: badgeDefaults.shape,
-    startIcon: <Clock />,
+    startIcon: "clock",
     endIcon: badgeDefaults.endIcon,
   },
   discount: {
@@ -142,8 +142,8 @@ const badgePresets = {
     tone: Tone;
     size: BadgeSize;
     shape: BadgeShape;
-    startIcon?: React.ReactElement;
-    endIcon?: React.ReactElement;
+    startIcon?: IconDefinition;
+    endIcon?: IconDefinition;
   }
 >;
 
@@ -172,8 +172,8 @@ type BadgeProps = React.ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & {
     preset?: BadgePreset;
     asChild?: boolean;
-    startIcon?: React.ReactElement;
-    endIcon?: React.ReactElement;
+    startIcon?: IconDefinition;
+    endIcon?: IconDefinition;
   };
 
 function Badge({
@@ -239,12 +239,12 @@ function Badge({
       )}
 
       {resolvedStartIcon && (
-        <span data-slot="badge-start-icon">{resolvedStartIcon}</span>
+        <span data-slot="badge-start-icon">{RenderIcon(resolvedStartIcon)}</span>
       )}
 
       {hasValue && <span data-slot="badge-label">{children}</span>}
 
-      {resolvedEndIcon && <span data-slot="badge-end-icon">{resolvedEndIcon}</span>}
+      {resolvedEndIcon && <span data-slot="badge-end-icon">{RenderIcon(resolvedEndIcon)}</span>}
     </Comp>
   );
 }

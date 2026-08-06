@@ -12,7 +12,6 @@ import {
 } from "@/lib/design-system/palette";
 import { RenderIcon, IconDefinition } from "./icon";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
-import { Clock3, Earth, Mars, Radio, Venus, VenusAndMars, Wind } from "lucide-react";
 
 const tagSizes = {
   // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",

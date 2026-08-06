@@ -40,6 +40,10 @@ import {
   Venus,
   VenusAndMars,
   Wind,
+  Mail,
+  Calendar,
+  BellRing,
+  Bell,
 } from "lucide-react";
 
 const icons = {
@@ -75,6 +79,10 @@ const icons = {
   wind: Wind,
   "alert-circle": AlertCircle,
   "alert-triangle": AlertTriangle,
+  mail: Mail,
+  calendar: Calendar,
+  bell: Bell,
+  "bell-ring": BellRing,
 } as const;
 export type IconName = keyof typeof icons;
 
