@@ -10,6 +10,7 @@ import {
   tones,
   appearances,
 } from "@/lib/design-system/palette";
+import { RenderIcon, IconDefinition } from "./icon";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 import { Clock3, Earth, Mars, Radio, Venus, VenusAndMars, Wind } from "lucide-react";
 
@@ -37,8 +38,8 @@ const tagDefaults = {
   tone: Tone;
   shape: TagShape;
   size: TagSize;
-  startIcon?: React.ReactElement;
-  endIcon?: React.ReactElement;
+  startIcon?: IconDefinition;
+  endIcon?: IconDefinition;
 };
 
 const tagPresets = {
@@ -47,7 +48,7 @@ const tagPresets = {
     tone: "primary",
     shape: "rounded",
     size: tagDefaults.size,
-    startIcon: <Mars />,
+    startIcon: "mars",
     endIcon: tagDefaults.endIcon,
   },
   "gender-women": {
@@ -55,7 +56,7 @@ const tagPresets = {
     tone: "primary",
     shape: "rounded",
     size: tagDefaults.size,
-    startIcon: <Venus />,
+    startIcon: "venus",
     endIcon: tagDefaults.endIcon,
   },
   "gender-unisex": {
@@ -63,7 +64,7 @@ const tagPresets = {
     tone: "primary",
     shape: "rounded",
     size: tagDefaults.size,
-    startIcon: <VenusAndMars />,
+    startIcon: "venus-and-mars",
     endIcon: tagDefaults.endIcon,
   },
 
@@ -81,7 +82,7 @@ const tagPresets = {
     tone: "indigo",
     shape: "rounded",
     size: tagDefaults.size,
-    startIcon: <Earth />,
+    startIcon: "earth",
     endIcon: tagDefaults.endIcon,
   },
 
@@ -99,7 +100,7 @@ const tagPresets = {
     tone: "teal",
     shape: "rounded",
     size: tagDefaults.size,
-    startIcon: <Clock3 />,
+    startIcon: "clock-3",
     endIcon: tagDefaults.endIcon,
   },
   "performance-projection": {
@@ -107,7 +108,7 @@ const tagPresets = {
     tone: "teal",
     shape: "rounded",
     size: tagDefaults.size,
-    startIcon: <Radio />,
+    startIcon: "radio",
     endIcon: tagDefaults.endIcon,
   },
   "performance-sillage": {
@@ -115,7 +116,7 @@ const tagPresets = {
     tone: "teal",
     shape: "rounded",
     size: tagDefaults.size,
-    startIcon: <Wind />,
+    startIcon: "wind",
     endIcon: tagDefaults.endIcon,
   },
 } satisfies Record<
@@ -125,8 +126,8 @@ const tagPresets = {
     tone: Tone;
     shape: TagShape;
     size: TagSize;
-    startIcon?: React.ReactElement;
-    endIcon?: React.ReactElement;
+    startIcon?: IconDefinition;
+    endIcon?: IconDefinition;
   }
 >;
 type TagPreset = keyof typeof tagPresets;
@@ -153,8 +154,8 @@ type TagProps = React.ComponentProps<"span"> &
   VariantProps<typeof tagVariants> & {
     preset?: TagPreset;
     asChild?: boolean;
-    startIcon?: React.ReactElement;
-    endIcon?: React.ReactElement;
+    startIcon?: IconDefinition;
+    endIcon?: IconDefinition;
   };
 
 function Tag({
@@ -210,11 +211,11 @@ function Tag({
       {...props}
     >
       {resolvedStartIcon && (
-        <span data-slot="tag-start-icon">{resolvedStartIcon}</span>
+        <span data-slot="tag-start-icon">{RenderIcon(resolvedStartIcon)}</span>
       )}
       <span data-slot="tag-label">{children}</span>
       {resolvedEndIcon && (
-        <span data-slot="tag-end-icon">{resolvedEndIcon}</span>
+        <span data-slot="tag-end-icon">{RenderIcon(resolvedEndIcon)}</span>
       )}
     </Comp>
   );

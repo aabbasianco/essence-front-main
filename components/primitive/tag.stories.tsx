@@ -1,17 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-
 import { Tag } from "./tag";
-import {
-  Clock3,
-  Earth,
-  Mars,
-  Radio,
-  Venus,
-  VenusAndMars,
-  Wind,
-  X,
-} from "lucide-react";
-import { Astroid } from "lucide-react";
 import { tones, appearances } from "@/lib/design-system/palette";
 import { tagPresets, tagShapes, tagSizes } from "@/components/primitive/tag";
 
@@ -66,7 +54,10 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     tone: "primary",
-    startIcon: <Astroid />,
+    startIcon: {
+      name:"heart",
+      // tone:"danger"
+    },
   },
   render: (args) => <Tag {...args} dir="auto" />,
 };
@@ -109,40 +100,40 @@ export const Application: Story = {
 export const Tones: Story = {
   render: (args) => (
     <div className="flex gap-4 justify-center overflow-hidden flex-wrap">
-      <Tag startIcon={<Astroid />} tone="brand" {...args}>
+      <Tag startIcon="astroid" tone="brand" {...args}>
         Brand
       </Tag>
-      <Tag startIcon={<Astroid />} tone="orange" {...args}>
+      <Tag startIcon="astroid" tone="orange" {...args}>
         Orange
       </Tag>
-      <Tag startIcon={<Astroid />} tone="yellow" {...args}>
+      <Tag startIcon="astroid" tone="yellow" {...args}>
         Yellow
       </Tag>
-      <Tag startIcon={<Astroid />} tone="amber" {...args}>
+      <Tag startIcon="astroid" tone="amber" {...args}>
         Amber
       </Tag>
-      <Tag startIcon={<Astroid />} tone="emerald" {...args}>
+      <Tag startIcon="astroid" tone="emerald" {...args}>
         Emerald
       </Tag>
-      <Tag startIcon={<Astroid />} tone="teal" {...args}>
+      <Tag startIcon="astroid" tone="teal" {...args}>
         Teal
       </Tag>
-      <Tag startIcon={<Astroid />} tone="sky" {...args}>
+      <Tag startIcon="astroid" tone="sky" {...args}>
         Sky
       </Tag>
-      <Tag startIcon={<Astroid />} tone="indigo" {...args}>
+      <Tag startIcon="astroid" tone="indigo" {...args}>
         Indigo
       </Tag>
-      <Tag startIcon={<Astroid />} tone="violet" {...args}>
+      <Tag startIcon="astroid" tone="violet" {...args}>
         Violet
       </Tag>
-      <Tag startIcon={<Astroid />} tone="purple" {...args}>
+      <Tag startIcon="astroid" tone="purple" {...args}>
         Purple
       </Tag>
-      <Tag startIcon={<Astroid />} tone="fuchsia" {...args}>
+      <Tag startIcon="astroid" tone="fuchsia" {...args}>
         Fuchsia
       </Tag>
-      <Tag startIcon={<Astroid />} tone="rose" {...args}>
+      <Tag startIcon="astroid" tone="rose" {...args}>
         Rose
       </Tag>
     </div>

@@ -132,7 +132,7 @@ function Icon({
   );
 }
 
-export type IconDefinition =
+type IconDefinition =
   | IconName
   | {
       name: IconName;
@@ -151,4 +151,4 @@ function RenderIcon(icon?: IconDefinition) {
   return <Icon {...icon} />;
 }
 
-export { Icon };
+export { RenderIcon, type IconDefinition };
