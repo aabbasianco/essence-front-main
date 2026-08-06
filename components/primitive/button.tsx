@@ -13,7 +13,7 @@ import {
   appearances,
   tones,
 } from "@/lib/design-system/palette";
-import { AlertCircle, AlertTriangle, FileWarning, Stars } from "lucide-react";
+import { RenderIcon ,IconDefinition } from "./icon";
 
 const buttonDefaults = {
   appearance: "solid",
@@ -27,8 +27,8 @@ const buttonDefaults = {
   tone: Tone;
   shape: ButtonShape;
   size: ButtonSize;
-  startIcon?: React.ReactElement;
-  endIcon?: React.ReactElement;
+  startIcon?: IconDefinition;
+  endIcon?: IconDefinition;
 };
 
 const buttonPresets = {
@@ -82,7 +82,7 @@ const buttonPresets = {
     tone: "warning",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
-    startIcon: <AlertTriangle />,
+    startIcon: "alert-triangle",
     endIcon: buttonDefaults.endIcon,
   },
 
@@ -91,7 +91,7 @@ const buttonPresets = {
     tone: "danger",
     shape: buttonDefaults.shape,
     size: buttonDefaults.size,
-    startIcon: <AlertCircle />,
+    startIcon: "alert-circle",
     endIcon: buttonDefaults.endIcon,
   },
 
@@ -119,8 +119,8 @@ const buttonPresets = {
     tone: Tone;
     shape: ButtonShape;
     size: ButtonSize;
-    startIcon?: React.ReactElement;
-    endIcon?: React.ReactElement;
+    startIcon?: IconDefinition;
+    endIcon?: IconDefinition;
   }
 >;
 type ButtonPreset = keyof typeof buttonPresets;
@@ -167,8 +167,8 @@ type ButtonProps = React.ComponentProps<"button"> &
     badge?: React.ReactNode;
     asChild?: boolean;
     loading?: boolean;
-    startIcon?: React.ReactElement;
-    endIcon?: React.ReactElement;
+    startIcon?: IconDefinition;
+    endIcon?: IconDefinition;
     fluid?: boolean;
   };
 
@@ -245,7 +245,7 @@ function Button({
         <Spinner data-icon="inline-start" />
       ) : (
         resolvedStartIcon && (
-          <span data-slot="button-start-icon">{resolvedStartIcon}</span>
+          <span data-slot="button-start-icon">{RenderIcon(resolvedStartIcon)}</span>
         )
       )}
 
@@ -253,7 +253,7 @@ function Button({
 
       {resolvedEndIcon && !loading && (
         <span className="" data-slot="button-end-icon">
-          {resolvedEndIcon}
+          {RenderIcon(resolvedEndIcon)}
         </span>
       )}
 

@@ -8,7 +8,6 @@ import {
 } from "@/components/primitive/button";
 import { OverlayBadge } from "./badge";
 import { appearances, tones } from "@/lib/design-system/palette";
-import { ArrowRight, Search, Heart, ShoppingBag } from "lucide-react";
 
 const meta = {
   component: Button,
@@ -80,7 +79,7 @@ export const Primary: Story = {
   args: {
     tone: "primary",
     children: "Primary",
-    startIcon: <ShoppingBag />,
+    startIcon: "shopping-bag",
   },
 };
 
@@ -121,19 +120,19 @@ export const ButtonSizes: Story = {
   },
   render: (args) => (
     <div className="flex gap-4 justify-center items-center">
-      <Button preset="tertiary" size="xs" startIcon={<ShoppingBag />} {...args}>
+      <Button preset="tertiary" size="xs" startIcon="shopping-bag" {...args}>
         xs
       </Button>
-      <Button preset="tertiary" size="sm" startIcon={<ShoppingBag />} {...args}>
+      <Button preset="tertiary" size="sm" startIcon="shopping-bag" {...args}>
         sm
       </Button>
-      <Button preset="tertiary" size="md" startIcon={<ShoppingBag />} {...args}>
+      <Button preset="tertiary" size="md" startIcon="shopping-bag" {...args}>
         md
       </Button>
-      <Button preset="tertiary" size="lg" startIcon={<ShoppingBag />} {...args}>
+      <Button preset="tertiary" size="lg" startIcon="shopping-bag" {...args}>
         lg
       </Button>
-      <Button preset="tertiary" size="xl" startIcon={<ShoppingBag />} {...args}>
+      <Button preset="tertiary" size="xl" startIcon="shopping-bag" {...args}>
         xl
       </Button>
     </div>
@@ -148,22 +147,22 @@ export const IconSizes: Story = {
   render: (args) => (
     <div className="flex gap-4 justify-center items-center">
       <Button
-        startIcon={<ShoppingBag />}
+        startIcon="shopping-bag"
         size="icon-xs"
         {...args}
       />
       <Button
-        startIcon={<ShoppingBag />}
+        startIcon="shopping-bag"
         size="icon-sm"
         {...args}
       />
       <Button
-        startIcon={<ShoppingBag />}
+        startIcon="shopping-bag"
         size="icon-md"
         {...args}
       />
       <Button
-        startIcon={<ShoppingBag />}
+        startIcon="shopping-bag"
         size="icon-lg"
         {...args}
       />
@@ -203,7 +202,7 @@ export const OveralyBadgeNotification: Story = {
         <Button preset="tertiary">Notification</Button>
       </OverlayBadge>
       <OverlayBadge tone="primary" value={3}>
-        <Button tone="secondary" appearance="ghost-outline" size="icon-md" startIcon={<ShoppingBag />} />
+        <Button tone="secondary" appearance="ghost-outline" size="icon-md" startIcon="shopping-bag" />
       </OverlayBadge>
     </div>
   ),
