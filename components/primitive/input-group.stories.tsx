@@ -8,6 +8,7 @@ import {
 } from "@/components/primitive/input-group";
 import { Search } from "lucide-react";
 import { inputPresets, inputShapes } from "./input";
+import { RenderIcon } from "./icon";
 
 const meta = {
   component: InputGroup,
@@ -41,7 +42,7 @@ export const Default: Story = {
         <InputGroupInput placeholder="Type to search..."/>
         <InputGroupAddon align="inline-end">
           <InputGroupButton>
-            <Search />
+            {RenderIcon("search")}
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>
