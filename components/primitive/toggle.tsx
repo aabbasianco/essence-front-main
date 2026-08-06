@@ -13,17 +13,22 @@ import {
   tones,
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
+import { IconDefinition, RenderIcon } from "./icon";
 
 const toggleDefaults = {
   appearance: "solid",
   tone: "primary",
   shape: "rounded",
   size: "md",
+  startIcon: undefined,
+  endIcon: undefined,
 } satisfies {
   appearance: Appearance;
   tone: Tone;
   shape: ToggleShape;
   size: ToggleSize;
+  startIcon?: IconDefinition;
+  endIcon?: IconDefinition;
 };
 
 const togglePresets = {
@@ -32,6 +37,8 @@ const togglePresets = {
     tone: toggleDefaults.tone,
     shape: toggleDefaults.shape,
     size: toggleDefaults.size,
+    startIcon: toggleDefaults.startIcon,
+    endIcon: toggleDefaults.endIcon,
   },
 } satisfies Record<
   string,
@@ -40,6 +47,8 @@ const togglePresets = {
     tone: Tone;
     shape: ToggleShape;
     size: ToggleSize;
+    startIcon?: IconDefinition;
+    endIcon?: IconDefinition;
   }
 >;
 
@@ -52,11 +61,11 @@ const toggleShapes = ExtendVariants(defaultShapes, {
 type ToggleShape = keyof typeof toggleShapes;
 
 const toggleSizes = {
-  xs: "gap-1 px-1 py-0.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2 [&_svg:not([class*='size-'])]:size-3",
-  sm: "gap-1 px-1 py-0.5 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
-  md: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
-  lg: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
-  xl: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
+  xs: "gap-1 px-1 py-0.5 text-xs data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2 [&_svg:not([class*='size-'])]:size-3",
+  sm: "gap-1 px-1 py-0.5 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2",
+  md: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2.5 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2.5 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2.5",
+  lg: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-3 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-3 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-3",
+  xl: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-5 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-5 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-5",
   "icon-md": "p-0! rounded-lg [&_svg]:size-6!",
   "icon-xs": "p-0! [&_svg:not([class*='size-'])]:size-3.5!",
   "icon-sm": "p-0! [&_svg:not([class*='size-'])]:size-4.5!",
@@ -65,11 +74,11 @@ const toggleSizes = {
 type ToggleSize = keyof typeof toggleSizes;
 
 const toggleThumbSizes = {
-  xs: "gap-1 px-2.5 py-0.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2 [&_svg:not([class*='size-'])]:size-3",
-  sm: "gap-1 px-3 py-0.5 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
-  md: "gap-1.5 px-4 py-0.5 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
-  lg: "gap-1.5 px-5 py-0.5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
-  xl: "gap-1.5 px-6.5 py-0.5 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
+  xs: "gap-1 px-2.5 py-0.5",
+  sm: "gap-1 px-3 py-0.5",
+  md: "gap-1.5 px-4 py-0.5",
+  lg: "gap-1.5 px-5 py-0.5",
+  xl: "gap-1.5 px-6.5 py-0.5",
   "icon-md": "size-10 px-2 rounded-lg [&_svg]:size-6!",
   "icon-xs": "size-6 px-1 [&_svg:not([class*='size-'])]:size-3.5!",
   "icon-sm": "size-8 px-1.5 [&_svg:not([class*='size-'])]:size-4.5!",
@@ -186,10 +195,8 @@ type ToggleProps = React.ComponentProps<typeof TogglePrimitive.Root> &
   VariantProps<typeof toggleVariants> & {
     preset?: TogglePreset;
     fluid?: boolean;
-    onStartIcon?: React.ReactElement;
-    onEndIcon?: React.ReactElement;
-    offStartIcon?: React.ReactElement;
-    offEndIcon?: React.ReactElement;
+    startIcon?: IconDefinition;
+    endIcon?: IconDefinition;
   };
 
 function Toggle({
@@ -199,12 +206,10 @@ function Toggle({
   tone,
   shape,
   size,
-  onStartIcon,
-  onEndIcon,
-  offStartIcon,
-  offEndIcon,
   fluid = false,
-  children = "tag",
+  startIcon,
+  endIcon,
+  children = "toggle",
   ...props
 }: ToggleProps) {
   const presetValues = preset ? togglePresets[preset] : undefined;
@@ -213,10 +218,10 @@ function Toggle({
   const resolvedTone = presetValues?.tone ?? tone ?? toggleDefaults.tone;
   const resolvedShape = shape ?? presetValues?.shape ?? toggleDefaults.shape;
   const resolvedSize = size ?? presetValues?.size ?? toggleDefaults.size;
-  // const resolvedOnStartIcon = presetValues?.onStartIcon ?? onStartIcon ?? undefined;
-  // const resolvedOnEndIcon = presetValues?.onEndIcon ?? onEndIcon ?? undefined;
-  // const resolvedOffStartIcon = presetValues?.offStartIcon ?? offStartIcon ?? undefined;
-  // const resolvedOffEndIcon = presetValues?.offEndIcon ?? offEndIcon ?? undefined;
+  const resolvedStartIcon =
+    presetValues?.startIcon ?? startIcon ?? toggleDefaults.startIcon;
+  const resolvedEndIcon =
+    presetValues?.endIcon ?? endIcon ?? toggleDefaults.endIcon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
 
   return (
@@ -228,6 +233,8 @@ function Toggle({
       data-shape={resolvedShape}
       data-size={resolvedSize}
       data-fluid={fluid}
+      data-has-start-icon={!!resolvedStartIcon || undefined}
+      data-has-end-icon={!!resolvedEndIcon || undefined}
       className={cn(
         toggleVariants({
           appearance: resolvedAppearance,
@@ -264,7 +271,19 @@ function Toggle({
           } as React.CSSProperties
         }
       >
+        {resolvedStartIcon && (
+          <span data-slot="toggle-start-icon">
+            {RenderIcon(resolvedStartIcon)}
+          </span>
+        )}
+
         {children}
+
+        {resolvedEndIcon && (
+          <span data-slot="toggle-start-icon">
+            {RenderIcon(resolvedEndIcon)}
+          </span>
+        )}
       </span>
     </TogglePrimitive.Root>
   );

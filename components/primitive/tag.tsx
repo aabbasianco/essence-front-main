@@ -177,8 +177,8 @@ function Tag({
     presetValues?.appearance ?? appearance ?? tagDefaults.appearance;
   const resolvedSize = presetValues?.size ?? size ?? tagDefaults.size;
   const resolvedShape = presetValues?.shape ?? shape ?? tagDefaults.shape;
-  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? undefined;
-  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? undefined;
+  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? tagDefaults.startIcon;
+  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? tagDefaults.endIcon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
 
   return (

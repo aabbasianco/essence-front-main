@@ -46,7 +46,7 @@ import {
   Bell,
 } from "lucide-react";
 
-const icons = {
+const DsIcons = {
   heart: Heart,
   "heart-off": HeartOff,
   search: Search,
@@ -84,7 +84,7 @@ const icons = {
   bell: Bell,
   "bell-ring": BellRing,
 } as const;
-export type IconName = keyof typeof icons;
+export type IconName = keyof typeof DsIcons;
 
 const iconVariants = cva("text-[var(--icon-foreground)]", {
   variants: {
@@ -114,7 +114,7 @@ function Icon({
   style,
   ...props
 }: IconProps) {
-  const Component = icons[name];
+  const Component = DsIcons[name];
   const palette = tone ? GetPalette(appearance, tone) : undefined;
 
   return (
@@ -159,4 +159,4 @@ function RenderIcon(icon?: IconDefinition) {
   return <Icon {...icon} />;
 }
 
-export { RenderIcon, type IconDefinition };
+export { RenderIcon, type IconDefinition, DsIcons };

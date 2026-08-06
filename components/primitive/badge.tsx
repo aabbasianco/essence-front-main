@@ -196,8 +196,8 @@ function Badge({
   const resolvedTone = presetValues?.tone ?? tone ?? badgeDefaults.tone;
   const resolvedSize = size ?? presetValues?.size ?? badgeDefaults.size;
   const resolvedShape = shape ?? presetValues?.shape ?? badgeDefaults.shape;
-  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? undefined;
-  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? undefined;
+  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? badgeDefaults.startIcon;
+  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? badgeDefaults.endIcon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
   const hasValue =
     children !== undefined && children !== null && children !== "";

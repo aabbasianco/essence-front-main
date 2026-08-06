@@ -197,8 +197,8 @@ function Button({
   const resolvedTone = presetValues?.tone ?? tone ?? buttonDefaults.tone;
   const resolvedShape = shape ?? presetValues?.shape ?? buttonDefaults.shape;
   const resolvedSize = size ?? presetValues?.size ?? buttonDefaults.size;
-  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? undefined;
-  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? undefined;
+  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? buttonDefaults.startIcon;
+  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? buttonDefaults.endIcon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
   return (
     <Comp

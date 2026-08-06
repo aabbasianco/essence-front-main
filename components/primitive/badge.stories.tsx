@@ -9,6 +9,7 @@ import {
 } from "./badge";
 import { Button } from "./button";
 import { tones, appearances } from "@/lib/design-system/palette";
+import { DsIcons } from "./icon";
 
 const meta = {
   component: Badge,
@@ -40,6 +41,14 @@ const meta = {
     shape: {
       control: "radio",
       options: Object.keys(badgeShapes),
+    },
+    startIcon:{
+      control:"select",
+      options: Object.keys(DsIcons),
+    },
+    endIcon:{
+      control:"select",
+      options: Object.keys(DsIcons),
     },
     asChild: {
       control: "boolean",

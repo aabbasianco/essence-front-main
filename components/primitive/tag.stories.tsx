@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Tag } from "./tag";
 import { tones, appearances } from "@/lib/design-system/palette";
 import { tagPresets, tagShapes, tagSizes } from "@/components/primitive/tag";
+import { DsIcons } from "./icon";
 
 const meta = {
   component: Tag,
@@ -32,6 +33,14 @@ const meta = {
     shape: {
       control: "radio",
       options: Object.keys(tagShapes),
+    },
+    startIcon:{
+      control:"select",
+      options: Object.keys(DsIcons),
+    },
+    endIcon:{
+      control:"select",
+      options: Object.keys(DsIcons),
     },
     asChild: {
       control: "boolean",

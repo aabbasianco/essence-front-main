@@ -8,6 +8,7 @@ import {
 } from "@/components/primitive/button";
 import { OverlayBadge } from "./badge";
 import { appearances, tones } from "@/lib/design-system/palette";
+import { DsIcons } from "./icon";
 
 const meta = {
   component: Button,
@@ -34,6 +35,14 @@ const meta = {
       control: "select",
       options: Object.keys(buttonSizes),
       description: "Sizes of the Button",
+    },
+    startIcon:{
+      control:"select",
+      options: Object.keys(DsIcons),
+    },
+    endIcon:{
+      control:"select",
+      options: Object.keys(DsIcons),
     },
     fluid: {
       control: "boolean",

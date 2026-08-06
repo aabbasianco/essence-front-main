@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Toggle, togglePresets, toggleShapes, toggleSizes } from "./toggle";
 import { appearances, tones } from "@/lib/design-system/palette";
 import { Text } from "./text";
+import { DsIcons } from "./icon";
 
 const meta = {
   component: Toggle,
@@ -30,6 +31,14 @@ const meta = {
       options: Object.keys(toggleSizes),
       description: "Sizes of the Button",
     },
+    startIcon:{
+      control:"select",
+      options: Object.keys(DsIcons),
+    },
+    endIcon:{
+      control:"select",
+      options: Object.keys(DsIcons),
+    },
     fluid: {
       control: "boolean",
       description: "Layout of the button",
@@ -48,7 +57,9 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+};
 
 export const Appearances: Story = {
   args: {
