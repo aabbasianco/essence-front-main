@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Toggle, togglePresets, toggleShapes, toggleSizes } from "./toggle";
+import {
+  Toggle,
+  togglePresets,
+  toggleShapes,
+  toggleSizeRecipe,
+} from "./toggle";
 import { appearances, tones } from "@/lib/design-system/palette";
 import { Text } from "./text";
 import { DsIcons } from "./icon";
@@ -28,7 +33,7 @@ const meta = {
     },
     size: {
       control: "select",
-      options: Object.keys(toggleSizes),
+      options: Object.keys(toggleSizeRecipe),
       description: "Sizes of the Button",
     },
     startIcon: {
@@ -123,21 +128,18 @@ export const ToggleSizses: Story = {
 
 export const ToggleIconSizes: Story = {
   args: {
-    startIcon: {
-      name: "heart",
-      appearance: "text",
-      tone: "danger",
-    },
+    tone: "danger",
+    startIcon: "heart",
+    children: "",
+    isIcon: true,
   },
   render: (args) => (
     <div className="flex gap-4 justify-center flex-wrap items-center">
-      <Toggle
-        size="icon-xs"
-        {...args}
-      />
-      <Toggle size="icon-sm" {...args} />
-      <Toggle size="icon-md" {...args} />
-      <Toggle size="icon-lg" {...args} />
+      <Toggle size="xs" {...args} />
+      <Toggle size="sm" {...args} />
+      <Toggle size="md" {...args} />
+      <Toggle size="lg" {...args} />
+      <Toggle size="xl" {...args} />
     </div>
   ),
 };

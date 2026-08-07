@@ -13,7 +13,7 @@ import {
   tones,
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
-import { IconDefinition, IconPropsSet, iconSizes, RenderIcon } from "./icon";
+import { IconDefinition, IconPropsSet, RenderIcon } from "./icon";
 
 const toggleDefaults = {
   appearance: "solid",
@@ -64,9 +64,9 @@ const toggleSizeRecipe = {
   xs: {
     label: {
       component:
-        "h-6 gap-1.5 px-2.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
+        "size-min-7 overflow-hidden  p-1 [&>[data-slot=toggle-thumb]]:gap-1.5  [&>[data-slot=toggle-thumb]]:py-0.5 [&>[data-slot=toggle-thumb]]:px-2.5 text-xs data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:pe-2",
       icon: {
-        size: "xs",
+        size: "md",
         purpose: "inline",
       },
     },
@@ -81,9 +81,9 @@ const toggleSizeRecipe = {
   sm: {
     label: {
       component:
-        "h-8 gap-1.5 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
+        "p-1 [&>[data-slot=toggle-thumb]]:gap-1.5 [&>[data-slot=toggle-thumb]]:py-0.5 [&>[data-slot=toggle-thumb]]:px-3 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:pe-2",
       icon: {
-        size: "sm",
+        size: "md",
         purpose: "inline",
       },
     },
@@ -98,7 +98,7 @@ const toggleSizeRecipe = {
   md: {
     label: {
       component:
-        "h-9 gap-1.5 px-4 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
+        "p-1 [&>[data-slot=toggle-thumb]]:gap-1.5 [&>[data-slot=toggle-thumb]]:py-0.5 [&>[data-slot=toggle-thumb]]:px-3.5 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2.5 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2.5 data-[has-badge=true]:pe-2.5",
       icon: {
         size: "md",
         purpose: "inline",
@@ -115,9 +115,9 @@ const toggleSizeRecipe = {
   lg: {
     label: {
       component:
-        "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
+        "p-1 [&>[data-slot=toggle-thumb]]:gap-1.5 [&>[data-slot=toggle-thumb]]:py-0.5 [&>[data-slot=toggle-thumb]]:px-5 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-3 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-3 data-[has-badge=true]:pe-3",
       icon: {
-        size: "lg",
+        size: "md",
         purpose: "inline",
       },
     },
@@ -132,9 +132,9 @@ const toggleSizeRecipe = {
   xl: {
     label: {
       component:
-        "h-11 gap-2 px-6.5 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
+        "p-1 [&>[data-slot=toggle-thumb]]:gap-1.5 [&>[data-slot=toggle-thumb]]:py-0.5 [&>[data-slot=toggle-thumb]]:px-6.5 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-5 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-5 data-[has-badge=true]:pe-5",
       icon: {
-        size: "xl",
+        size: "md",
         purpose: "inline",
       },
     },
@@ -159,25 +159,7 @@ const toggleSizeRecipe = {
     };
   }
 >;
-const toggleSizes = {
-  xs: "gap-1 px-1 py-0.5 text-xs data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2",
-  sm: "gap-1 px-1 py-0.5 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2",
-  md: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2.5 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2.5 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2.5",
-  lg: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-3 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-3 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-3",
-  xl: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-5 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-5 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-5",
-  ...iconSizes,
-};
-type ToggleSize = keyof typeof toggleSizes;
-
-const toggleThumbSizes = {
-  xs: "gap-1 px-2.5 py-0.5",
-  sm: "gap-1 px-3 py-0.5",
-  md: "gap-1.5 px-4 py-0.5",
-  lg: "gap-1.5 px-5 py-0.5",
-  xl: "gap-1.5 px-6.5 py-0.5",
-  ...iconSizes,
-};
-type ToggleThumbSize = keyof typeof toggleThumbSizes;
+type ToggleSize = keyof typeof toggleSizeRecipe;
 
 const toggleVariants = cva(
   `
@@ -217,7 +199,7 @@ const toggleVariants = cva(
       appearance: appearances,
       tone: tones,
       shape: toggleShapes,
-      size: toggleSizes,
+      size: toggleSizeRecipe,
     },
 
     defaultVariants: {
@@ -264,14 +246,12 @@ const toggleThumbVariants = cva(
       appearance: appearances,
       tone: tones,
       shape: toggleShapes,
-      size: toggleThumbSizes,
     },
 
     defaultVariants: {
       appearance: toggleDefaults.appearance,
       tone: toggleDefaults.tone,
       shape: toggleDefaults.shape,
-      size: toggleDefaults.size,
     },
   },
 );
@@ -282,6 +262,7 @@ type ToggleProps = React.ComponentProps<typeof TogglePrimitive.Root> &
     fluid?: boolean;
     startIcon?: IconDefinition;
     endIcon?: IconDefinition;
+    isIcon?: boolean;
   };
 
 function Toggle({
@@ -294,20 +275,26 @@ function Toggle({
   fluid = false,
   startIcon,
   endIcon,
+  isIcon = false,
   children = "toggle",
   ...props
 }: ToggleProps) {
-  const isIconToggle = size?.startsWith("icon");
   const presetValues = preset ? togglePresets[preset] : undefined;
   const resolvedAppearance =
     presetValues?.appearance ?? appearance ?? toggleDefaults.appearance;
   const resolvedTone = presetValues?.tone ?? tone ?? toggleDefaults.tone;
   const resolvedShape = shape ?? presetValues?.shape ?? toggleDefaults.shape;
   const resolvedSize = size ?? presetValues?.size ?? toggleDefaults.size;
+  const resolvedToggleSize = isIcon
+    ? toggleSizeRecipe[resolvedSize].icon?.component
+    : toggleSizeRecipe[resolvedSize].label.component;
   const resolvedStartIcon =
     presetValues?.startIcon ?? startIcon ?? toggleDefaults.startIcon;
   const resolvedEndIcon =
     presetValues?.endIcon ?? endIcon ?? toggleDefaults.endIcon;
+  const resolvedIconProps = isIcon
+    ? toggleSizeRecipe[resolvedSize].icon?.icon
+    : toggleSizeRecipe[resolvedSize].label.icon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
 
   return (
@@ -326,8 +313,8 @@ function Toggle({
           appearance: resolvedAppearance,
           tone: resolvedTone,
           shape: resolvedShape,
-          size: resolvedSize,
         }),
+        resolvedToggleSize,
         fluid && "w-full",
         className,
       )}
@@ -345,7 +332,6 @@ function Toggle({
             appearance: resolvedAppearance,
             tone: resolvedTone,
             shape: resolvedShape,
-            size: resolvedSize,
           }),
           fluid && "w-full",
           className,
@@ -359,13 +345,13 @@ function Toggle({
       >
         {resolvedStartIcon && (
           <span data-slot="toggle-start-icon">
-            {RenderIcon(resolvedStartIcon)}
+            {RenderIcon(resolvedStartIcon, resolvedIconProps)}
           </span>
         )}
 
-      {!isIconToggle && <span data-slot="toggle-label">{children}</span>}
+      {!isIcon && <span data-slot="toggle-label">{children}</span>}
 
-        {!isIconToggle && resolvedEndIcon && (
+        {!isIcon && resolvedEndIcon && (
           <span data-slot="toggle-start-icon">
             {RenderIcon(resolvedEndIcon)}
           </span>
@@ -380,7 +366,7 @@ export {
   toggleVariants,
   togglePresets,
   toggleShapes,
-  toggleSizes,
+  toggleSizeRecipe,
   type TogglePreset,
   type ToggleShape,
   type ToggleSize,
