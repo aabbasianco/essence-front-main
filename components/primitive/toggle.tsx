@@ -13,7 +13,7 @@ import {
   tones,
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
-import { IconDefinition, iconSizes, RenderIcon } from "./icon";
+import { IconDefinition, IconPropsSet, iconSizes, RenderIcon } from "./icon";
 
 const toggleDefaults = {
   appearance: "solid",
@@ -60,6 +60,105 @@ const toggleShapes = ExtendVariants(defaultShapes, {
 
 type ToggleShape = keyof typeof toggleShapes;
 
+const toggleSizeRecipe = {
+  xs: {
+    label: {
+      component:
+        "h-6 gap-1.5 px-2.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
+      icon: {
+        size: "xs",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      component: "p-0! size-min",
+      icon: {
+        size: "xs",
+        purpose: "standalone",
+      },
+    },
+  },
+  sm: {
+    label: {
+      component:
+        "h-8 gap-1.5 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
+      icon: {
+        size: "sm",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      component: "p-0! size-min",
+      icon: {
+        size: "sm",
+        purpose: "standalone",
+      },
+    },
+  },
+  md: {
+    label: {
+      component:
+        "h-9 gap-1.5 px-4 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
+      icon: {
+        size: "md",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      component: "p-0! size-min",
+      icon: {
+        size: "md",
+        purpose: "standalone",
+      },
+    },
+  },
+  lg: {
+    label: {
+      component:
+        "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
+      icon: {
+        size: "lg",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      component: "p-0! size-min",
+      icon: {
+        size: "lg",
+        purpose: "standalone",
+      },
+    },
+  },
+  xl: {
+    label: {
+      component:
+        "h-11 gap-2 px-6.5 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
+      icon: {
+        size: "xl",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      component: "p-0! size-min",
+      icon: {
+        size: "xl",
+        purpose: "standalone",
+      },
+    },
+  },
+} satisfies Record<
+  string,
+  {
+    label: {
+      component: string;
+      icon?: IconPropsSet;
+    };
+    icon?: {
+      component: string;
+      icon?: IconPropsSet;
+    };
+  }
+>;
 const toggleSizes = {
   xs: "gap-1 px-1 py-0.5 text-xs data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2",
   sm: "gap-1 px-1 py-0.5 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2",

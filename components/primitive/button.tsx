@@ -140,7 +140,7 @@ type ButtonShape = keyof typeof buttonShapes;
 const buttonSizeRecipe = {
   xs: {
     label: {
-      button:
+      component:
         "h-6 gap-1.5 px-2.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
       icon: {
         size: "xs",
@@ -148,7 +148,7 @@ const buttonSizeRecipe = {
       },
     },
     icon: {
-      button: "p-0! size-min",
+      component: "p-0! size-min",
       icon: {
         size: "xs",
         purpose: "standalone",
@@ -157,7 +157,7 @@ const buttonSizeRecipe = {
   },
   sm: {
     label: {
-      button:
+      component:
         "h-8 gap-1.5 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
       icon: {
         size: "sm",
@@ -165,7 +165,7 @@ const buttonSizeRecipe = {
       },
     },
     icon: {
-      button: "p-0! size-min",
+      component: "p-0! size-min",
       icon: {
         size: "sm",
         purpose: "standalone",
@@ -174,7 +174,7 @@ const buttonSizeRecipe = {
   },
   md: {
     label: {
-      button:
+      component:
         "h-9 gap-1.5 px-4 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
       icon: {
         size: "md",
@@ -182,7 +182,7 @@ const buttonSizeRecipe = {
       },
     },
     icon: {
-      button: "p-0! size-min",
+      component: "p-0! size-min",
       icon: {
         size: "md",
         purpose: "standalone",
@@ -191,7 +191,7 @@ const buttonSizeRecipe = {
   },
   lg: {
     label: {
-      button:
+      component:
         "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
       icon: {
         size: "lg",
@@ -199,7 +199,7 @@ const buttonSizeRecipe = {
       },
     },
     icon: {
-      button: "p-0! size-min",
+      component: "p-0! size-min",
       icon: {
         size: "lg",
         purpose: "standalone",
@@ -208,7 +208,7 @@ const buttonSizeRecipe = {
   },
   xl: {
     label: {
-      button:
+      component:
         "h-11 gap-2 px-6.5 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
       icon: {
         size: "xl",
@@ -216,7 +216,7 @@ const buttonSizeRecipe = {
       },
     },
     icon: {
-      button: "p-0! size-min",
+      component: "p-0! size-min",
       icon: {
         size: "xl",
         purpose: "standalone",
@@ -227,11 +227,11 @@ const buttonSizeRecipe = {
   string,
   {
     label: {
-      button: string;
+      component: string;
       icon?: IconPropsSet;
     };
     icon?: {
-      button: string;
+      component: string;
       icon?: IconPropsSet;
     };
   }
@@ -247,13 +247,7 @@ const buttonVariants = cva(
       appearance: appearances,
       tone: tones,
       shape: buttonShapes,
-      size: {
-        md: buttonSizeRecipe.md.label.button,
-        xs: buttonSizeRecipe.xs.label.button,
-        sm: buttonSizeRecipe.sm.label.button,
-        lg: buttonSizeRecipe.lg.label.button,
-        xl: buttonSizeRecipe.xl.label.button,
-      },
+      size: buttonSizeRecipe,
     },
     defaultVariants: {
       appearance: buttonDefaults.appearance,
@@ -302,8 +296,8 @@ function Button({
   const resolvedShape = shape ?? presetValues?.shape ?? buttonDefaults.shape;
   const resolvedSize = size ?? presetValues?.size ?? buttonDefaults.size;
   const resolvedButtonSize = isIcon
-    ? buttonSizeRecipe[resolvedSize].icon.button
-    : buttonSizeRecipe[resolvedSize].label.button;
+    ? buttonSizeRecipe[resolvedSize].icon.component
+    : buttonSizeRecipe[resolvedSize].label.component;
   const resolvedStartIcon =
     presetValues?.startIcon ?? startIcon ?? buttonDefaults.startIcon;
   const resolvedEndIcon =
