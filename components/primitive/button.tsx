@@ -13,7 +13,14 @@ import {
   appearances,
   tones,
 } from "@/lib/design-system/palette";
-import { RenderIcon ,IconDefinition } from "./icon";
+import {
+  RenderIcon,
+  IconDefinition,
+  iconSizes,
+  IconSize,
+  IconPurpose,
+  IconPropsSet,
+} from "./icon";
 
 const buttonDefaults = {
   appearance: "solid",
@@ -130,27 +137,123 @@ const buttonShapes = ExtendVariants(defaultShapes, {
 });
 type ButtonShape = keyof typeof buttonShapes;
 
-const buttonSizes = {
-  md: "h-9 gap-1.5 px-4 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
-  xs: "h-6 gap-1 px-2.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2 [&_svg:not([class*='size-'])]:size-3",
-  sm: "h-8 gap-1 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
-  lg: "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
-  xl: "h-11 gap-1.5 px-6.5 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
-  "icon-md": "size-10 px-2 rounded-lg [&_svg]:size-6!",
-  "icon-xs": "size-6 px-1 [&_svg:not([class*='size-'])]:size-3.5!",
-  "icon-sm": "size-8 px-1.5 [&_svg:not([class*='size-'])]:size-4.5!",
-  "icon-lg": "size-12 px-2.5 rounded-lg [&_svg]:size-7!",
-};
-type ButtonSize = keyof typeof buttonSizes;
+const buttonSizeRecipe = {
+  xs: {
+    label: {
+      button:
+        "h-6 gap-1.5 px-2.5 text-xs data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
+      icon: {
+        size: "xs",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      button: "p-0! size-min",
+      icon: {
+        size: "xs",
+        purpose: "standalone",
+      },
+    },
+  },
+  sm: {
+    label: {
+      button:
+        "h-8 gap-1.5 px-3 data-[has-end-icon=true]:pe-2 data-[has-start-icon=true]:ps-2 data-[has-badge=true]:pe-2",
+      icon: {
+        size: "sm",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      button: "p-0! size-min",
+      icon: {
+        size: "sm",
+        purpose: "standalone",
+      },
+    },
+  },
+  md: {
+    label: {
+      button:
+        "h-9 gap-1.5 px-4 data-[has-end-icon=true]:pe-2.5 data-[has-start-icon=true]:ps-2.5 data-[has-badge=true]:pe-2.5",
+      icon: {
+        size: "md",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      button: "p-0! size-min",
+      icon: {
+        size: "md",
+        purpose: "standalone",
+      },
+    },
+  },
+  lg: {
+    label: {
+      button:
+        "h-10 gap-1.5 px-5 data-[has-end-icon=true]:pe-3 data-[has-start-icon=true]:ps-3 data-[has-badge=true]:pe-3",
+      icon: {
+        size: "lg",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      button: "p-0! size-min",
+      icon: {
+        size: "lg",
+        purpose: "standalone",
+      },
+    },
+  },
+  xl: {
+    label: {
+      button:
+        "h-11 gap-2 px-6.5 data-[has-end-icon=true]:pe-5 data-[has-start-icon=true]:ps-5 data-[has-badge=true]:pe-5",
+      icon: {
+        size: "xl",
+        purpose: "inline",
+      },
+    },
+    icon: {
+      button: "p-0! size-min",
+      icon: {
+        size: "xl",
+        purpose: "standalone",
+      },
+    },
+  },
+} satisfies Record<
+  string,
+  {
+    label: {
+      button: string;
+      icon?: IconPropsSet;
+    };
+    icon?: {
+      button: string;
+      icon?: IconPropsSet;
+    };
+  }
+>;
+// type ButtonLabelSize = keyof typeof buttonSizeRecipe;
+// type ButtonSize = ButtonLabelSize | `icon-${ButtonLabelSize}`;
+type ButtonSize = keyof typeof buttonSizeRecipe;
 
 const buttonVariants = cva(
-  "group/button inline-flex bg-(--button-background) text-(--button-foreground) border-[var(--button-border)] hover:bg-(--button-background-hover) hover:text-(--button-foreground-hover) hover:border-[var(--button-border-hover)] border-2 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex bg-(--button-background) text-(--button-foreground) border-[var(--button-border)] hover:bg-(--button-background-hover) hover:text-(--button-foreground-hover) hover:border-[var(--button-border-hover)] border-2 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40",
   {
     variants: {
       appearance: appearances,
       tone: tones,
       shape: buttonShapes,
-      size: buttonSizes,
+      size: {
+        md: buttonSizeRecipe.md.label.button,
+        xs: buttonSizeRecipe.xs.label.button,
+        sm: buttonSizeRecipe.sm.label.button,
+        lg: buttonSizeRecipe.lg.label.button,
+        xl: buttonSizeRecipe.xl.label.button,
+      },
     },
     defaultVariants: {
       appearance: buttonDefaults.appearance,
@@ -170,6 +273,7 @@ type ButtonProps = React.ComponentProps<"button"> &
     startIcon?: IconDefinition;
     endIcon?: IconDefinition;
     fluid?: boolean;
+    isIcon?: boolean;
   };
 
 function Button({
@@ -185,20 +289,28 @@ function Button({
   loading = false,
   startIcon,
   endIcon,
+  isIcon = false,
   children,
   disabled,
   ...props
 }: ButtonProps) {
   const Comp = asChild ? Slot.Root : "button";
-  const isIconButton = size?.startsWith("icon");
   const presetValues = preset ? buttonPresets[preset] : undefined;
   const resolvedAppearance =
-    presetValues?.appearance ?? appearance ?? buttonDefaults.appearance;
-  const resolvedTone = presetValues?.tone ?? tone ?? buttonDefaults.tone;
+    appearance ?? presetValues?.appearance ?? buttonDefaults.appearance;
+  const resolvedTone = tone ?? presetValues?.tone ?? buttonDefaults.tone;
   const resolvedShape = shape ?? presetValues?.shape ?? buttonDefaults.shape;
   const resolvedSize = size ?? presetValues?.size ?? buttonDefaults.size;
-  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? buttonDefaults.startIcon;
-  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? buttonDefaults.endIcon;
+  const resolvedButtonSize = isIcon
+    ? buttonSizeRecipe[resolvedSize].icon.button
+    : buttonSizeRecipe[resolvedSize].label.button;
+  const resolvedStartIcon =
+    presetValues?.startIcon ?? startIcon ?? buttonDefaults.startIcon;
+  const resolvedEndIcon =
+    presetValues?.endIcon ?? endIcon ?? buttonDefaults.endIcon;
+  const resolvedIconProps = isIcon
+    ? buttonSizeRecipe[resolvedSize].icon.icon
+    : buttonSizeRecipe[resolvedSize].label.icon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
   return (
     <Comp
@@ -219,16 +331,16 @@ function Button({
           appearance: resolvedAppearance,
           tone: resolvedTone,
           shape: resolvedShape,
-          size: resolvedSize,
         }),
+        resolvedButtonSize,
         fluid && "w-full",
         className,
       )}
       style={
         {
-          "--button-background": palette.background,
-          "--button-foreground": palette.foreground,
-          "--button-border": palette.border,
+          "--button-background": palette.default.background,
+          "--button-foreground": palette.default.foreground,
+          "--button-border": palette.default.border,
 
           "--button-background-hover": palette.hover?.background,
 
@@ -236,7 +348,7 @@ function Button({
 
           "--button-border-hover": palette.hover?.border,
 
-          "--button-effective-background": palette.effectiveBackground,
+          "--button-effective-background": palette.default.contrastBackground,
         } as React.CSSProperties
       }
       {...props}
@@ -245,13 +357,15 @@ function Button({
         <Spinner data-icon="inline-start" />
       ) : (
         resolvedStartIcon && (
-          <span data-slot="button-start-icon">{RenderIcon(resolvedStartIcon)}</span>
+          <span data-slot="button-start-icon">
+            {RenderIcon(resolvedStartIcon, resolvedIconProps)}
+          </span>
         )
       )}
 
-      {!isIconButton && <span data-slot="button-label">{children}</span>}
+      {!isIcon && <span data-slot="button-label">{children}</span>}
 
-      {resolvedEndIcon && !loading && (
+      {!isIcon && resolvedEndIcon && !loading && (
         <span className="" data-slot="button-end-icon">
           {RenderIcon(resolvedEndIcon)}
         </span>
@@ -275,4 +389,10 @@ function Button({
   );
 }
 
-export { Button, buttonVariants, buttonPresets, buttonShapes, buttonSizes };
+export {
+  Button,
+  buttonVariants,
+  buttonPresets,
+  buttonShapes,
+  buttonSizeRecipe,
+};

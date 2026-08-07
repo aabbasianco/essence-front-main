@@ -13,7 +13,7 @@ import {
   tones,
 } from "@/lib/design-system/palette";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
-import { IconDefinition, RenderIcon } from "./icon";
+import { IconDefinition, iconSizes, RenderIcon } from "./icon";
 
 const toggleDefaults = {
   appearance: "solid",
@@ -61,15 +61,12 @@ const toggleShapes = ExtendVariants(defaultShapes, {
 type ToggleShape = keyof typeof toggleShapes;
 
 const toggleSizes = {
-  xs: "gap-1 px-1 py-0.5 text-xs data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2 [&_svg:not([class*='size-'])]:size-3",
+  xs: "gap-1 px-1 py-0.5 text-xs data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2",
   sm: "gap-1 px-1 py-0.5 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2",
   md: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-2.5 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-2.5 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-2.5",
   lg: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-3 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-3 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-3",
   xl: "gap-1.5 px-1 py-1 data-[has-end-icon=true]:[&>[data-slot=toggle-thumb]]:pe-5 data-[has-start-icon=true]:[&>[data-slot=toggle-thumb]]:ps-5 data-[has-badge=true]:[&>[data-slot=toggle-thumb]]:pe-5",
-  "icon-md": "p-0! rounded-lg [&_svg]:size-6!",
-  "icon-xs": "p-0! [&_svg:not([class*='size-'])]:size-3.5!",
-  "icon-sm": "p-0! [&_svg:not([class*='size-'])]:size-4.5!",
-  "icon-lg": "p-0! rounded-lg [&_svg]:size-7!",
+  ...iconSizes,
 };
 type ToggleSize = keyof typeof toggleSizes;
 
@@ -79,10 +76,7 @@ const toggleThumbSizes = {
   md: "gap-1.5 px-4 py-0.5",
   lg: "gap-1.5 px-5 py-0.5",
   xl: "gap-1.5 px-6.5 py-0.5",
-  "icon-md": "size-10 px-2 rounded-lg [&_svg]:size-6!",
-  "icon-xs": "size-6 px-1 [&_svg:not([class*='size-'])]:size-3.5!",
-  "icon-sm": "size-8 px-1.5 [&_svg:not([class*='size-'])]:size-4.5!",
-  "icon-lg": "size-12 px-2.5 rounded-lg [&_svg]:size-7!",
+  ...iconSizes,
 };
 type ToggleThumbSize = keyof typeof toggleThumbSizes;
 
@@ -118,10 +112,6 @@ const toggleVariants = cva(
 
   disabled:pointer-events-none
   disabled:opacity-50
-
-  [&_svg]:pointer-events-none
-  [&_svg]:shrink-0
-  [&_svg:not([class*='size-'])]:size-4
   `,
   {
     variants: {
@@ -169,10 +159,6 @@ const toggleThumbVariants = cva(
 
   disabled:pointer-events-none
   disabled:opacity-50
-
-  [&_svg]:pointer-events-none
-  [&_svg]:shrink-0
-  [&_svg:not([class*='size-'])]:size-4
   `,
   {
     variants: {
@@ -212,6 +198,7 @@ function Toggle({
   children = "toggle",
   ...props
 }: ToggleProps) {
+  const isIconToggle = size?.startsWith("icon");
   const presetValues = preset ? togglePresets[preset] : undefined;
   const resolvedAppearance =
     presetValues?.appearance ?? appearance ?? toggleDefaults.appearance;
@@ -266,8 +253,8 @@ function Toggle({
         )}
         style={
           {
-            "--toggle-pressed-background": palette.pressed?.background,
-            "--toggle-pressed-foreground": palette.pressed?.foreground,
+            "--toggle-pressed-background": palette.default?.background,
+            "--toggle-pressed-foreground": palette.default?.foreground,
           } as React.CSSProperties
         }
       >
@@ -277,9 +264,9 @@ function Toggle({
           </span>
         )}
 
-        {children}
+      {!isIconToggle && <span data-slot="toggle-label">{children}</span>}
 
-        {resolvedEndIcon && (
+        {!isIconToggle && resolvedEndIcon && (
           <span data-slot="toggle-start-icon">
             {RenderIcon(resolvedEndIcon)}
           </span>

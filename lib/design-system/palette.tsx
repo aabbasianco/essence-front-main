@@ -37,37 +37,163 @@ export const tones = {
 } as const;
 export type Tone = keyof typeof tones;
 
-export type Palette = {
-  background: string;
-  foreground: string;
-  border: string;
-  effectiveBackground: string;
-
-  hover?: {
-    background?: string;
-    foreground?: string;
-    border?: string;
-  };
-  pressed?: {
-    background?: string;
-    foreground?: string;
-    border?: string;
-  };
-  // selected?: {
-  //       background?: string;
-  //       foreground?: string;
-  //       border?: string;
-  //   };
+export type ComponentState = {
+  background?: string;
+  foreground?: string;
+  border?: string;
+  opacity?: string;
+  contrastBackground?: string;
 };
+
+export type Palette = {
+  default: ComponentState;
+  hover?: ComponentState;
+  pressed?: ComponentState;
+  focus?: ComponentState;
+  selected?: ComponentState;
+};
+
+// export type Palette = {
+//   background: string;
+//   foreground: string;
+//   border: string;
+//   contrastBackground: string;
+
+//   hover?: {
+//     background?: string;
+//     foreground?: string;
+//     border?: string;
+//   };
+//   pressed?: {
+//     background?: string;
+//     foreground?: string;
+//     border?: string;
+//   };
+// };
+
+// export function GetPalette(appearance: Appearance, palette: Tone): Palette {
+//   switch (appearance) {
+//     case "solid":
+//       return {
+//         background: `var(--color-${palette})`,
+//         foreground: `var(--color-${palette}-foreground)`,
+//         border: "transparent",
+//         contrastBackground: `var(--color-${palette})`,
+
+//         hover: {
+//           background: `rgba(var(--color-${palette}-rgb), 0.8)`,
+//           foreground: `var(--color-${palette}-foreground)`,
+//           border: "transparent",
+//         },
+
+//         pressed: {
+//           background: `var(--color-${palette})`,
+//           foreground: `var(--color-${palette}-foreground)`,
+//           border: "transparent",
+//         },
+//       };
+//     case "soft":
+//       return {
+//         background: `var(--color-${palette}-subtle)`,
+//         foreground: `var(--color-${palette}-subtle-foreground)`,
+//         border: `transparent`,
+//         contrastBackground: `var(--color-${palette}-foreground)`,
+
+//         hover: {
+//           background: `rgba(var(--color-${palette}-rgb), 0.2)`,
+//           foreground: `var(--color-${palette}-subtle-foreground)`,
+//           border: "transparent",
+//         },
+
+//         pressed: {
+//           background: `var(--color-${palette}-subtle)`,
+//           foreground: `var(--color-${palette}-subtle-foreground)`,
+//           border: `transparent`,
+//         },
+//       };
+//     case "soft-outline":
+//       return {
+//         background: `var(--color-${palette}-subtle)`,
+//         foreground: `var(--color-${palette}-subtle-foreground)`,
+//         border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+//         contrastBackground: `var(--color-${palette}-foreground)`,
+
+//         hover: {
+//           background: `rgba(var(--color-${palette}-rgb), 0.2)`,
+//           foreground: `var(--color-${palette}-subtle-foreground)`,
+//           border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+//         },
+
+//         pressed: {
+//           background: `var(--color-${palette}-subtle)`,
+//           foreground: `var(--color-${palette}-subtle-foreground)`,
+//           border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+//         },
+//       };
+//     case "ghost":
+//       return {
+//         background: `transparent`,
+//         foreground: `var(--color-${palette})`,
+//         border: `transparent`,
+//         contrastBackground: `var(--color-${palette}-foreground)`,
+
+//         hover: {
+//           background: `var(--color-${palette}-subtle)`,
+//           foreground: `var(--color-${palette})`,
+//           border: "transparent",
+//         },
+
+//         pressed: {
+//           background: `transparent`,
+//           foreground: `var(--color-${palette}-subtle-foreground)`,
+//           border: `transparent`,
+//         },
+//       };
+//     case "ghost-outline":
+//       return {
+//         background: `transparent`,
+//         foreground: `var(--color-${palette})`,
+//         border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+//         contrastBackground: `var(--color-${palette}-foreground)`,
+
+//         hover: {
+//           background: `var(--color-${palette}-subtle)`,
+//           foreground: `var(--color-${palette})`,
+//           border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+//         },
+
+//         pressed: {
+//           background: `transparent`,
+//           foreground: `var(--color-${palette}-subtle-foreground)`,
+//           border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+//         },
+//       };
+//     case "text":
+//       return {
+//         background: `transparent`,
+//         foreground: `var(--color-${palette})`,
+//         border: `transparent`,
+//         contrastBackground: `var(--color-${palette}-foreground)`,
+
+//         pressed: {
+//           background: `transparent`,
+//           foreground: `var(--color-${palette}-subtle-foreground)`,
+//           border: `transparent`,
+//         },
+//       };
+//   }
+// }
 
 export function GetPalette(appearance: Appearance, palette: Tone): Palette {
   switch (appearance) {
     case "solid":
       return {
-        background: `var(--color-${palette})`,
-        foreground: `var(--color-${palette}-foreground)`,
-        border: "transparent",
-        effectiveBackground: `var(--color-${palette})`,
+        default: {
+          background: `var(--color-${palette})`,
+          foreground: `var(--color-${palette}-foreground)`,
+          border: "transparent",
+          contrastBackground: `var(--color-${palette})`,
+        },
 
         hover: {
           background: `rgba(var(--color-${palette}-rgb), 0.8)`,
@@ -83,10 +209,12 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
       };
     case "soft":
       return {
-        background: `var(--color-${palette}-subtle)`,
-        foreground: `var(--color-${palette}-subtle-foreground)`,
-        border: `transparent`,
-        effectiveBackground: `var(--color-${palette}-foreground)`,
+        default: {
+          background: `var(--color-${palette}-subtle)`,
+          foreground: `var(--color-${palette}-subtle-foreground)`,
+          border: `transparent`,
+          contrastBackground: `var(--color-${palette}-foreground)`,
+        },
 
         hover: {
           background: `rgba(var(--color-${palette}-rgb), 0.2)`,
@@ -102,10 +230,12 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
       };
     case "soft-outline":
       return {
-        background: `var(--color-${palette}-subtle)`,
-        foreground: `var(--color-${palette}-subtle-foreground)`,
-        border: `rgba(var(--color-${palette}-rgb), 0.3)`,
-        effectiveBackground: `var(--color-${palette}-foreground)`,
+        default: {
+          background: `var(--color-${palette}-subtle)`,
+          foreground: `var(--color-${palette}-subtle-foreground)`,
+          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+          contrastBackground: `var(--color-${palette}-foreground)`,
+        },
 
         hover: {
           background: `rgba(var(--color-${palette}-rgb), 0.2)`,
@@ -121,10 +251,12 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
       };
     case "ghost":
       return {
-        background: `transparent`,
-        foreground: `var(--color-${palette})`,
-        border: `transparent`,
-        effectiveBackground: `var(--color-${palette}-foreground)`,
+        default: {
+          background: `transparent`,
+          foreground: `var(--color-${palette})`,
+          border: `transparent`,
+          contrastBackground: `var(--color-${palette}-foreground)`,
+        },
 
         hover: {
           background: `var(--color-${palette}-subtle)`,
@@ -140,10 +272,12 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
       };
     case "ghost-outline":
       return {
-        background: `transparent`,
-        foreground: `var(--color-${palette})`,
-        border: `rgba(var(--color-${palette}-rgb), 0.3)`,
-        effectiveBackground: `var(--color-${palette}-foreground)`,
+        default: {
+          background: `transparent`,
+          foreground: `var(--color-${palette})`,
+          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+          contrastBackground: `var(--color-${palette}-foreground)`,
+        },
 
         hover: {
           background: `var(--color-${palette}-subtle)`,
@@ -159,16 +293,12 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
       };
     case "text":
       return {
-        background: `transparent`,
-        foreground: `var(--color-${palette})`,
-        border: `transparent`,
-        effectiveBackground: `var(--color-${palette}-foreground)`,
-
-        // hover: {
-        //   background: `transparent`,
-        //   foreground: `var(--color-${palette})`,
-        //   border: `transparent`,
-        // },
+        default: {
+          background: `transparent`,
+          foreground: `var(--color-${palette})`,
+          border: `transparent`,
+          contrastBackground: `var(--color-${palette}-foreground)`,
+        },
 
         pressed: {
           background: `transparent`,

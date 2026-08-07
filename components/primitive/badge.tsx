@@ -224,9 +224,9 @@ function Badge({
       )}
       style={
         {
-          "--badge-background": palette.background,
-          "--badge-foreground": palette.foreground,
-          "--badge-border": palette.border,
+          "--badge-background": palette.default.background,
+          "--badge-foreground": palette.default.foreground,
+          "--badge-border": palette.default.border,
         } as React.CSSProperties
       }
       {...props}

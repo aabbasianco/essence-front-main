@@ -31,12 +31,12 @@ const meta = {
       options: Object.keys(toggleSizes),
       description: "Sizes of the Button",
     },
-    startIcon:{
-      control:"select",
+    startIcon: {
+      control: "select",
       options: Object.keys(DsIcons),
     },
-    endIcon:{
-      control:"select",
+    endIcon: {
+      control: "select",
       options: Object.keys(DsIcons),
     },
     fluid: {
@@ -121,25 +121,23 @@ export const ToggleSizses: Story = {
   ),
 };
 
-export const IconSizes: Story = {
+export const ToggleIconSizes: Story = {
   args: {
-    tone: "primary",
-    // "aria-pressed": "true",
+    startIcon: {
+      name: "heart",
+      appearance: "text",
+      tone: "danger",
+    },
   },
   render: (args) => (
     <div className="flex gap-4 justify-center flex-wrap items-center">
-      <Toggle size="icon-xs" {...args}>
-        xs
-      </Toggle>
-      <Toggle size="icon-sm" {...args}>
-        sm
-      </Toggle>
-      <Toggle size="icon-md" {...args}>
-        md
-      </Toggle>
-      <Toggle size="icon-lg" {...args}>
-        lg
-      </Toggle>
+      <Toggle
+        size="icon-xs"
+        {...args}
+      />
+      <Toggle size="icon-sm" {...args} />
+      <Toggle size="icon-md" {...args} />
+      <Toggle size="icon-lg" {...args} />
     </div>
   ),
 };

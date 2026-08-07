@@ -202,9 +202,9 @@ function Tag({
       )}
       style={
         {
-          "--tag-background": palette.background,
-          "--tag-foreground": palette.foreground,
-          "--tag-border": palette.border,
+          "--tag-background": palette.default.background,
+          "--tag-foreground": palette.default.foreground,
+          "--tag-border": palette.default.border,
         } as React.CSSProperties
       }
       {...props}
