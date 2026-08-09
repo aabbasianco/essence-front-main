@@ -1,0 +1,28 @@
+import type { Tone } from "../entities/entities";
+
+export const tones = [
+  { id: 1, name: "gray" },
+  { id: 2, name: "brand" },
+  { id: 3, name: "blue" },
+  { id: 4, name: "warm-sand" },
+  { id: 5, name: "red" },
+  { id: 6, name: "orange" },
+  { id: 7, name: "yellow" },
+  { id: 8, name: "amber" },
+  { id: 9, name: "green" },
+  { id: 10, name: "emerald" },
+  { id: 11, name: "teal" },
+  { id: 12, name: "sky" },
+  { id: 13, name: "indigo" },
+  { id: 14, name: "violet" },
+  { id: 15, name: "purple" },
+  { id: 16, name: "fuchsia" },
+  { id: 17, name: "rose" },
+  { id: 18, name: "primary" },
+  { id: 19, name: "secondary" },
+  { id: 20, name: "tertiary" },
+  { id: 21, name: "success" },
+  { id: 22, name: "warning" },
+  { id: 23, name: "danger" },
+  { id: 24, name: "info" },
+] satisfies Tone[];
