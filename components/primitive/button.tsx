@@ -12,7 +12,7 @@ import {
   type Tone,
   appearances,
   tones,
-} from "@/lib/design-system/palette";
+} from "@/lib/design-system/resolver/palette";
 import {
   RenderIcon,
   IconDefinition,

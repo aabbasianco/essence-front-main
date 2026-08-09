@@ -9,7 +9,7 @@ import {
   type Palette,
   tones,
   appearances,
-} from "@/lib/design-system/palette";
+} from "@/lib/design-system/resolver/palette";
 import { RenderIcon, IconDefinition } from "./icon";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 

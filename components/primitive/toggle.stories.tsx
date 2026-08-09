@@ -6,7 +6,7 @@ import {
   toggleShapes,
   toggleSizeRecipe,
 } from "./toggle";
-import { appearances, tones } from "@/lib/design-system/palette";
+import { appearances, tones } from "@/lib/design-system/resolver/palette";
 import { Text } from "./text";
 import { DsIcons } from "./icon";
 
