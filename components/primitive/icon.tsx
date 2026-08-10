@@ -124,6 +124,19 @@ type IconPropsSet = {
   size: IconSize;
   purpose: IconPurpose;
 };
+type SizeRecipe = Record<
+  string,
+  {
+    label: {
+      component: string;
+      icon?: IconPropsSet;
+    };
+    icon?: {
+      component: string;
+      icon?: IconPropsSet;
+    };
+  }
+>;
 
 const iconVariants = cva(
   "text-[var(--icon-foreground)] [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -229,4 +242,5 @@ export {
   type IconSize,
   type IconPurpose,
   type IconPropsSet,
+  type SizeRecipe,
 };

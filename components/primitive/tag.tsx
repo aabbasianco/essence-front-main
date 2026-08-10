@@ -10,7 +10,7 @@ import {
   tones,
   appearances,
 } from "@/lib/design-system/resolver/resolver";
-import { RenderIcon, IconDefinition, IconPropsSet } from "./icon";
+import { RenderIcon, IconDefinition, IconPropsSet, SizeRecipe } from "./icon";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 
 const tagSizeRecipe = {
@@ -34,19 +34,7 @@ const tagSizeRecipe = {
       },
     },
   },
-} satisfies Record<
-  string,
-  {
-    label: {
-      component: string;
-      icon?: IconPropsSet;
-    };
-    icon?: {
-      component: string;
-      icon?: IconPropsSet;
-    };
-  }
->;
+} satisfies SizeRecipe;
 
 // const tagSizes = Object.fromEntries(
 //   Object.entries(tagSizeRecipe).map(([size, recipe]) => [size, recipe.label.component]),

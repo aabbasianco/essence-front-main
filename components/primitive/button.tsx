@@ -20,6 +20,7 @@ import {
   IconSize,
   IconPurpose,
   IconPropsSet,
+  SizeRecipe,
 } from "./icon";
 
 const buttonDefaults = {
@@ -223,19 +224,7 @@ const buttonSizeRecipe = {
       },
     },
   },
-} satisfies Record<
-  string,
-  {
-    label: {
-      component: string;
-      icon?: IconPropsSet;
-    };
-    icon?: {
-      component: string;
-      icon?: IconPropsSet;
-    };
-  }
->;
+} satisfies SizeRecipe;
 // type ButtonLabelSize = keyof typeof buttonSizeRecipe;
 // type ButtonSize = ButtonLabelSize | `icon-${ButtonLabelSize}`;
 type ButtonSize = keyof typeof buttonSizeRecipe;
