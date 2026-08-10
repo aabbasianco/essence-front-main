@@ -6,11 +6,10 @@ import {
   GetPalette,
   type Appearance,
   type Tone,
-  type Palette,
   tones,
   appearances,
 } from "@/lib/design-system/resolver/resolver";
-import { RenderIcon, IconDefinition, IconPropsSet, SizeRecipe } from "./icon";
+import { RenderIcon, IconDefinition, SizeRecipe } from "./icon";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 
 const tagSizeRecipe = {

@@ -11,9 +11,9 @@ import {
 } from "@/lib/design-system/resolver/resolver";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 import { tagSizeRecipe } from "./tag";
-import { IconDefinition, RenderIcon } from "./icon";
+import { IconDefinition, RenderIcon, SizeRecipe } from "./icon";
 
-const badgeSizeRecipe = tagSizeRecipe;
+const badgeSizeRecipe = tagSizeRecipe satisfies SizeRecipe;
 type BadgeSize = keyof typeof badgeSizeRecipe;
 
 const badgeShapes = ExtendVariants(defaultShapes, {

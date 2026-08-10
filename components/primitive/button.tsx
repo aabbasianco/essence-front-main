@@ -16,10 +16,6 @@ import {
 import {
   RenderIcon,
   IconDefinition,
-  iconSizes,
-  IconSize,
-  IconPurpose,
-  IconPropsSet,
   SizeRecipe,
 } from "./icon";
 
@@ -225,8 +221,6 @@ const buttonSizeRecipe = {
     },
   },
 } satisfies SizeRecipe;
-// type ButtonLabelSize = keyof typeof buttonSizeRecipe;
-// type ButtonSize = ButtonLabelSize | `icon-${ButtonLabelSize}`;
 type ButtonSize = keyof typeof buttonSizeRecipe;
 
 const buttonVariants = cva(
