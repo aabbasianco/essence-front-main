@@ -6,7 +6,7 @@ import {
   tones,
   type Appearance,
   type Tone,
-} from "@/lib/design-system/resolver/palette";
+} from "@/lib/design-system/resolver/resolver";
 import {
   Heart,
   HeartOff,

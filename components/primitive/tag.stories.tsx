@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Tag } from "./tag";
-import { tones, appearances } from "@/lib/design-system/resolver/palette";
-import { tagPresets, tagShapes, tagSizes } from "@/components/primitive/tag";
+import { tones, appearances } from "@/lib/design-system/resolver/resolver";
+import { tagPresets, tagShapes, tagSizeRecipe } from "@/components/primitive/tag";
 import { DsIcons } from "./icon";
 
 const meta = {
@@ -28,7 +28,7 @@ const meta = {
     },
     size: {
       control: "radio",
-      options: Object.keys(tagSizes),
+      options: Object.keys(tagSizeRecipe),
     },
     shape: {
       control: "radio",

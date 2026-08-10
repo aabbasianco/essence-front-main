@@ -7,7 +7,7 @@ import {
   buttonSizeRecipe,
 } from "@/components/primitive/button";
 import { OverlayBadge } from "./badge";
-import { appearances, tones } from "@/lib/design-system/resolver/palette";
+import { appearances, tones } from "@/lib/design-system/resolver/resolver";
 import { DsIcons } from "./icon";
 
 const meta = {

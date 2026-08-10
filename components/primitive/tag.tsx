@@ -9,16 +9,49 @@ import {
   type Palette,
   tones,
   appearances,
-} from "@/lib/design-system/resolver/palette";
-import { RenderIcon, IconDefinition } from "./icon";
+} from "@/lib/design-system/resolver/resolver";
+import { RenderIcon, IconDefinition, IconPropsSet } from "./icon";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 
-const tagSizes = {
-  // sm: "px-2.5 py-0.5 text-[length:var(--font-size-xs)] ",
-  sm: "px-1 py-0 text-[length:var(--description-font-size)] font-[var(--badge-font-weight)] data-[has-end-icon=true]:pe-0.5 data-[has-start-icon=true]:ps-0.5 [&_svg:not([class*='size-'])]:size-4",
-  md: "px-2 py-0.5 text-[length:var(--font-size-sm)] font-[var(--font-weight-semibold)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1 [&_svg:not([class*='size-'])]:size-5",
-};
-type TagSize = keyof typeof tagSizes;
+const tagSizeRecipe = {
+  sm: {
+    label: {
+      component:
+        "px-1 py-0 text-[length:var(--description-font-size)] data-[has-end-icon=true]:pe-0.5 data-[has-start-icon=true]:ps-0.5",
+      icon: {
+        size: "xs",
+        purpose: "inline",
+      },
+    },
+  },
+  md: {
+    label: {
+      component:
+        "px-2 py-0.5 text-[length:var(--font-size-sm)] data-[has-end-icon=true]:pe-1 data-[has-start-icon=true]:ps-1",
+      icon: {
+        size: "md",
+        purpose: "inline",
+      },
+    },
+  },
+} satisfies Record<
+  string,
+  {
+    label: {
+      component: string;
+      icon?: IconPropsSet;
+    };
+    icon?: {
+      component: string;
+      icon?: IconPropsSet;
+    };
+  }
+>;
+
+// const tagSizes = Object.fromEntries(
+//   Object.entries(tagSizeRecipe).map(([size, recipe]) => [size, recipe.label.component]),
+// ) as Record<keyof typeof tagSizeRecipe, string>;
+type TagSize = keyof typeof tagSizeRecipe;
 
 const tagShapes = ExtendVariants(defaultShapes, {
   rounded: "rounded-[var(--badge-radius)]",
@@ -132,12 +165,12 @@ const tagPresets = {
 type TagPreset = keyof typeof tagPresets;
 
 const tagVariants = cva(
-  "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] hover:cursor-pointer border-2 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "bg-[var(--tag-background)] text-[var(--tag-foreground)] border-[var(--tag-border)] font-[var(--badge-font-weight)] hover:cursor-pointer border-2 group/tag inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-danger aria-invalid:ring-danger/20 dark:aria-invalid:ring-danger/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       tone: tones,
       appearance: appearances,
-      size: tagSizes,
+      size: tagSizeRecipe,
       shape: tagShapes,
     },
     defaultVariants: {
@@ -172,13 +205,17 @@ function Tag({
 }: TagProps) {
   const Comp = asChild ? Slot.Root : "span";
   const presetValues = preset ? tagPresets[preset] : undefined;
-  const resolvedTone = presetValues?.tone ?? tone ?? tagDefaults.tone;
+  const resolvedTone = tone ?? presetValues?.tone ?? tagDefaults.tone;
   const resolvedAppearance =
-    presetValues?.appearance ?? appearance ?? tagDefaults.appearance;
-  const resolvedSize = presetValues?.size ?? size ?? tagDefaults.size;
-  const resolvedShape = presetValues?.shape ?? shape ?? tagDefaults.shape;
-  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? tagDefaults.startIcon;
-  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? tagDefaults.endIcon;
+    appearance ?? presetValues?.appearance ?? tagDefaults.appearance;
+  const resolvedSize = size ?? presetValues?.size ?? tagDefaults.size;
+  const resolvedTagSize =  tagSizeRecipe[resolvedSize].label.component;
+  const resolvedShape = shape ?? presetValues?.shape ?? tagDefaults.shape;
+  const resolvedStartIcon =
+    presetValues?.startIcon ?? startIcon ?? tagDefaults.startIcon;
+  const resolvedEndIcon =
+    presetValues?.endIcon ?? endIcon ?? tagDefaults.endIcon;
+  const resolvedIconProps = tagSizeRecipe[resolvedSize].label.icon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
 
   return (
@@ -195,9 +232,9 @@ function Tag({
         tagVariants({
           tone: resolvedTone,
           appearance: resolvedAppearance,
-          size: resolvedSize,
           shape: resolvedShape,
         }),
+        resolvedTagSize,
         className,
       )}
       style={
@@ -210,14 +247,18 @@ function Tag({
       {...props}
     >
       {resolvedStartIcon && (
-        <span data-slot="tag-start-icon">{RenderIcon(resolvedStartIcon)}</span>
+        <span data-slot="tag-start-icon">
+          {RenderIcon(resolvedStartIcon, resolvedIconProps)}
+        </span>
       )}
       <span data-slot="tag-label">{children}</span>
       {resolvedEndIcon && (
-        <span data-slot="tag-end-icon">{RenderIcon(resolvedEndIcon)}</span>
+        <span data-slot="tag-end-icon">
+          {RenderIcon(resolvedEndIcon, resolvedIconProps)}
+        </span>
       )}
     </Comp>
   );
 }
 
-export { Tag, tagVariants, tagPresets, tagShapes, tagSizes };
+export { Tag, tagVariants, tagPresets, tagShapes, tagSizeRecipe, type TagSize };

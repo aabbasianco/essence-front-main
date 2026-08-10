@@ -8,7 +8,7 @@ import {
   badgeSizes,
 } from "./badge";
 import { Button } from "./button";
-import { tones, appearances } from "@/lib/design-system/resolver/palette";
+import { tones, appearances } from "@/lib/design-system/resolver/resolver";
 import { DsIcons } from "./icon";
 
 const meta = {

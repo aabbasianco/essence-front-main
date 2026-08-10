@@ -8,12 +8,12 @@ import {
   type Tone,
   tones,
   appearances,
-} from "@/lib/design-system/resolver/palette";
+} from "@/lib/design-system/resolver/resolver";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
-import { tagSizes } from "./tag";
+import { tagSizeRecipe } from "./tag";
 import { IconDefinition, RenderIcon } from "./icon";
 
-const badgeSizes = tagSizes;
+const badgeSizes = tagSizeRecipe;
 type BadgeSize = keyof typeof badgeSizes;
 
 const badgeShapes = ExtendVariants(defaultShapes, {
