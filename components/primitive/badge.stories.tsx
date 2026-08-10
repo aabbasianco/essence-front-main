@@ -5,7 +5,7 @@ import {
   OverlayBadge,
   badgePresets,
   badgeShapes,
-  badgeSizes,
+  badgeSizeRecipe,
 } from "./badge";
 import { Button } from "./button";
 import { tones, appearances } from "@/lib/design-system/resolver/resolver";
@@ -36,7 +36,7 @@ const meta = {
     },
     size: {
       control: "radio",
-      options: Object.keys(badgeSizes),
+      options: Object.keys(badgeSizeRecipe),
     },
     shape: {
       control: "radio",
@@ -117,25 +117,28 @@ export const Notification: Story = {
       <OverlayBadge>
         <Button
           preset="tertiary"
-          size="icon-md"
+          size="md"
           startIcon="shopping-bag"
+          isIcon  
         ></Button>
       </OverlayBadge>
       <OverlayBadge value={99}>
-        <Button preset="tertiary" size="icon-md" startIcon="mail"></Button>
+        <Button preset="tertiary" size="md" startIcon="mail" isIcon></Button>
       </OverlayBadge>
       <OverlayBadge>
         <Button
           preset="tertiary"
-          size="icon-md"
+          size="md"
           startIcon="calendar"
+          isIcon  
         ></Button>
       </OverlayBadge>
       <OverlayBadge value="5">
         <Button
           preset="tertiary"
-          size="icon-md"
+          size="md"
           startIcon="bell-ring"
+          isIcon  
         ></Button>
       </OverlayBadge>
     </div>

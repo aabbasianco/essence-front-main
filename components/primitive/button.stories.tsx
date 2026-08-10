@@ -217,7 +217,7 @@ export const OveralyBadgeNotification: Story = {
         <Button preset="tertiary">Notification</Button>
       </OverlayBadge>
       <OverlayBadge tone="primary" value={3}>
-        <Button tone="secondary" appearance="ghost-outline" size="md" startIcon="shopping-bag" />
+        <Button tone="secondary" appearance="ghost-outline" size="md" startIcon="shopping-bag" isIcon />
       </OverlayBadge>
     </div>
   ),

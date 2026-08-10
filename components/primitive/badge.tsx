@@ -13,8 +13,8 @@ import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 import { tagSizeRecipe } from "./tag";
 import { IconDefinition, RenderIcon } from "./icon";
 
-const badgeSizes = tagSizeRecipe;
-type BadgeSize = keyof typeof badgeSizes;
+const badgeSizeRecipe = tagSizeRecipe;
+type BadgeSize = keyof typeof badgeSizeRecipe;
 
 const badgeShapes = ExtendVariants(defaultShapes, {
   rounded: "rounded-[var(--badge-radius)]",
@@ -155,7 +155,7 @@ const badgeVariants = cva(
     variants: {
       appearance: appearances,
       tone: tones,
-      size: badgeSizes,
+      size: badgeSizeRecipe,
       shape: badgeShapes,
     },
 
@@ -192,12 +192,16 @@ function Badge({
   const Comp = asChild ? Slot.Root : "span";
   const presetValues = preset ? badgePresets[preset] : undefined;
   const resolvedAppearance =
-    presetValues?.appearance ?? appearance ?? badgeDefaults.appearance;
-  const resolvedTone = presetValues?.tone ?? tone ?? badgeDefaults.tone;
+    appearance ?? presetValues?.appearance ?? badgeDefaults.appearance;
+  const resolvedTone = tone ?? presetValues?.tone ?? badgeDefaults.tone;
   const resolvedSize = size ?? presetValues?.size ?? badgeDefaults.size;
   const resolvedShape = shape ?? presetValues?.shape ?? badgeDefaults.shape;
-  const resolvedStartIcon = presetValues?.startIcon ?? startIcon ?? badgeDefaults.startIcon;
-  const resolvedEndIcon = presetValues?.endIcon ?? endIcon ?? badgeDefaults.endIcon;
+  const resolvedTagSize = tagSizeRecipe[resolvedSize].label.component;
+  const resolvedStartIcon =
+    presetValues?.startIcon ?? startIcon ?? badgeDefaults.startIcon;
+  const resolvedEndIcon =
+    presetValues?.endIcon ?? endIcon ?? badgeDefaults.endIcon;
+  const resolvedIconProps = tagSizeRecipe[resolvedSize].label.icon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
   const hasValue =
     children !== undefined && children !== null && children !== "";
@@ -216,9 +220,9 @@ function Badge({
         badgeVariants({
           appearance: resolvedAppearance,
           tone: resolvedTone,
-          size: resolvedSize,
           shape: resolvedShape,
         }),
+        resolvedTagSize,
         className,
         "",
       )}
@@ -239,12 +243,18 @@ function Badge({
       )}
 
       {resolvedStartIcon && (
-        <span data-slot="badge-start-icon">{RenderIcon(resolvedStartIcon)}</span>
+        <span data-slot="badge-start-icon">
+          {RenderIcon(resolvedStartIcon, resolvedIconProps)}
+        </span>
       )}
 
       {hasValue && <span data-slot="badge-label">{children}</span>}
 
-      {resolvedEndIcon && <span data-slot="badge-end-icon">{RenderIcon(resolvedEndIcon)}</span>}
+      {resolvedEndIcon && (
+        <span data-slot="badge-end-icon">
+          {RenderIcon(resolvedEndIcon, resolvedIconProps)}
+        </span>
+      )}
     </Comp>
   );
 }
@@ -255,7 +265,7 @@ export {
   OverlayBadge,
   badgePresets,
   badgeShapes,
-  badgeSizes,
+  badgeSizeRecipe,
 };
 
 type OverlayBadgeProps = React.ComponentProps<"span"> &
