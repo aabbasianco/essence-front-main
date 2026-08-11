@@ -8,126 +8,28 @@ import { Badge } from "./badge";
 import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 import {
   GetPalette,
-  type Appearance,
-  type Tone,
   appearances,
   tones,
+  StatesRecipe,
+  ComponentPresetsRecipe,
+  StateResolver,
+  State,
 } from "@/lib/design-system/resolver/resolver";
-import {
-  RenderIcon,
-  IconDefinition,
-  SizeRecipe,
-} from "./icon";
+import { RenderIcon, IconDefinition, SizeRecipe } from "./icon";
 
-const buttonDefaults = {
-  appearance: "solid",
-  tone: "primary",
-  shape: "rounded",
-  size: "lg",
-  startIcon: undefined,
-  endIcon: undefined,
-} satisfies {
-  appearance: Appearance;
-  tone: Tone;
-  shape: ButtonShape;
-  size: ButtonSize;
-  startIcon?: IconDefinition;
-  endIcon?: IconDefinition;
-};
-
-const buttonPresets = {
-  primary: {
-    appearance: "solid",
-    tone: "primary",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: buttonDefaults.startIcon,
-    endIcon: buttonDefaults.endIcon,
-  },
-
-  secondary: {
-    appearance: "ghost-outline",
-    tone: "primary",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: buttonDefaults.startIcon,
-    endIcon: buttonDefaults.endIcon,
-  },
-
-  tertiary: {
-    appearance: "ghost-outline",
-    tone: "secondary",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: buttonDefaults.startIcon,
-    endIcon: buttonDefaults.endIcon,
-  },
-
-  ghost: {
-    appearance: "ghost",
-    tone: "secondary",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: buttonDefaults.startIcon,
-    endIcon: buttonDefaults.endIcon,
-  },
-
-  link: {
-    appearance: "text",
-    tone: "secondary",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: buttonDefaults.startIcon,
-    endIcon: buttonDefaults.endIcon,
-  },
-
-  warning: {
-    appearance: "soft",
-    tone: "warning",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: "alert-triangle",
-    endIcon: buttonDefaults.endIcon,
-  },
-
-  destructive: {
-    appearance: "soft",
-    tone: "danger",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: "alert-circle",
-    endIcon: buttonDefaults.endIcon,
-  },
-
-  inputSoft: {
-    appearance: "soft",
-    tone: "secondary",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: buttonDefaults.startIcon,
-    endIcon: buttonDefaults.endIcon,
-  },
-
-  inputGhost: {
-    appearance: "ghost",
-    tone: "secondary",
-    shape: buttonDefaults.shape,
-    size: buttonDefaults.size,
-    startIcon: buttonDefaults.startIcon,
-    endIcon: buttonDefaults.endIcon,
-  },
-} satisfies Record<
-  string,
-  {
-    appearance: Appearance;
-    tone: Tone;
-    shape: ButtonShape;
-    size: ButtonSize;
-    startIcon?: IconDefinition;
-    endIcon?: IconDefinition;
-  }
->;
-type ButtonPreset = keyof typeof buttonPresets;
+// type ButtonApiProps = React.ComponentProps<"button"> & {
+//   appearance?: Appearance;
+//   tone?: Tone;
+//   shape?: ButtonShape;
+//   size?: ButtonSize;
+//   badge?: React.ReactNode;
+//   asChild?: boolean;
+//   loading?: boolean;
+//   startIcon?: IconDefinition;
+//   endIcon?: IconDefinition;
+//   fluid?: boolean;
+//   isIcon?: boolean;
+// };
 
 const buttonShapes = ExtendVariants(defaultShapes, {
   rounded: "rounded-[var(--button-radius)]",
@@ -224,7 +126,7 @@ const buttonSizeRecipe = {
 type ButtonSize = keyof typeof buttonSizeRecipe;
 
 const buttonVariants = cva(
-  "group/button inline-flex bg-(--button-background) text-(--button-foreground) border-[var(--button-border)] hover:bg-(--button-background-hover) hover:text-(--button-foreground-hover) hover:border-[var(--button-border-hover)] border-2 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40",
+  "group/button inline-flex bg-(--button-background) text-(--button-foreground) border-[var(--button-border)] hover:bg-(--button-background-hover) hover:text-(--button-foreground-hover) hover:border-[var(--button-border-hover)] border-2 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium whitespace-nowrap transition-all transition-[background-color,color,border-color,border-radius,transform, size] outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40",
   {
     variants: {
       appearance: appearances,
@@ -233,25 +135,160 @@ const buttonVariants = cva(
       size: buttonSizeRecipe,
     },
     defaultVariants: {
-      appearance: buttonDefaults.appearance,
-      tone: buttonDefaults.tone,
-      shape: buttonDefaults.shape,
-      size: buttonDefaults.size,
+      appearance: "solid",
+      tone: "primary",
+      shape: "rounded",
+      size: "lg",
     },
   },
 );
+type ButtonVariantProps = VariantProps<typeof buttonVariants>;
+type ButtonOwnProps = {
+  badge?: React.ReactNode;
+  asChild?: boolean;
+  loading?: boolean;
+  startIcon?: IconDefinition;
+  endIcon?: IconDefinition;
+  fluid?: boolean;
+  isIcon?: boolean;
+};
+type ButtonApiProps = React.ComponentProps<"button"> &
+  ButtonVariantProps &
+  ButtonOwnProps;
 
-type ButtonProps = React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    preset?: ButtonPreset;
-    badge?: React.ReactNode;
-    asChild?: boolean;
-    loading?: boolean;
-    startIcon?: IconDefinition;
-    endIcon?: IconDefinition;
-    fluid?: boolean;
-    isIcon?: boolean;
-  };
+const buttonDefaults = {
+  appearance: "solid",
+  tone: "primary",
+  shape: "rounded",
+  size: "lg",
+  startIcon: undefined,
+  endIcon: undefined,
+  isIcon: false,
+} satisfies Partial<ButtonApiProps>;
+
+const buttonPresetRecipe = {
+  primary: {
+    default: {
+      appearance: "solid",
+      tone: "primary",
+      shape: "pill",
+      size: "sm",
+      startIcon: "eye",
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+    hover: {
+      appearance: "solid",
+      tone: "violet",
+      shape: "rounded",
+      size: "lg",
+      startIcon: "eye-off",
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+
+  secondary: {
+    default: {
+      appearance: "ghost-outline",
+      tone: "primary",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: buttonDefaults.startIcon,
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+
+  tertiary: {
+    default: {
+      appearance: "ghost-outline",
+      tone: "secondary",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: buttonDefaults.startIcon,
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+
+  ghost: {
+    default: {
+      appearance: "ghost",
+      tone: "secondary",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: buttonDefaults.startIcon,
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+
+  link: {
+    default: {
+      appearance: "text",
+      tone: "secondary",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: buttonDefaults.startIcon,
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+
+  warning: {
+    default: {
+      appearance: "soft",
+      tone: "warning",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: "alert-triangle",
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+
+  destructive: {
+    default: {
+      appearance: "soft",
+      tone: "danger",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: "alert-circle",
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+
+  inputSoft: {
+    default: {
+      appearance: "soft",
+      tone: "secondary",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: buttonDefaults.startIcon,
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+
+  inputGhost: {
+    default: {
+      appearance: "ghost",
+      tone: "secondary",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: buttonDefaults.startIcon,
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+  },
+} satisfies ComponentPresetsRecipe<ButtonApiProps>;
+type ButtonPresetRecipe = keyof typeof buttonPresetRecipe;
+
+type ButtonProps = ButtonApiProps & {
+  preset?: ButtonPresetRecipe;
+};
 
 function Button({
   className,
@@ -266,26 +303,55 @@ function Button({
   loading = false,
   startIcon,
   endIcon,
-  isIcon = false,
+  isIcon,
   children,
   disabled,
   ...props
 }: ButtonProps) {
+  const [state, setState] = React.useState<State>("default");
   const Comp = asChild ? Slot.Root : "button";
-  const presetValues = preset ? buttonPresets[preset] : undefined;
+  const presetRecipe = preset ? buttonPresetRecipe[preset] : undefined;
+  const baseProps = {
+    ...buttonDefaults,
+    ...(presetRecipe?.default ?? {}),
+    ...(appearance !== undefined && { appearance }),
+    ...(tone !== undefined && { tone }),
+    ...(shape !== undefined && { shape }),
+    ...(size !== undefined && { size }),
+    ...(startIcon !== undefined && { startIcon }),
+    ...(endIcon !== undefined && { endIcon }),
+    ...(isIcon !== undefined && { isIcon }),
+  };
+
+  const resolvedStateProps = StateResolver(
+    baseProps,
+    presetRecipe ?? {},
+    state,
+  );
   const resolvedAppearance =
-    appearance ?? presetValues?.appearance ?? buttonDefaults.appearance;
-  const resolvedTone = tone ?? presetValues?.tone ?? buttonDefaults.tone;
-  const resolvedShape = shape ?? presetValues?.shape ?? buttonDefaults.shape;
-  const resolvedSize = size ?? presetValues?.size ?? buttonDefaults.size;
-  const resolvedButtonSize = isIcon
+  resolvedStateProps.appearance ?? buttonDefaults.appearance;
+
+const resolvedTone =
+  resolvedStateProps.tone ?? buttonDefaults.tone;
+
+const resolvedShape =
+  resolvedStateProps.shape ?? buttonDefaults.shape;
+
+const resolvedSize =
+  resolvedStateProps.size ?? buttonDefaults.size;
+
+const resolvedIsIcon =
+  resolvedStateProps.isIcon ?? buttonDefaults.isIcon;
+
+const resolvedStartIcon =
+  resolvedStateProps.startIcon ?? buttonDefaults.startIcon;
+
+const resolvedEndIcon =
+  resolvedStateProps.endIcon ?? buttonDefaults.endIcon;
+  const resolvedButtonSize = resolvedIsIcon
     ? buttonSizeRecipe[resolvedSize].icon.component
     : buttonSizeRecipe[resolvedSize].label.component;
-  const resolvedStartIcon =
-    presetValues?.startIcon ?? startIcon ?? buttonDefaults.startIcon;
-  const resolvedEndIcon =
-    presetValues?.endIcon ?? endIcon ?? buttonDefaults.endIcon;
-  const resolvedIconProps = isIcon
+  const resolvedIconProps = resolvedIsIcon
     ? buttonSizeRecipe[resolvedSize].icon.icon
     : buttonSizeRecipe[resolvedSize].label.icon;
   const palette = GetPalette(resolvedAppearance, resolvedTone);
@@ -296,7 +362,7 @@ function Button({
       data-appearance={resolvedAppearance}
       data-tone={resolvedTone}
       data-shape={resolvedShape}
-      data-size={resolvedSize}
+      data-size={resolvedStateProps.size}
       data-fluid={fluid}
       data-has-badge={!!badge || undefined}
       data-loading={loading || undefined}
@@ -329,6 +395,9 @@ function Button({
         } as React.CSSProperties
       }
       {...props}
+      onMouseEnter={() => setState("hover")}
+      onMouseLeave={() => setState("default")}
+      onMouseDown={() => setState("pressed")}
     >
       {loading ? (
         <Spinner data-icon="inline-start" />
@@ -340,9 +409,9 @@ function Button({
         )
       )}
 
-      {!isIcon && <span data-slot="button-label">{children}</span>}
+      {!resolvedIsIcon && <span data-slot="button-label">{children}</span>}
 
-      {!isIcon && resolvedEndIcon && !loading && (
+      {!resolvedIsIcon && resolvedEndIcon && !loading && (
         <span className="" data-slot="button-end-icon">
           {RenderIcon(resolvedEndIcon)}
         </span>
@@ -369,7 +438,7 @@ function Button({
 export {
   Button,
   buttonVariants,
-  buttonPresets,
+  buttonPresetRecipe,
   buttonShapes,
   buttonSizeRecipe,
 };

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import {
   Button,
-  buttonPresets,
+  buttonPresetRecipe,
   buttonShapes,
   buttonSizeRecipe,
 } from "@/components/primitive/button";
@@ -15,7 +15,7 @@ const meta = {
   argTypes: {
     preset: {
       control: "select",
-      options: Object.keys(buttonPresets),
+      options: Object.keys(buttonPresetRecipe),
       description: "Preset styles of the button",
     },
     tone: {
@@ -85,11 +85,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {
-    tone: "primary",
-    children: "Primary",
-    startIcon: "shopping-bag",
-  },
+  args:{
+    children:"Primary",
+    preset:"primary"
+  }
 };
 
 export const Presets: Story = {

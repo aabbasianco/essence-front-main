@@ -1,4 +1,4 @@
-export const appearances = {
+const appearances = {
   solid: "",
   soft: "",
   "soft-outline": "",
@@ -6,9 +6,9 @@ export const appearances = {
   "ghost-outline": "",
   text: "",
 } as const;
-export type Appearance = keyof typeof appearances;
+type Appearance = keyof typeof appearances;
 
-export const tones = {
+const tones = {
   // Semantic Tones
   primary: "",
   secondary: "",
@@ -35,9 +35,9 @@ export const tones = {
   fuchsia: "",
   rose: "",
 } as const;
-export type Tone = keyof typeof tones;
+type Tone = keyof typeof tones;
 
-export type ComponentState = {
+type ComponentState = {
   background?: string;
   foreground?: string;
   border?: string;
@@ -45,7 +45,7 @@ export type ComponentState = {
   contrastBackground?: string;
 };
 
-export type Palette = {
+type Palette = {
   default: ComponentState;
   hover?: ComponentState;
   pressed?: ComponentState;
@@ -53,89 +53,108 @@ export type Palette = {
   selected?: ComponentState;
 };
 
-export function GetPalette(appearance: Appearance, palette: Tone): Palette {
+const states = {
+  default: "",
+  hover: "",
+  pressed: "",
+  focus: "",
+  selected: "",
+} as const;
+
+type State = keyof typeof states;
+
+// type StateRecipe<T extends object> = Partial<Record<State, Partial<T>>>;
+
+// export function GetState(
+//   palette: Palette,
+//   state: State = "default",
+// ): ComponentState {
+//   return palette[state] ?? palette.default;
+// }
+
+function GetPalette(appearance: Appearance, tone: Tone): Palette {
   switch (appearance) {
     case "solid":
       return {
         default: {
-          background: `var(--color-${palette})`,
-          foreground: `var(--color-${palette}-foreground)`,
+          background: `var(--color-${tone})`,
+          foreground: `var(--color-${tone}-foreground)`,
           border: "transparent",
-          contrastBackground: `var(--color-${palette})`,
+          contrastBackground: `var(--color-${tone})`,
         },
 
         hover: {
-          background: `rgba(var(--color-${palette}-rgb), 0.8)`,
-          foreground: `var(--color-${palette}-foreground)`,
+          background: `rgba(var(--color-${tone}-rgb), 0.8)`,
+          foreground: `var(--color-${tone}-foreground)`,
           border: "transparent",
         },
 
         pressed: {
-          background: `var(--color-${palette})`,
-          foreground: `var(--color-${palette}-foreground)`,
+          background: `var(--color-${tone})`,
+          foreground: `var(--color-${tone}-foreground)`,
           border: "transparent",
         },
       };
     case "soft":
       return {
         default: {
-          background: `var(--color-${palette}-subtle)`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
+          background: `var(--color-${tone}-subtle)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
           border: `transparent`,
-          contrastBackground: `var(--color-${palette}-foreground)`,
+          contrastBackground: `var(--color-${tone}-foreground)`,
         },
 
         hover: {
-          background: `rgba(var(--color-${palette}-rgb), 0.2)`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
+          background: `rgba(var(--color-${tone}-rgb), 0.2)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
           border: "transparent",
         },
 
         pressed: {
-          background: `var(--color-${palette}-subtle)`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
+          background: `var(--color-${tone}-subtle)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
           border: `transparent`,
         },
       };
     case "soft-outline":
       return {
         default: {
-          background: `var(--color-${palette}-subtle)`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
-          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
-          contrastBackground: `var(--color-${palette}-foreground)`,
+          background: `var(--color-${tone}-subtle)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
+          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
+          contrastBackground: `var(--color-${tone}-foreground)`,
         },
 
         hover: {
-          background: `rgba(var(--color-${palette}-rgb), 0.2)`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
-          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+          background: `rgba(var(--color-${tone}-rgb), 0.2)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
+          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
         },
 
         pressed: {
-          background: `var(--color-${palette}-subtle)`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
-          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+          background: `var(--color-${tone}-subtle)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
+          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
         },
       };
     case "ghost":
       return {
         default: {
           background: `transparent`,
-          foreground: `var(--color-${palette})`,
+          foreground: `var(--color-${tone})`,
           border: `transparent`,
-          contrastBackground: `var(--color-${palette}-foreground)`,
+          contrastBackground: `var(--color-${tone}-foreground)`,
         },
 
         hover: {
-          background: `var(--color-${palette}-subtle)`,
-          foreground: `var(--color-${palette})`,
+          background: `var(--color-${tone}-subtle)`,
+          foreground: `var(--color-${tone})`,
           border: "transparent",
         },
 
         pressed: {
           background: `transparent`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
           border: `transparent`,
         },
       };
@@ -143,37 +162,63 @@ export function GetPalette(appearance: Appearance, palette: Tone): Palette {
       return {
         default: {
           background: `transparent`,
-          foreground: `var(--color-${palette})`,
-          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
-          contrastBackground: `var(--color-${palette}-foreground)`,
+          foreground: `var(--color-${tone})`,
+          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
+          contrastBackground: `var(--color-${tone}-foreground)`,
         },
 
         hover: {
-          background: `var(--color-${palette}-subtle)`,
-          foreground: `var(--color-${palette})`,
-          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+          background: `var(--color-${tone}-subtle)`,
+          foreground: `var(--color-${tone})`,
+          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
         },
 
         pressed: {
           background: `transparent`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
-          border: `rgba(var(--color-${palette}-rgb), 0.3)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
+          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
         },
       };
     case "text":
       return {
         default: {
           background: `transparent`,
-          foreground: `var(--color-${palette})`,
+          foreground: `var(--color-${tone})`,
           border: `transparent`,
-          contrastBackground: `var(--color-${palette}-foreground)`,
+          contrastBackground: `var(--color-${tone}-foreground)`,
         },
 
         pressed: {
           background: `transparent`,
-          foreground: `var(--color-${palette}-subtle-foreground)`,
+          foreground: `var(--color-${tone}-subtle-foreground)`,
           border: `transparent`,
         },
       };
   }
 }
+
+type StatesRecipe<T extends object> = Partial<Record<State, Partial<T>>>;
+type ComponentPresetsRecipe<T extends object>=Record<string,StatesRecipe<T>>
+function StateResolver<T extends object>(
+  values: T,
+  statesRecipe: StatesRecipe<T>,
+  state: State,
+): T {
+  return {
+    ...values,
+    ...(statesRecipe[state] ?? {}),
+  };
+}
+
+export {
+  StateResolver,
+  GetPalette,
+  states,
+  type State,
+  type StatesRecipe,
+  type ComponentPresetsRecipe,
+  tones,
+  type Tone,
+  appearances,
+  type Appearance,
+};
