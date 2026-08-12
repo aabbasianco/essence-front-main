@@ -17,20 +17,6 @@ import {
 } from "@/lib/design-system/resolver/resolver";
 import { RenderIcon, IconDefinition, SizeRecipe } from "./icon";
 
-// type ButtonApiProps = React.ComponentProps<"button"> & {
-//   appearance?: Appearance;
-//   tone?: Tone;
-//   shape?: ButtonShape;
-//   size?: ButtonSize;
-//   badge?: React.ReactNode;
-//   asChild?: boolean;
-//   loading?: boolean;
-//   startIcon?: IconDefinition;
-//   endIcon?: IconDefinition;
-//   fluid?: boolean;
-//   isIcon?: boolean;
-// };
-
 const buttonShapes = ExtendVariants(defaultShapes, {
   rounded: "rounded-[var(--button-radius)]",
 });
@@ -126,7 +112,7 @@ const buttonSizeRecipe = {
 type ButtonSize = keyof typeof buttonSizeRecipe;
 
 const buttonVariants = cva(
-  "group/button inline-flex bg-(--button-background) text-(--button-foreground) border-[var(--button-border)] hover:bg-(--button-background-hover) hover:text-(--button-foreground-hover) hover:border-[var(--button-border-hover)] border-2 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium whitespace-nowrap transition-all transition-[background-color,color,border-color,border-radius,transform, size] outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40",
+  "group/button inline-flex bg-(--button-background) text-(--button-foreground) border-[var(--button-border)] hover:bg-(--button-background-hover) hover:text-(--button-foreground-hover) hover:border-[var(--button-border-hover)] border-2 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40",
   {
     variants: {
       appearance: appearances,
@@ -156,36 +142,44 @@ type ButtonApiProps = React.ComponentProps<"button"> &
   ButtonVariantProps &
   ButtonOwnProps;
 
-const buttonDefaults = {
+type ButtonResolvedApiProps = Omit<
+  ButtonApiProps,
+  "appearance" | "tone" | "shape" | "size"
+> & {
+  appearance: NonNullable<ButtonApiProps["appearance"]>;
+  tone: NonNullable<ButtonApiProps["tone"]>;
+  shape: NonNullable<ButtonApiProps["shape"]>;
+  size: NonNullable<ButtonApiProps["size"]>;
+};
+
+const buttonDefaults: ButtonResolvedApiProps = {
   appearance: "solid",
   tone: "primary",
   shape: "rounded",
   size: "lg",
   startIcon: undefined,
   endIcon: undefined,
-  isIcon: false,
-} satisfies Partial<ButtonApiProps>;
+  isIcon: undefined,
+  loading: undefined,
+  disabled: undefined,
+  children: undefined,
+  fluid: undefined,
+  badge: undefined,
+};
 
-const buttonPresetRecipe = {
+const buttonPresetRecipe: ComponentPresetsRecipe<ButtonResolvedApiProps> = {
   primary: {
     default: {
       appearance: "solid",
       tone: "primary",
-      shape: "pill",
-      size: "sm",
-      startIcon: "eye",
-      endIcon: buttonDefaults.endIcon,
-      isIcon: buttonDefaults.isIcon,
-    },
-    hover: {
-      appearance: "solid",
-      tone: "violet",
       shape: "rounded",
       size: "lg",
-      startIcon: "eye-off",
+      startIcon: buttonDefaults.startIcon,
       endIcon: buttonDefaults.endIcon,
       isIcon: buttonDefaults.isIcon,
     },
+    hover: {},
+    pressed: {},
   },
 
   secondary: {
@@ -202,6 +196,15 @@ const buttonPresetRecipe = {
 
   tertiary: {
     default: {
+      appearance: "ghost-outline",
+      tone: "secondary",
+      shape: buttonDefaults.shape,
+      size: buttonDefaults.size,
+      startIcon: buttonDefaults.startIcon,
+      endIcon: buttonDefaults.endIcon,
+      isIcon: buttonDefaults.isIcon,
+    },
+    hover: {
       appearance: "ghost-outline",
       tone: "secondary",
       shape: buttonDefaults.shape,
@@ -283,7 +286,7 @@ const buttonPresetRecipe = {
       isIcon: buttonDefaults.isIcon,
     },
   },
-} satisfies ComponentPresetsRecipe<ButtonApiProps>;
+};
 type ButtonPresetRecipe = keyof typeof buttonPresetRecipe;
 
 type ButtonProps = ButtonApiProps & {
@@ -297,10 +300,10 @@ function Button({
   appearance,
   size,
   shape,
-  fluid = false,
+  fluid,
   badge,
-  asChild = false,
-  loading = false,
+  asChild,
+  loading,
   startIcon,
   endIcon,
   isIcon,
@@ -311,72 +314,59 @@ function Button({
   const [state, setState] = React.useState<State>("default");
   const Comp = asChild ? Slot.Root : "button";
   const presetRecipe = preset ? buttonPresetRecipe[preset] : undefined;
-  const baseProps = {
-    ...buttonDefaults,
-    ...(presetRecipe?.default ?? {}),
-    ...(appearance !== undefined && { appearance }),
-    ...(tone !== undefined && { tone }),
-    ...(shape !== undefined && { shape }),
-    ...(size !== undefined && { size }),
-    ...(startIcon !== undefined && { startIcon }),
-    ...(endIcon !== undefined && { endIcon }),
-    ...(isIcon !== undefined && { isIcon }),
+  const overrides = {
+    ...(appearance != null && { appearance }),
+    ...(tone != null && { tone }),
+    ...(shape != null && { shape }),
+    ...(size != null && { size }),
+    ...(startIcon != null && { startIcon }),
+    ...(endIcon != null && { endIcon }),
+    ...(isIcon != null && { isIcon }),
+    ...(loading != null && { loading }),
+    ...(disabled != null && { disabled }),
+    ...(children != null && { children }),
+    ...(fluid != null && { fluid }),
+    ...(badge != null && { badge }),
   };
-
-  const resolvedStateProps = StateResolver(
-    baseProps,
+  // type ButtonDefault = typeof buttonDefaults;
+  const resolvedStateProps = StateResolver<ButtonResolvedApiProps>(
+    buttonDefaults,
     presetRecipe ?? {},
     state,
+    overrides,
   );
-  const resolvedAppearance =
-  resolvedStateProps.appearance ?? buttonDefaults.appearance;
-
-const resolvedTone =
-  resolvedStateProps.tone ?? buttonDefaults.tone;
-
-const resolvedShape =
-  resolvedStateProps.shape ?? buttonDefaults.shape;
-
-const resolvedSize =
-  resolvedStateProps.size ?? buttonDefaults.size;
-
-const resolvedIsIcon =
-  resolvedStateProps.isIcon ?? buttonDefaults.isIcon;
-
-const resolvedStartIcon =
-  resolvedStateProps.startIcon ?? buttonDefaults.startIcon;
-
-const resolvedEndIcon =
-  resolvedStateProps.endIcon ?? buttonDefaults.endIcon;
-  const resolvedButtonSize = resolvedIsIcon
-    ? buttonSizeRecipe[resolvedSize].icon.component
-    : buttonSizeRecipe[resolvedSize].label.component;
-  const resolvedIconProps = resolvedIsIcon
-    ? buttonSizeRecipe[resolvedSize].icon.icon
-    : buttonSizeRecipe[resolvedSize].label.icon;
-  const palette = GetPalette(resolvedAppearance, resolvedTone);
+  const resolvedButtonSize = resolvedStateProps.isIcon
+    ? buttonSizeRecipe[resolvedStateProps.size].icon.component
+    : buttonSizeRecipe[resolvedStateProps.size].label.component;
+  const resolvedIconProps = resolvedStateProps.isIcon
+    ? buttonSizeRecipe[resolvedStateProps.size].icon.icon
+    : buttonSizeRecipe[resolvedStateProps.size].label.icon;
+  const palette = GetPalette(
+    resolvedStateProps.appearance,
+    resolvedStateProps.tone,
+  );
   return (
     <Comp
       data-slot="button"
       data-preset={preset}
-      data-appearance={resolvedAppearance}
-      data-tone={resolvedTone}
-      data-shape={resolvedShape}
+      data-appearance={resolvedStateProps.appearance}
+      data-tone={resolvedStateProps.tone}
+      data-shape={resolvedStateProps.shape}
       data-size={resolvedStateProps.size}
-      data-fluid={fluid}
-      data-has-badge={!!badge || undefined}
-      data-loading={loading || undefined}
-      data-has-start-icon={!!resolvedStartIcon || undefined}
-      data-has-end-icon={!!resolvedEndIcon || undefined}
-      disabled={disabled || loading}
+      data-fluid={resolvedStateProps.fluid}
+      data-has-badge={!!resolvedStateProps.badge || undefined}
+      data-loading={resolvedStateProps.loading || undefined}
+      data-has-start-icon={!!resolvedStateProps.startIcon || undefined}
+      data-has-end-icon={!!resolvedStateProps.endIcon || undefined}
+      disabled={resolvedStateProps.disabled || resolvedStateProps.loading}
       className={cn(
         buttonVariants({
-          appearance: resolvedAppearance,
-          tone: resolvedTone,
-          shape: resolvedShape,
+          appearance: resolvedStateProps.appearance,
+          tone: resolvedStateProps.tone,
+          shape: resolvedStateProps.shape,
         }),
         resolvedButtonSize,
-        fluid && "w-full",
+        resolvedStateProps.fluid && "w-full",
         className,
       )}
       style={
@@ -399,38 +389,44 @@ const resolvedEndIcon =
       onMouseLeave={() => setState("default")}
       onMouseDown={() => setState("pressed")}
     >
-      {loading ? (
+      {resolvedStateProps.loading ? (
         <Spinner data-icon="inline-start" />
       ) : (
-        resolvedStartIcon && (
+        resolvedStateProps.startIcon && (
           <span data-slot="button-start-icon">
-            {RenderIcon(resolvedStartIcon, resolvedIconProps)}
+            {RenderIcon(resolvedStateProps.startIcon, resolvedIconProps)}
           </span>
         )
       )}
 
-      {!resolvedIsIcon && <span data-slot="button-label">{children}</span>}
-
-      {!resolvedIsIcon && resolvedEndIcon && !loading && (
-        <span className="" data-slot="button-end-icon">
-          {RenderIcon(resolvedEndIcon)}
-        </span>
+      {!resolvedStateProps.isIcon && (
+        <span data-slot="button-label">{resolvedStateProps.children}</span>
       )}
 
-      {badge != null && badge !== null && badge !== true && (
-        <Badge
-          className="min-h-4 min-w-4 text-xs rounded-full border-none"
-          style={
-            {
-              "--badge-background": "var(--button-foreground)",
-              "--badge-foreground": "var(--button-effective-background)",
-            } as React.CSSProperties
-          }
-          data-slot="button-badge"
-        >
-          {badge}
-        </Badge>
-      )}
+      {!resolvedStateProps.isIcon &&
+        resolvedStateProps.endIcon &&
+        !resolvedStateProps.loading && (
+          <span className="" data-slot="button-end-icon">
+            {RenderIcon(resolvedStateProps.endIcon)}
+          </span>
+        )}
+
+      {resolvedStateProps.badge != null &&
+        resolvedStateProps.badge !== null &&
+        resolvedStateProps.badge !== true && (
+          <Badge
+            className="min-h-4 min-w-4 text-xs rounded-full border-none"
+            style={
+              {
+                "--badge-background": "var(--button-foreground)",
+                "--badge-foreground": "var(--button-effective-background)",
+              } as React.CSSProperties
+            }
+            data-slot="button-badge"
+          >
+            {resolvedStateProps.badge}
+          </Badge>
+        )}
     </Comp>
   );
 }

@@ -149,8 +149,7 @@ export const ButtonSizes: Story = {
 
 export const ButtonIconSizes: Story = {
   args: {
-    tone:"secondary",
-    appearance:"ghost-outline",
+    preset:"tertiary",
     isIcon: true
   },
   render: (args) => (

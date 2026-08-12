@@ -203,10 +203,13 @@ function StateResolver<T extends object>(
   values: T,
   statesRecipe: StatesRecipe<T>,
   state: State,
+  overrides?:Partial<T>
 ): T {
   return {
     ...values,
+    ...(statesRecipe["default"] ?? {}),
     ...(statesRecipe[state] ?? {}),
+    ...(overrides ?? {})
   };
 }
 

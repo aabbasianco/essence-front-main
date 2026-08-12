@@ -13,6 +13,6 @@ export function ExtendVariants<
 
 export const defaultShapes = {
     rounded: "rounded-(--radius)",
-    pill: "rounded-[50px]",
+    pill: "rounded-[20px]",
     square: "",
 } as const;

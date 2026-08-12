@@ -44,6 +44,8 @@ import {
   Calendar,
   BellRing,
   Bell,
+  CheckCircle,
+  CheckCircle2,
 } from "lucide-react";
 
 const DsIcons = {
@@ -58,6 +60,8 @@ const DsIcons = {
   "clock-3": Clock3,
   check: Check,
   "check-double": CheckCheck,
+  "check-circle": CheckCircle,
+  "check-circle-2": CheckCircle2,
   plus: Plus,
   minus: Minus,
   x: X,
