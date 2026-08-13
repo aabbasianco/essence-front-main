@@ -14,6 +14,7 @@ import {
   ComponentPresetsRecipe,
   StateResolver,
   State,
+  ApiPropValue,
 } from "@/lib/design-system/resolver/resolver";
 import { RenderIcon, IconDefinition, SizeRecipe } from "./icon";
 
@@ -130,17 +131,23 @@ const buttonVariants = cva(
 );
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 type ButtonOwnProps = {
-  badge?: React.ReactNode;
+  badge?: ApiPropValue<React.ReactNode>;
+  loading?: ApiPropValue<boolean>;
+  startIcon?: ApiPropValue<IconDefinition>;
+  endIcon?: ApiPropValue<IconDefinition>;
+  fluid?: ApiPropValue<boolean>;
+  isIcon?: ApiPropValue<boolean>;
   asChild?: boolean;
-  loading?: boolean;
-  startIcon?: IconDefinition;
-  endIcon?: IconDefinition;
-  fluid?: boolean;
-  isIcon?: boolean;
 };
 type ButtonApiProps = React.ComponentProps<"button"> &
-  ButtonVariantProps &
-  ButtonOwnProps;
+  ButtonOwnProps &
+  // Variants
+  {
+    appearance?: ApiPropValue<NonNullable<ButtonVariantProps["appearance"]>>;
+    tone?: ApiPropValue<NonNullable<ButtonVariantProps["tone"]>>;
+    shape?: ApiPropValue<NonNullable<ButtonVariantProps["shape"]>>;
+    size?: ApiPropValue<NonNullable<ButtonVariantProps["size"]>>;
+  };
 
 type ButtonResolvedApiProps = Omit<
   ButtonApiProps,
@@ -162,7 +169,7 @@ const buttonDefaults: ButtonResolvedApiProps = {
   isIcon: undefined,
   loading: undefined,
   disabled: undefined,
-  children: undefined,
+  children: "button default value",
   fluid: undefined,
   badge: undefined,
 };
@@ -177,6 +184,11 @@ const buttonPresetRecipe: ComponentPresetsRecipe<ButtonResolvedApiProps> = {
       startIcon: buttonDefaults.startIcon,
       endIcon: buttonDefaults.endIcon,
       isIcon: buttonDefaults.isIcon,
+      loading: undefined,
+      disabled: undefined,
+      children: "preset default value",
+      fluid: undefined,
+      badge: undefined,
     },
     hover: {},
     pressed: {},

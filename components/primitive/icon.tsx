@@ -46,6 +46,8 @@ import {
   Bell,
   CheckCircle,
   CheckCircle2,
+  PlusCircle,
+  PlusSquare,
 } from "lucide-react";
 
 const DsIcons = {
@@ -63,6 +65,8 @@ const DsIcons = {
   "check-circle": CheckCircle,
   "check-circle-2": CheckCircle2,
   plus: Plus,
+  "plus-circle": PlusCircle,
+  "plus-square": PlusSquare,
   minus: Minus,
   x: X,
   eye: Eye,

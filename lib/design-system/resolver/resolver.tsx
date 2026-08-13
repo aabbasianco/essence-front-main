@@ -63,14 +63,7 @@ const states = {
 
 type State = keyof typeof states;
 
-// type StateRecipe<T extends object> = Partial<Record<State, Partial<T>>>;
-
-// export function GetState(
-//   palette: Palette,
-//   state: State = "default",
-// ): ComponentState {
-//   return palette[state] ?? palette.default;
-// }
+const statesArr=Object.keys(states);
 
 function GetPalette(appearance: Appearance, tone: Tone): Palette {
   switch (appearance) {
@@ -197,19 +190,53 @@ function GetPalette(appearance: Appearance, tone: Tone): Palette {
   }
 }
 
+type ApiPropObjValue<T> = Partial<Record<State, T>>;
+type ApiPropValue<T> = T | ApiPropObjValue<T>;
 type StatesRecipe<T extends object> = Partial<Record<State, Partial<T>>>;
-type ComponentPresetsRecipe<T extends object>=Record<string,StatesRecipe<T>>
+type ComponentPresetsRecipe<T extends object> = Record<string, StatesRecipe<T>>;
+
+function isStateValue<T>(
+  value: ApiPropValue<T>,
+): value is ApiPropObjValue<T> {
+  if (value === null || typeof value !== "object" || Array.isArray(value)) {
+    return false;
+  }
+
+  return Object.keys(value).some((key) =>
+    statesArr.includes(key as State),
+  );
+}
+
+type StateOverrides<T extends object> = {
+  [K in keyof T]?: ApiPropValue<T[K]>;
+};
 function StateResolver<T extends object>(
   values: T,
   statesRecipe: StatesRecipe<T>,
   state: State,
-  overrides?:Partial<T>
+  overrides?: StateOverrides<T>,
 ): T {
+  const resolvedOverrides = Object.fromEntries(
+    Object.entries(overrides ?? {})
+      .map(([key, value]) => {
+        if (value === undefined || value === null) {
+          return [key, undefined];
+        }
+
+        if (isStateValue(value)) {
+          return [key, value[state]];
+        }
+
+        return [key, value];
+      })
+      .filter(([, value]) => value !== undefined && value !== null),
+  ) as Partial<T>;
+
   return {
     ...values,
-    ...(statesRecipe["default"] ?? {}),
+    ...(statesRecipe.default ?? {}),
     ...(statesRecipe[state] ?? {}),
-    ...(overrides ?? {})
+    ...resolvedOverrides,
   };
 }
 
@@ -218,6 +245,7 @@ export {
   GetPalette,
   states,
   type State,
+  type ApiPropValue,
   type StatesRecipe,
   type ComponentPresetsRecipe,
   tones,
