@@ -197,13 +197,6 @@ function GetPalette(appearance: Appearance, tone: Tone): Palette {
   }
 }
 
-type DefaultStatesRecipe<T extends object> = {
-  default: Partial<T>;
-  hover?: Partial<T>;
-  pressed?: Partial<T>;
-  focus?: Partial<T>;
-  selected?: Partial<T>;
-};;
 type StatesRecipe<T extends object> = Partial<Record<State, Partial<T>>>;
 type ComponentPresetsRecipe<T extends object>=Record<string,StatesRecipe<T>>
 function StateResolver<T extends object>(
@@ -225,7 +218,6 @@ export {
   GetPalette,
   states,
   type State,
-  type DefaultStatesRecipe,
   type StatesRecipe,
   type ComponentPresetsRecipe,
   tones,
