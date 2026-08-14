@@ -200,26 +200,47 @@ function isStateValue<T>(value: ApiPropValue<T>): value is ApiPropObjValue<T> {
     return false;
   }
 
-  return Object.keys(value).every((key) => statesArr.includes(key as State));
+  const keys = Object.keys(value);
+  return (
+    keys.length > 0 && keys.every((key) => statesArr.includes(key as State))
+  );
 }
 
 type StateOverrides<T extends object> = {
   [K in keyof T]?: ApiPropValue<T[K]>;
 };
+
+function PropsResolver<T extends object>(_props: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(_props).flatMap(([_key, _value]) => {
+      return _value == null ? [] : [[_key, _value]];
+    }),
+  ) as Partial<T>;
+}
+
 function StateResolver<T extends object>(
   values: T,
   statesRecipe: StatesRecipe<T>,
   state: State,
   overrides?: StateOverrides<T>,
 ): T {
+  const resolvedPresets = PropsResolver({
+    ...(statesRecipe.default ?? {}),
+    ...(statesRecipe[state] ?? {}),
+  });
+
   const resolvedOverrides = Object.fromEntries(
     Object.entries(overrides ?? {}).flatMap(([key, value]) => {
-      if (value === undefined || value === null) {
+      if (value == null) {
         return [];
       }
 
       if (isStateValue(value)) {
-        return [[key, value[state]]];
+        const resolvedValue = value[state];
+        if (resolvedValue === undefined || resolvedValue === null) {
+          return [];
+        }
+        return [[key, resolvedValue]];
       }
 
       return [[key, value]];
@@ -228,8 +249,7 @@ function StateResolver<T extends object>(
 
   return {
     ...values,
-    ...(statesRecipe.default ?? {}),
-    ...(statesRecipe[state] ?? {}),
+    ...resolvedPresets,
     ...resolvedOverrides,
   };
 }

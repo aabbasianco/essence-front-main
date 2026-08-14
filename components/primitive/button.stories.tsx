@@ -88,7 +88,12 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args:{
     children:"Primary",
-    preset:"primary"
+    preset:"primary",
+    // tone:{
+    //   default:"warning",
+    //   hover:"warning",
+    //   pressed:"warning"
+    // }
   }
 };
 

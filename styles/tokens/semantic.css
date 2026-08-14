@@ -87,7 +87,7 @@
 
     --color-warning-subtle: var(--color-warning-100);
     --color-warning-subtle-rgb: var(--color-warning-100-rgb);
-    --color-warning-subtle-foreground: var(--color-warning-900);
+    --color-warning-subtle-foreground: var(--color-warning-800);
     --color-warning-subtle-foreground-rgb: var(--color-warning-900-rgb);
 
     /* danger */

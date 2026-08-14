@@ -186,7 +186,7 @@ const buttonPresetRecipe: ComponentPresetsRecipe<ButtonResolvedApiProps> = {
       isIcon: buttonDefaults.isIcon,
       loading: undefined,
       disabled: undefined,
-      children: "preset default value",
+      children: "Primary preset default value",
       fluid: undefined,
       badge: undefined,
     },
