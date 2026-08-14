@@ -63,7 +63,7 @@ const states = {
 
 type State = keyof typeof states;
 
-const statesArr=Object.keys(states);
+const statesArr = Object.keys(states);
 
 function GetPalette(appearance: Appearance, tone: Tone): Palette {
   switch (appearance) {
@@ -195,16 +195,12 @@ type ApiPropValue<T> = T | ApiPropObjValue<T>;
 type StatesRecipe<T extends object> = Partial<Record<State, Partial<T>>>;
 type ComponentPresetsRecipe<T extends object> = Record<string, StatesRecipe<T>>;
 
-function isStateValue<T>(
-  value: ApiPropValue<T>,
-): value is ApiPropObjValue<T> {
+function isStateValue<T>(value: ApiPropValue<T>): value is ApiPropObjValue<T> {
   if (value === null || typeof value !== "object" || Array.isArray(value)) {
     return false;
   }
 
-  return Object.keys(value).some((key) =>
-    statesArr.includes(key as State),
-  );
+  return Object.keys(value).every((key) => statesArr.includes(key as State));
 }
 
 type StateOverrides<T extends object> = {
@@ -217,19 +213,17 @@ function StateResolver<T extends object>(
   overrides?: StateOverrides<T>,
 ): T {
   const resolvedOverrides = Object.fromEntries(
-    Object.entries(overrides ?? {})
-      .map(([key, value]) => {
-        if (value === undefined || value === null) {
-          return [key, undefined];
-        }
+    Object.entries(overrides ?? {}).flatMap(([key, value]) => {
+      if (value === undefined || value === null) {
+        return [];
+      }
 
-        if (isStateValue(value)) {
-          return [key, value[state]];
-        }
+      if (isStateValue(value)) {
+        return [[key, value[state]]];
+      }
 
-        return [key, value];
-      })
-      .filter(([, value]) => value !== undefined && value !== null),
+      return [[key, value]];
+    }),
   ) as Partial<T>;
 
   return {

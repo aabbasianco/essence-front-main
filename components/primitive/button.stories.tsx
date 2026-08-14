@@ -9,6 +9,7 @@ import {
 import { OverlayBadge } from "./badge";
 import { appearances, tones } from "@/lib/design-system/resolver/resolver";
 import { DsIcons } from "./icon";
+import { Heart } from "lucide-react";
 
 const meta = {
   component: Button,
