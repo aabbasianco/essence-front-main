@@ -63,7 +63,7 @@ const states = {
 
 type State = keyof typeof states;
 
-const statesArr = Object.keys(states);
+const statesArr = Object.keys(states) as State[];
 
 function GetPalette(appearance: Appearance, tone: Tone): Palette {
   switch (appearance) {
@@ -195,14 +195,16 @@ type ApiPropValue<T> = T | ApiPropObjValue<T>;
 type StatesRecipe<T extends object> = Partial<Record<State, Partial<T>>>;
 type ComponentPresetsRecipe<T extends object> = Record<string, StatesRecipe<T>>;
 
-function isStateValue<T>(value: ApiPropValue<T>): value is ApiPropObjValue<T> {
-  if (value === null || typeof value !== "object" || Array.isArray(value)) {
+function isStateValue<T>(
+  _value: ApiPropValue<T>,
+): _value is ApiPropObjValue<T> {
+  if (_value === null || typeof _value !== "object" || Array.isArray(_value)) {
     return false;
   }
 
-  const keys = Object.keys(value);
+  const keys = Object.keys(_value);
   return (
-    keys.length > 0 && keys.every((key) => statesArr.includes(key as State))
+    keys.length > 0 && keys.every((_key) => statesArr.includes(_key as State))
   );
 }
 
@@ -219,36 +221,36 @@ function PropsResolver<T extends object>(_props: T): Partial<T> {
 }
 
 function StateResolver<T extends object>(
-  values: T,
-  statesRecipe: StatesRecipe<T>,
-  state: State,
-  overrides?: StateOverrides<T>,
+  _defaults: T,
+  _statesRecipe: StatesRecipe<T>,
+  _state: State,
+  _overrides?: StateOverrides<T>,
 ): T {
   const resolvedPresets = PropsResolver({
-    ...(statesRecipe.default ?? {}),
-    ...(statesRecipe[state] ?? {}),
+    ...(_statesRecipe.default ?? {}),
+    ...(_statesRecipe[_state] ?? {}),
   });
 
   const resolvedOverrides = Object.fromEntries(
-    Object.entries(overrides ?? {}).flatMap(([key, value]) => {
-      if (value == null) {
+    Object.entries(_overrides ?? {}).flatMap(([_key, _value]) => {
+      if (_value == null) {
         return [];
       }
 
-      if (isStateValue(value)) {
-        const resolvedValue = value[state];
-        if (resolvedValue === undefined || resolvedValue === null) {
+      if (isStateValue(_value)) {
+        const resolvedValue = _value[_state];
+        if (resolvedValue == null) {
           return [];
         }
-        return [[key, resolvedValue]];
+        return [[_key, resolvedValue]];
       }
 
-      return [[key, value]];
+      return [[_key, _value]];
     }),
   ) as Partial<T>;
 
   return {
-    ...values,
+    ..._defaults,
     ...resolvedPresets,
     ...resolvedOverrides,
   };

@@ -151,12 +151,28 @@ type ButtonApiProps = React.ComponentProps<"button"> &
 
 type ButtonResolvedApiProps = Omit<
   ButtonApiProps,
-  "appearance" | "tone" | "shape" | "size"
+  | "appearance"
+  | "tone"
+  | "shape"
+  | "size"
+  | "loading"
+  | "startIcon"
+  | "endIcon"
+  | "fluid"
+  | "isIcon"
+  | "badge"
 > & {
-  appearance: NonNullable<ButtonApiProps["appearance"]>;
-  tone: NonNullable<ButtonApiProps["tone"]>;
-  shape: NonNullable<ButtonApiProps["shape"]>;
-  size: NonNullable<ButtonApiProps["size"]>;
+  appearance: NonNullable<ButtonVariantProps["appearance"]>;
+  tone: NonNullable<ButtonVariantProps["tone"]>;
+  shape: NonNullable<ButtonVariantProps["shape"]>;
+  size: NonNullable<ButtonVariantProps["size"]>;
+
+  loading?: boolean;
+  startIcon?: IconDefinition;
+  endIcon?: IconDefinition;
+  fluid?: boolean;
+  isIcon?: boolean;
+  badge?: React.ReactNode;
 };
 
 const buttonDefaults: ButtonResolvedApiProps = {

@@ -9,7 +9,6 @@ import {
 import { OverlayBadge } from "./badge";
 import { appearances, tones } from "@/lib/design-system/resolver/resolver";
 import { DsIcons } from "./icon";
-import { Heart } from "lucide-react";
 
 const meta = {
   component: Button,
@@ -37,12 +36,12 @@ const meta = {
       options: Object.keys(buttonSizeRecipe),
       description: "Sizes of the Button",
     },
-    startIcon:{
-      control:"select",
+    startIcon: {
+      control: "select",
       options: Object.keys(DsIcons),
     },
-    endIcon:{
-      control:"select",
+    endIcon: {
+      control: "select",
       options: Object.keys(DsIcons),
     },
     fluid: {
@@ -86,15 +85,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args:{
-    children:"Primary",
-    preset:"primary",
-    // tone:{
-    //   default:"warning",
-    //   hover:"warning",
-    //   pressed:"warning"
-    // }
-  }
+  args: {
+    children: "Primary",
+    preset: "primary",
+    tone: {
+      default: "yellow",
+      hover: "amber",
+      pressed: "orange",
+    },
+  },
 };
 
 export const Presets: Story = {
@@ -155,36 +154,16 @@ export const ButtonSizes: Story = {
 
 export const ButtonIconSizes: Story = {
   args: {
-    preset:"tertiary",
-    isIcon: true
+    preset: "tertiary",
+    isIcon: true,
   },
   render: (args) => (
     <div className="flex gap-4 justify-center items-center">
-      <Button
-        startIcon="shopping-bag"
-        size="xs"
-        {...args}
-      />
-      <Button
-        startIcon="shopping-bag"
-        size="sm"
-        {...args}
-      />
-      <Button
-        startIcon="shopping-bag"
-        size="md"
-        {...args}
-      />
-      <Button
-        startIcon="shopping-bag"
-        size="lg"
-        {...args}
-      />
-      <Button
-        startIcon="shopping-bag"
-        size="xl"
-        {...args}
-      />
+      <Button startIcon="shopping-bag" size="xs" {...args} />
+      <Button startIcon="shopping-bag" size="sm" {...args} />
+      <Button startIcon="shopping-bag" size="md" {...args} />
+      <Button startIcon="shopping-bag" size="lg" {...args} />
+      <Button startIcon="shopping-bag" size="xl" {...args} />
     </div>
   ),
 };
@@ -221,7 +200,13 @@ export const OveralyBadgeNotification: Story = {
         <Button preset="tertiary">Notification</Button>
       </OverlayBadge>
       <OverlayBadge tone="primary" value={3}>
-        <Button tone="secondary" appearance="ghost-outline" size="md" startIcon="shopping-bag" isIcon />
+        <Button
+          tone="secondary"
+          appearance="ghost-outline"
+          size="md"
+          startIcon="shopping-bag"
+          isIcon
+        />
       </OverlayBadge>
     </div>
   ),
