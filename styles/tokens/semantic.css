@@ -115,6 +115,16 @@
     /* ==========================================================================
     Semantic Tokens : Colors
     ========================================================================== */
+    /* Red */
+    --color-red: var(--color-red-500);
+    --color-red-rgb: var(--color-red-500-rgb);
+    --color-red-foreground: #FFFFFF;
+    --color-red-foreground-rgb: 255, 255, 255;
+
+    --color-red-subtle: var(--color-red-50);
+    --color-red-subtle-rgb: var(--color-red-50-rgb);
+    --color-red-subtle-foreground: var(--color-red-700);
+    --color-red-subtle-foreground-rgb: var(--color-red-700-rgb);
     /* Orange */
     --color-orange: var(--color-orange-500);
     --color-orange-rgb: var(--color-orange-500-rgb);
@@ -131,10 +141,10 @@
     --color-yellow-foreground: #FFFFFF;
     --color-yellow-foreground-rgb: 255, 255, 255;
 
-    --color-yellow-subtle: var(--color-yellow-50);
-    --color-yellow-subtle-rgb: var(--color-yellow-50-rgb);
-    --color-yellow-subtle-foreground: var(--color-yellow-900);
-    --color-yellow-subtle-foreground-rgb: var(--color-yellow-900-rgb);
+    --color-yellow-subtle: var(--color-yellow-100);
+    --color-yellow-subtle-rgb: var(--color-yellow-100-rgb);
+    --color-yellow-subtle-foreground: var(--color-yellow-800);
+    --color-yellow-subtle-foreground-rgb: var(--color-yellow-800-rgb);
     /* Amber */
     --color-amber: var(--color-amber-500);
     --color-amber-rgb: var(--color-amber-500-rgb);

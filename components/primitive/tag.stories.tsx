@@ -1,7 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Tag } from "./tag";
-import { tones, appearances } from "@/lib/design-system/resolver/resolver";
-import { tagPresets, tagShapes, tagSizeRecipe } from "@/components/primitive/tag";
+import {
+  tones,
+  appearances,
+  Tone,
+} from "@/lib/design-system/resolver/resolver";
+import {
+  tagPresets,
+  tagShapes,
+  tagSizeRecipe,
+} from "@/components/primitive/tag";
 import { DsIcons } from "./icon";
 
 const meta = {
@@ -9,7 +17,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Describes what the perfume is.',
+        component: "Describes what the perfume is.",
       },
     },
   },
@@ -34,12 +42,12 @@ const meta = {
       control: "radio",
       options: Object.keys(tagShapes),
     },
-    startIcon:{
-      control:"select",
+    startIcon: {
+      control: "select",
       options: Object.keys(DsIcons),
     },
-    endIcon:{
-      control:"select",
+    endIcon: {
+      control: "select",
       options: Object.keys(DsIcons),
     },
     asChild: {
@@ -64,7 +72,7 @@ export const Primary: Story = {
   args: {
     tone: "primary",
     startIcon: {
-      name:"heart",
+      name: "heart",
       // tone:"danger"
     },
   },
@@ -83,16 +91,24 @@ export const Application: Story = {
       <Tag preset="gender-unisex" {...args}>
         Unisex
       </Tag>
-      <Tag preset="brandType" {...args}>Niche</Tag>
-      <Tag preset="brandType" {...args}>Designer</Tag>
-      <Tag preset="brandType" {...args}>Arabian</Tag>
+      <Tag preset="brandType" {...args}>
+        Niche
+      </Tag>
+      <Tag preset="brandType" {...args}>
+        Designer
+      </Tag>
+      <Tag preset="brandType" {...args}>
+        Arabian
+      </Tag>
       <Tag preset="origin" {...args}>
         France
       </Tag>
       <Tag preset="origin" {...args}>
         Italy
       </Tag>
-      <Tag preset="concentration" {...args}>Concentration</Tag>
+      <Tag preset="concentration" {...args}>
+        Concentration
+      </Tag>
       <Tag preset="performance-longevity" {...args}>
         Longevity
       </Tag>
@@ -106,45 +122,58 @@ export const Application: Story = {
   ),
 };
 
+// export const Tones: Story = {
+//   render: (args) => (
+//     <div className="flex gap-4 justify-center overflow-hidden flex-wrap">
+//       <Tag startIcon="astroid" tone="brand" {...args}>
+//         Brand
+//       </Tag>
+//       <Tag startIcon="astroid" tone="orange" {...args}>
+//         Orange
+//       </Tag>
+//       <Tag startIcon="astroid" tone="yellow" {...args}>
+//         Yellow
+//       </Tag>
+//       <Tag startIcon="astroid" tone="amber" {...args}>
+//         Amber
+//       </Tag>
+//       <Tag startIcon="astroid" tone="emerald" {...args}>
+//         Emerald
+//       </Tag>
+//       <Tag startIcon="astroid" tone="teal" {...args}>
+//         Teal
+//       </Tag>
+//       <Tag startIcon="astroid" tone="sky" {...args}>
+//         Sky
+//       </Tag>
+//       <Tag startIcon="astroid" tone="indigo" {...args}>
+//         Indigo
+//       </Tag>
+//       <Tag startIcon="astroid" tone="violet" {...args}>
+//         Violet
+//       </Tag>
+//       <Tag startIcon="astroid" tone="purple" {...args}>
+//         Purple
+//       </Tag>
+//       <Tag startIcon="astroid" tone="fuchsia" {...args}>
+//         Fuchsia
+//       </Tag>
+//       <Tag startIcon="astroid" tone="rose" {...args}>
+//         Rose
+//       </Tag>
+//     </div>
+//   ),
+// };
+
 export const Tones: Story = {
+  args:{
+    // startIcon:"astroid"
+  },
   render: (args) => (
-    <div className="flex gap-4 justify-center overflow-hidden flex-wrap">
-      <Tag startIcon="astroid" tone="brand" {...args}>
-        Brand
-      </Tag>
-      <Tag startIcon="astroid" tone="orange" {...args}>
-        Orange
-      </Tag>
-      <Tag startIcon="astroid" tone="yellow" {...args}>
-        Yellow
-      </Tag>
-      <Tag startIcon="astroid" tone="amber" {...args}>
-        Amber
-      </Tag>
-      <Tag startIcon="astroid" tone="emerald" {...args}>
-        Emerald
-      </Tag>
-      <Tag startIcon="astroid" tone="teal" {...args}>
-        Teal
-      </Tag>
-      <Tag startIcon="astroid" tone="sky" {...args}>
-        Sky
-      </Tag>
-      <Tag startIcon="astroid" tone="indigo" {...args}>
-        Indigo
-      </Tag>
-      <Tag startIcon="astroid" tone="violet" {...args}>
-        Violet
-      </Tag>
-      <Tag startIcon="astroid" tone="purple" {...args}>
-        Purple
-      </Tag>
-      <Tag startIcon="astroid" tone="fuchsia" {...args}>
-        Fuchsia
-      </Tag>
-      <Tag startIcon="astroid" tone="rose" {...args}>
-        Rose
-      </Tag>
+    <div className="flex flex-wrap gap-3">
+      {Object.keys(tones).map((tone) => (
+        <Tag key={tone} {...args} tone={tone as Tone}>{tone}</Tag>
+      ))}
     </div>
   ),
 };

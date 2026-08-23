@@ -48,6 +48,7 @@ import {
   CheckCircle2,
   PlusCircle,
   PlusSquare,
+  Trash,
 } from "lucide-react";
 
 const DsIcons = {
@@ -73,7 +74,7 @@ const DsIcons = {
   "eye-off": EyeOff,
   package: Package,
   truck: Truck,
-  cart: ShoppingCart,
+  "shopping-cart": ShoppingCart,
   "shopping-bag": ShoppingBag,
   sparkles: Sparkles,
   astroid: Astroid,
@@ -91,6 +92,7 @@ const DsIcons = {
   calendar: Calendar,
   bell: Bell,
   "bell-ring": BellRing,
+  trash: Trash,
 } as const;
 export type IconName = keyof typeof DsIcons;
 
@@ -98,32 +100,32 @@ const iconSizes = {
   auto: {
     inline: "size-auto",
     standalone: "p-1! size-auto",
-    display: "",
+    display: "size-auto",
   },
   xs: {
     inline: "size-4!",
     standalone: "p-0.5! size-5!",
-    display: "",
+    display: "size-10!",
   },
   sm: {
     inline: "size-5!",
     standalone: "p-1! size-7!",
-    display: "",
+    display: "size-12.5!",
   },
   md: {
     inline: "size-5!",
     standalone: "p-1! size-8!",
-    display: "",
+    display: "size-15!",
   },
   lg: {
     inline: "size-5!",
     standalone: "p-1! size-9!",
-    display: "",
+    display: "size-17.5!",
   },
   xl: {
     inline: "size-6!",
     standalone: "p-1! size-11!",
-    display: "",
+    display: "size-20!",
   },
 };
 type IconPurpose = keyof (typeof iconSizes)["md"];
@@ -242,6 +244,7 @@ function RenderIcon(icon?: IconDefinition, overrides?: IconOverrides) {
 }
 
 export {
+  Icon,
   RenderIcon,
   type IconDefinition,
   type IconOverrides,

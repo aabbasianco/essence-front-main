@@ -22,6 +22,7 @@ const tones = {
   info: "",
 
   // Color Tones
+  red: "",
   orange: "",
   yellow: "",
   amber: "",

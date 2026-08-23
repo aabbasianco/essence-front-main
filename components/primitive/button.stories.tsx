@@ -88,11 +88,12 @@ export const Primary: Story = {
   args: {
     children: "Primary",
     preset: "primary",
-    tone: {
-      default: "yellow",
-      hover: "amber",
-      pressed: "orange",
-    },
+    // badge: 5,
+    // tone: "yellow",
+    // endIcon:{
+    //   hover:"arrow-right",
+    //   pressed:"arrow-right"
+    // }
   },
 };
 

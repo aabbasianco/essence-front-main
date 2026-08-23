@@ -431,14 +431,6 @@ function Button({
         <span data-slot="button-label">{resolvedStateProps.children}</span>
       )}
 
-      {!resolvedStateProps.isIcon &&
-        resolvedStateProps.endIcon &&
-        !resolvedStateProps.loading && (
-          <span className="" data-slot="button-end-icon">
-            {RenderIcon(resolvedStateProps.endIcon)}
-          </span>
-        )}
-
       {resolvedStateProps.badge != null &&
         resolvedStateProps.badge !== null &&
         resolvedStateProps.badge !== true && (
@@ -454,6 +446,14 @@ function Button({
           >
             {resolvedStateProps.badge}
           </Badge>
+        )}
+
+      {!resolvedStateProps.isIcon &&
+        resolvedStateProps.endIcon &&
+        !resolvedStateProps.loading && (
+          <span className="" data-slot="button-end-icon">
+            {RenderIcon(resolvedStateProps.endIcon)}
+          </span>
         )}
     </Comp>
   );
