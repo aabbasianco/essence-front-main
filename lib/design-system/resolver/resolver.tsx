@@ -38,6 +38,15 @@ const tones = {
 } as const;
 type Tone = keyof typeof tones;
 
+const states = {
+  default: "",
+  hover: "",
+  pressed: "",
+  focus: "",
+  selected: "",
+} as const;
+type State = keyof typeof states;
+
 type ComponentState = {
   background?: string;
   foreground?: string;
@@ -53,18 +62,6 @@ type Palette = {
   focus?: ComponentState;
   selected?: ComponentState;
 };
-
-const states = {
-  default: "",
-  hover: "",
-  pressed: "",
-  focus: "",
-  selected: "",
-} as const;
-
-type State = keyof typeof states;
-
-const statesArr = Object.keys(states) as State[];
 
 function GetPalette(appearance: Appearance, tone: Tone): Palette {
   switch (appearance) {
@@ -193,72 +190,132 @@ function GetPalette(appearance: Appearance, tone: Tone): Palette {
 
 type ApiPropObjValue<T> = Partial<Record<State, T>>;
 type ApiPropValue<T> = T | ApiPropObjValue<T>;
-type StatesRecipe<T extends object> = Partial<Record<State, Partial<T>>>;
 type ComponentPresetsRecipe<T extends object> = Record<string, StatesRecipe<T>>;
 
-function isStateValue<T>(
-  _value: ApiPropValue<T>,
-): _value is ApiPropObjValue<T> {
-  if (_value === null || typeof _value !== "object" || Array.isArray(_value)) {
-    return false;
-  }
+// -- New Resolver --
 
-  const keys = Object.keys(_value);
-  return (
-    keys.length > 0 && keys.every((_key) => statesArr.includes(_key as State))
-  );
-}
-
-type StateOverrides<T extends object> = {
-  [K in keyof T]?: ApiPropValue<T[K]>;
+type DeepPartial<T> = {
+  [K in keyof T]?: T[K] extends Record<string, unknown>
+    ? DeepPartial<T[K]>
+    : T[K];
 };
 
-function PropsResolver<T extends object>(_props: T): Partial<T> {
-  return Object.fromEntries(
-    Object.entries(_props).flatMap(([_key, _value]) => {
-      return _value == null ? [] : [[_key, _value]];
-    }),
-  ) as Partial<T>;
+// What can one state override?
+type StateProps<
+  Props extends object,
+  StructuredKeys extends keyof Props = never,
+> = Partial<Omit<Props, StructuredKeys>> & {
+  [K in StructuredKeys]?: Props[K] extends object
+    ? DeepPartial<Props[K]>
+    : Props[K];
+};
+
+// What states can the component define?
+type StatesRecipe<
+  Props extends object,
+  StructuredKeys extends keyof Props = never,
+> = Partial<Record<State, StateProps<Props, StructuredKeys>>>;
+
+// Is this value safe to recursively merge?
+function IsPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function StateResolver<T extends object>(
-  _defaults: T,
-  _statesRecipe: StatesRecipe<T>,
-  _state: State,
-  _overrides?: StateOverrides<T>,
-): T {
-  const resolvedPresets = PropsResolver({
-    ...(_statesRecipe.default ?? {}),
-    ...(_statesRecipe[_state] ?? {}),
-  });
+// Merge these two structured objects recursively.
+function MergeStructuredProps(
+  baseProps: Record<string, unknown>,
+  overrideProps: Record<string, unknown>,
+): Record<string, unknown> {
+  const result = { ...baseProps };
 
-  const resolvedOverrides = Object.fromEntries(
-    Object.entries(_overrides ?? {}).flatMap(([_key, _value]) => {
-      if (_value == null) {
-        return [];
-      }
+  for (const key of Object.keys(overrideProps)) {
+    const basePropsValue = result[key];
+    const overrideValue = overrideProps[key];
 
-      if (isStateValue(_value)) {
-        const resolvedValue = _value[_state];
-        if (resolvedValue == null) {
-          return [];
-        }
-        return [[_key, resolvedValue]];
-      }
+    if (IsPlainObject(basePropsValue) && IsPlainObject(overrideValue)) {
+      result[key] = MergeStructuredProps(basePropsValue, overrideValue);
+    } else {
+      result[key] = overrideValue;
+    }
+  }
 
-      return [[_key, _value]];
-    }),
-  ) as Partial<T>;
+  return result;
+}
 
-  return {
-    ..._defaults,
-    ...resolvedPresets,
-    ...resolvedOverrides,
-  };
+// Given defaults, preset, user API, user state overrides, and the current state, what are the final props?
+function ResolveStateProps<
+  Props extends object,
+  StructuredKeys extends keyof Props = never,
+>(
+  defaults: Props,
+  presetStates: StatesRecipe<Props, StructuredKeys>,
+  userProps: Partial<Props>,
+  userStates: StatesRecipe<Props, StructuredKeys> | undefined,
+  state: State,
+  structuredKeys: readonly StructuredKeys[],
+): Props {
+  let result = { ...defaults };
+
+  // 1. Preset default
+  result = mergeStateProps(result, presetStates.default, structuredKeys);
+
+  // 2. Preset current state
+  if (state !== "default") {
+    result = mergeStateProps(result, presetStates[state], structuredKeys);
+  }
+
+  // 3. Ordinary user props → default state
+  result = mergeStateProps(result, userProps, structuredKeys);
+
+  // 4. Explicit user default state
+  result = mergeStateProps(result, userStates?.default, structuredKeys);
+
+  // 5. Explicit user current state
+  if (state !== "default") {
+    result = mergeStateProps(result, userStates?.[state], structuredKeys);
+  }
+
+  return result;
+}
+
+// Apply this state's values to the current resolved props.
+function mergeStateProps<
+  Props extends object,
+  StructuredKeys extends keyof Props,
+>(
+  currentProps: Props,
+  overrideProps: StateProps<Props, StructuredKeys> | undefined,
+  structuredKeys: readonly StructuredKeys[],
+): Props {
+  if (!overrideProps) return currentProps;
+
+  const nextProps = { ...currentProps };
+
+  for (const key of Object.keys(overrideProps) as Array<keyof Props>) {
+    const value = (overrideProps as Partial<Props>)[key];
+
+    if (value === undefined) continue;
+
+    if (
+      structuredKeys.includes(key as StructuredKeys) &&
+      IsPlainObject(nextProps[key]) &&
+      IsPlainObject(value)
+    ) {
+      nextProps[key] = MergeStructuredProps(
+        nextProps[key] as Record<string, unknown>,
+        value as Record<string, unknown>,
+      ) as Props[typeof key];
+    } else {
+      nextProps[key] = value as Props[typeof key];
+    }
+  }
+
+  return nextProps;
 }
 
 export {
-  StateResolver,
+  // StateResolver,
+  ResolveStateProps,
   GetPalette,
   states,
   type State,

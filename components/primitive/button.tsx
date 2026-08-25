@@ -12,7 +12,8 @@ import {
   tones,
   StatesRecipe,
   ComponentPresetsRecipe,
-  StateResolver,
+  // StateResolver,
+  ResolveStateProps,
   State,
   ApiPropValue,
 } from "@/lib/design-system/resolver/resolver";
