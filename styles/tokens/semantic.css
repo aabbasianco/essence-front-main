@@ -19,8 +19,8 @@
     --color-transparent: transparent;
 
     /* Brand */
-    --color-brand: var(--color-brand-850);
-    --color-brand-rgb: var(--color-brand-850-rgb);
+    --color-brand: var(--color-brand-750);
+    --color-brand-rgb: var(--color-brand-750-rgb);
     --color-brand-foreground: #FFFFFF;
     --color-brand-foreground-rgb: 255, 255, 255;
 
@@ -123,8 +123,8 @@
 
     --color-red-subtle: var(--color-red-50);
     --color-red-subtle-rgb: var(--color-red-50-rgb);
-    --color-red-subtle-foreground: var(--color-red-700);
-    --color-red-subtle-foreground-rgb: var(--color-red-700-rgb);
+    --color-red-subtle-foreground: var(--color-red-900);
+    --color-red-subtle-foreground-rgb: var(--color-red-900-rgb);
     /* Orange */
     --color-orange: var(--color-orange-500);
     --color-orange-rgb: var(--color-orange-500-rgb);
@@ -141,8 +141,8 @@
     --color-yellow-foreground: #FFFFFF;
     --color-yellow-foreground-rgb: 255, 255, 255;
 
-    --color-yellow-subtle: var(--color-yellow-100);
-    --color-yellow-subtle-rgb: var(--color-yellow-100-rgb);
+    --color-yellow-subtle: var(--color-yellow-50);
+    --color-yellow-subtle-rgb: var(--color-yellow-50-rgb);
     --color-yellow-subtle-foreground: var(--color-yellow-800);
     --color-yellow-subtle-foreground-rgb: var(--color-yellow-800-rgb);
     /* Amber */

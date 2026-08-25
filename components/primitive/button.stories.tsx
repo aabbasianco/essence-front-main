@@ -7,7 +7,7 @@ import {
   buttonSizeRecipe,
 } from "@/components/primitive/button";
 import { OverlayBadge } from "./badge";
-import { appearances, tones } from "@/lib/design-system/resolver/resolver";
+import { appearances, Tone, tones } from "@/lib/design-system/resolver/resolver";
 import { DsIcons } from "./icon";
 
 const meta = {
@@ -209,6 +209,19 @@ export const OveralyBadgeNotification: Story = {
           isIcon
         />
       </OverlayBadge>
+    </div>
+  ),
+};
+
+export const Tones: Story = {
+  args:{
+    // startIcon:"astroid"
+  },
+  render: (args) => (
+    <div className="flex flex-wrap gap-3">
+      {Object.keys(tones).map((tone) => (
+        <Button key={tone} {...args} tone={tone as Tone}>{tone}</Button>
+      ))}
     </div>
   ),
 };

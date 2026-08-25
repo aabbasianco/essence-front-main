@@ -122,49 +122,6 @@ export const Application: Story = {
   ),
 };
 
-// export const Tones: Story = {
-//   render: (args) => (
-//     <div className="flex gap-4 justify-center overflow-hidden flex-wrap">
-//       <Tag startIcon="astroid" tone="brand" {...args}>
-//         Brand
-//       </Tag>
-//       <Tag startIcon="astroid" tone="orange" {...args}>
-//         Orange
-//       </Tag>
-//       <Tag startIcon="astroid" tone="yellow" {...args}>
-//         Yellow
-//       </Tag>
-//       <Tag startIcon="astroid" tone="amber" {...args}>
-//         Amber
-//       </Tag>
-//       <Tag startIcon="astroid" tone="emerald" {...args}>
-//         Emerald
-//       </Tag>
-//       <Tag startIcon="astroid" tone="teal" {...args}>
-//         Teal
-//       </Tag>
-//       <Tag startIcon="astroid" tone="sky" {...args}>
-//         Sky
-//       </Tag>
-//       <Tag startIcon="astroid" tone="indigo" {...args}>
-//         Indigo
-//       </Tag>
-//       <Tag startIcon="astroid" tone="violet" {...args}>
-//         Violet
-//       </Tag>
-//       <Tag startIcon="astroid" tone="purple" {...args}>
-//         Purple
-//       </Tag>
-//       <Tag startIcon="astroid" tone="fuchsia" {...args}>
-//         Fuchsia
-//       </Tag>
-//       <Tag startIcon="astroid" tone="rose" {...args}>
-//         Rose
-//       </Tag>
-//     </div>
-//   ),
-// };
-
 export const Tones: Story = {
   args:{
     // startIcon:"astroid"
