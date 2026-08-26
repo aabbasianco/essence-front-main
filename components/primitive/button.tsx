@@ -10,19 +10,17 @@ import {
   GetPalette,
   appearances,
   tones,
-  StatesRecipe,
   ComponentPresetsRecipe,
-  // StateResolver,
-  ResolveStateProps,
   State,
-  ApiPropValue,
+  StatesRecipe,
+  ResolveStateProps,
 } from "@/lib/design-system/resolver/resolver";
 import { RenderIcon, IconDefinition, SizeRecipe } from "./icon";
 
 const buttonShapes = ExtendVariants(defaultShapes, {
   rounded: "rounded-[var(--button-radius)]",
 });
-type ButtonShape = keyof typeof buttonShapes;
+// type ButtonShape = keyof typeof buttonShapes;
 
 const buttonSizeRecipe = {
   xs: {
@@ -111,7 +109,7 @@ const buttonSizeRecipe = {
     },
   },
 } satisfies SizeRecipe;
-type ButtonSize = keyof typeof buttonSizeRecipe;
+// type ButtonSize = keyof typeof buttonSizeRecipe;
 
 const buttonVariants = cva(
   "group/button inline-flex bg-(--button-background) text-(--button-foreground) border-[var(--button-border)] hover:bg-(--button-background-hover) hover:text-(--button-foreground-hover) hover:border-[var(--button-border-hover)] border-2 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:cursor-pointer focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-danger aria-invalid:ring-[3px] aria-invalid:ring-danger/20 dark:aria-invalid:border-danger/50 dark:aria-invalid:ring-danger/40",
@@ -131,52 +129,51 @@ const buttonVariants = cva(
   },
 );
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
-type ButtonOwnProps = {
-  badge?: ApiPropValue<React.ReactNode>;
-  loading?: ApiPropValue<boolean>;
-  startIcon?: ApiPropValue<IconDefinition>;
-  endIcon?: ApiPropValue<IconDefinition>;
-  fluid?: ApiPropValue<boolean>;
-  isIcon?: ApiPropValue<boolean>;
-  asChild?: boolean;
-};
-type ButtonApiProps = React.ComponentProps<"button"> &
-  ButtonOwnProps &
-  // Variants
-  {
-    appearance?: ApiPropValue<NonNullable<ButtonVariantProps["appearance"]>>;
-    tone?: ApiPropValue<NonNullable<ButtonVariantProps["tone"]>>;
-    shape?: ApiPropValue<NonNullable<ButtonVariantProps["shape"]>>;
-    size?: ApiPropValue<NonNullable<ButtonVariantProps["size"]>>;
+type ButtonVisualProps = {
+  background?: {
+    color?: string;
+    opacity?: number;
   };
 
-type ButtonResolvedApiProps = Omit<
-  ButtonApiProps,
-  | "appearance"
-  | "tone"
-  | "shape"
-  | "size"
-  | "loading"
-  | "startIcon"
-  | "endIcon"
-  | "fluid"
-  | "isIcon"
-  | "badge"
-> & {
-  appearance: NonNullable<ButtonVariantProps["appearance"]>;
-  tone: NonNullable<ButtonVariantProps["tone"]>;
-  shape: NonNullable<ButtonVariantProps["shape"]>;
-  size: NonNullable<ButtonVariantProps["size"]>;
+  foreground?: {
+    color?: string;
+    opacity?: number;
+  };
 
+  border?: {
+    color?: string;
+    opacity?: number;
+    width?: string;
+    style?: React.CSSProperties["borderStyle"];
+  };
+};
+type ButtonOwnProps = {
+  badge?: React.ReactNode;
   loading?: boolean;
   startIcon?: IconDefinition;
   endIcon?: IconDefinition;
   fluid?: boolean;
   isIcon?: boolean;
-  badge?: React.ReactNode;
+  asChild?: boolean;
 };
+type ButtonApiProps = React.ComponentProps<"button"> &
+  ButtonOwnProps &
+  ButtonVisualProps &
+  // Variants
+  {
+    appearance?: NonNullable<ButtonVariantProps["appearance"]>;
+    tone?: NonNullable<ButtonVariantProps["tone"]>;
+    shape?: NonNullable<ButtonVariantProps["shape"]>;
+    size?: NonNullable<ButtonVariantProps["size"]>;
+  };
 
-const buttonDefaults: ButtonResolvedApiProps = {
+type ButtonResolverProps = ButtonApiProps;
+
+type ButtonStructuredKey = "background" | "foreground" | "border";
+
+type ButtonStates = StatesRecipe<ButtonResolverProps, ButtonStructuredKey>;
+
+const buttonDefaults: ButtonResolverProps = {
   appearance: "solid",
   tone: "primary",
   shape: "rounded",
@@ -189,9 +186,16 @@ const buttonDefaults: ButtonResolvedApiProps = {
   children: "button default value",
   fluid: undefined,
   badge: undefined,
+
+  background: undefined,
+  foreground: undefined,
+  border: undefined,
 };
 
-const buttonPresetRecipe: ComponentPresetsRecipe<ButtonResolvedApiProps> = {
+const buttonPresetRecipe: ComponentPresetsRecipe<
+  ButtonResolverProps,
+  ButtonStructuredKey
+> = {
   primary: {
     default: {
       appearance: "solid",
@@ -320,15 +324,22 @@ type ButtonPresetRecipe = keyof typeof buttonPresetRecipe;
 
 type ButtonProps = ButtonApiProps & {
   preset?: ButtonPresetRecipe;
+  states?: ButtonStates;
 };
 
 function Button({
   className,
   preset,
-  tone,
+
   appearance,
+  tone,
   size,
   shape,
+
+  background,
+  foreground,
+  border,
+
   fluid,
   badge,
   asChild,
@@ -338,32 +349,43 @@ function Button({
   isIcon,
   children,
   disabled,
+
+  states,
+
   ...props
 }: ButtonProps) {
   const [state, setState] = React.useState<State>("default");
   const Comp = asChild ? Slot.Root : "button";
   const presetRecipe = preset ? buttonPresetRecipe[preset] : undefined;
-  const overrides = {
-    ...(appearance != null && { appearance }),
-    ...(tone != null && { tone }),
-    ...(shape != null && { shape }),
-    ...(size != null && { size }),
-    ...(startIcon != null && { startIcon }),
-    ...(endIcon != null && { endIcon }),
-    ...(isIcon != null && { isIcon }),
-    ...(loading != null && { loading }),
-    ...(disabled != null && { disabled }),
-    ...(children != null && { children }),
-    ...(fluid != null && { fluid }),
-    ...(badge != null && { badge }),
+  const userProps: Partial<ButtonResolverProps> = {
+    appearance,
+    tone,
+    shape,
+    size,
+
+    badge,
+    loading,
+    startIcon,
+    endIcon,
+    fluid,
+    isIcon,
+
+    children,
+    disabled,
+
+    background,
+    foreground,
+    border,
   };
   // type ButtonDefault = typeof buttonDefaults;
-  const resolvedStateProps = StateResolver<ButtonResolvedApiProps>(
-    buttonDefaults,
-    presetRecipe ?? {},
-    state,
-    overrides,
-  );
+  const resolvedStateProps = ResolveStateProps<
+    ButtonResolverProps,
+    ButtonStructuredKey
+  >(buttonDefaults, presetRecipe ?? {}, userProps, states, state, [
+    "background",
+    "foreground",
+    "border",
+  ]);
   const resolvedButtonSize = resolvedStateProps.isIcon
     ? buttonSizeRecipe[resolvedStateProps.size].icon.component
     : buttonSizeRecipe[resolvedStateProps.size].label.component;
@@ -414,9 +436,30 @@ function Button({
         } as React.CSSProperties
       }
       {...props}
-      onMouseEnter={() => setState("hover")}
-      onMouseLeave={() => setState("default")}
-      onMouseDown={() => setState("pressed")}
+      onMouseEnter={(event) => {
+        setState("hover");
+        props.onMouseEnter?.(event);
+      }}
+      onMouseLeave={(event) => {
+        setState("default");
+        props.onMouseLeave?.(event);
+      }}
+      onMouseDown={(event) => {
+        setState("pressed");
+        props.onMouseDown?.(event);
+      }}
+      onMouseUp={(event) => {
+        setState("hover");
+        props.onMouseUp?.(event);
+      }}
+      onFocus={(event) => {
+        setState("focus");
+        props.onFocus?.(event);
+      }}
+      onBlur={(event) => {
+        setState("default");
+        props.onBlur?.(event);
+      }}
     >
       {resolvedStateProps.loading ? (
         <Spinner data-icon="inline-start" />

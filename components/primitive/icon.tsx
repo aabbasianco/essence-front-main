@@ -52,6 +52,9 @@ import {
 } from "lucide-react";
 
 const DsIcons = {
+  astroid: Astroid,
+  sparkles: Sparkles,
+  earth: Earth,
   heart: Heart,
   "heart-off": HeartOff,
   search: Search,
@@ -76,11 +79,8 @@ const DsIcons = {
   truck: Truck,
   "shopping-cart": ShoppingCart,
   "shopping-bag": ShoppingBag,
-  sparkles: Sparkles,
-  astroid: Astroid,
   "arrow-right": ArrowRight,
   "arrow-left": ArrowLeft,
-  earth: Earth,
   mars: Mars,
   radio: Radio,
   venus: Venus,

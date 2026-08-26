@@ -51,7 +51,6 @@ type ComponentState = {
   background?: string;
   foreground?: string;
   border?: string;
-  opacity?: string;
   contrastBackground?: string;
 };
 
@@ -188,9 +187,10 @@ function GetPalette(appearance: Appearance, tone: Tone): Palette {
   }
 }
 
-type ApiPropObjValue<T> = Partial<Record<State, T>>;
-type ApiPropValue<T> = T | ApiPropObjValue<T>;
-type ComponentPresetsRecipe<T extends object> = Record<string, StatesRecipe<T>>;
+type ComponentPresetsRecipe<
+  Props extends object,
+  StructuredKeys extends keyof Props = never,
+> = Record<string, StatesRecipe<Props, StructuredKeys>>;
 
 // -- New Resolver --
 
@@ -242,44 +242,8 @@ function MergeStructuredProps(
   return result;
 }
 
-// Given defaults, preset, user API, user state overrides, and the current state, what are the final props?
-function ResolveStateProps<
-  Props extends object,
-  StructuredKeys extends keyof Props = never,
->(
-  defaults: Props,
-  presetStates: StatesRecipe<Props, StructuredKeys>,
-  userProps: Partial<Props>,
-  userStates: StatesRecipe<Props, StructuredKeys> | undefined,
-  state: State,
-  structuredKeys: readonly StructuredKeys[],
-): Props {
-  let result = { ...defaults };
-
-  // 1. Preset default
-  result = mergeStateProps(result, presetStates.default, structuredKeys);
-
-  // 2. Preset current state
-  if (state !== "default") {
-    result = mergeStateProps(result, presetStates[state], structuredKeys);
-  }
-
-  // 3. Ordinary user props → default state
-  result = mergeStateProps(result, userProps, structuredKeys);
-
-  // 4. Explicit user default state
-  result = mergeStateProps(result, userStates?.default, structuredKeys);
-
-  // 5. Explicit user current state
-  if (state !== "default") {
-    result = mergeStateProps(result, userStates?.[state], structuredKeys);
-  }
-
-  return result;
-}
-
 // Apply this state's values to the current resolved props.
-function mergeStateProps<
+function MergeStateProps<
   Props extends object,
   StructuredKeys extends keyof Props,
 >(
@@ -313,13 +277,47 @@ function mergeStateProps<
   return nextProps;
 }
 
+// Given defaults, preset, user API, user state overrides, and the current state, what are the final props?
+function ResolveStateProps<
+  Props extends object,
+  StructuredKeys extends keyof Props = never,
+>(
+  defaults: Props,
+  presetStates: StatesRecipe<Props, StructuredKeys>,
+  userProps: Partial<Props>,
+  userStates: StatesRecipe<Props, StructuredKeys> | undefined,
+  state: State,
+  structuredKeys: readonly StructuredKeys[],
+): Props {
+  let result = { ...defaults };
+
+  // 1. Preset default
+  result = MergeStateProps(result, presetStates.default, structuredKeys);
+
+  // 2. Preset current state
+  if (state !== "default") {
+    result = MergeStateProps(result, presetStates[state], structuredKeys);
+  }
+
+  // 3. Ordinary user props → default state
+  result = MergeStateProps(result, userProps, structuredKeys);
+
+  // 4. Explicit user default state
+  result = MergeStateProps(result, userStates?.default, structuredKeys);
+
+  // 5. Explicit user current state
+  if (state !== "default") {
+    result = MergeStateProps(result, userStates?.[state], structuredKeys);
+  }
+
+  return result;
+}
+
 export {
-  // StateResolver,
   ResolveStateProps,
   GetPalette,
   states,
   type State,
-  type ApiPropValue,
   type StatesRecipe,
   type ComponentPresetsRecipe,
   tones,
