@@ -62,89 +62,89 @@ type Palette = {
   selected?: ComponentState;
 };
 
-function GetPalette(appearance: Appearance, tone: Tone): Palette {
-  switch (appearance) {
+function GetPalette(_appearance: Appearance, _tone: Tone): Palette {
+  switch (_appearance) {
     case "solid":
       return {
         default: {
-          background: `var(--color-${tone})`,
-          foreground: `var(--color-${tone}-foreground)`,
+          background: `var(--color-${_tone})`,
+          foreground: `var(--color-${_tone}-foreground)`,
           border: "transparent",
-          contrastBackground: `var(--color-${tone})`,
+          contrastBackground: `var(--color-${_tone})`,
         },
 
         hover: {
-          background: `rgba(var(--color-${tone}-rgb), 0.8)`,
-          foreground: `var(--color-${tone}-foreground)`,
+          background: `rgba(var(--color-${_tone}-rgb), 0.8)`,
+          foreground: `var(--color-${_tone}-foreground)`,
           border: "transparent",
         },
 
         pressed: {
-          background: `var(--color-${tone})`,
-          foreground: `var(--color-${tone}-foreground)`,
+          background: `var(--color-${_tone})`,
+          foreground: `var(--color-${_tone}-foreground)`,
           border: "transparent",
         },
       };
     case "soft":
       return {
         default: {
-          background: `var(--color-${tone}-subtle)`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
+          background: `var(--color-${_tone}-subtle)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
           border: `transparent`,
-          contrastBackground: `var(--color-${tone}-foreground)`,
+          contrastBackground: `var(--color-${_tone}-foreground)`,
         },
 
         hover: {
-          background: `rgba(var(--color-${tone}-rgb), 0.2)`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
+          background: `rgba(var(--color-${_tone}-rgb), 0.2)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
           border: "transparent",
         },
 
         pressed: {
-          background: `var(--color-${tone}-subtle)`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
+          background: `var(--color-${_tone}-subtle)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
           border: `transparent`,
         },
       };
     case "soft-outline":
       return {
         default: {
-          background: `var(--color-${tone}-subtle)`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
-          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
-          contrastBackground: `var(--color-${tone}-foreground)`,
+          background: `var(--color-${_tone}-subtle)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
+          border: `rgba(var(--color-${_tone}-rgb), 0.3)`,
+          contrastBackground: `var(--color-${_tone}-foreground)`,
         },
 
         hover: {
-          background: `rgba(var(--color-${tone}-rgb), 0.2)`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
-          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
+          background: `rgba(var(--color-${_tone}-rgb), 0.2)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
+          border: `rgba(var(--color-${_tone}-rgb), 0.3)`,
         },
 
         pressed: {
-          background: `var(--color-${tone}-subtle)`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
-          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
+          background: `var(--color-${_tone}-subtle)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
+          border: `rgba(var(--color-${_tone}-rgb), 0.3)`,
         },
       };
     case "ghost":
       return {
         default: {
           background: `transparent`,
-          foreground: `var(--color-${tone})`,
+          foreground: `var(--color-${_tone})`,
           border: `transparent`,
-          contrastBackground: `var(--color-${tone}-foreground)`,
+          contrastBackground: `var(--color-${_tone}-foreground)`,
         },
 
         hover: {
-          background: `var(--color-${tone}-subtle)`,
-          foreground: `var(--color-${tone})`,
+          background: `var(--color-${_tone}-subtle)`,
+          foreground: `var(--color-${_tone})`,
           border: "transparent",
         },
 
         pressed: {
           background: `transparent`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
           border: `transparent`,
         },
       };
@@ -152,35 +152,35 @@ function GetPalette(appearance: Appearance, tone: Tone): Palette {
       return {
         default: {
           background: `transparent`,
-          foreground: `var(--color-${tone})`,
-          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
-          contrastBackground: `var(--color-${tone}-foreground)`,
+          foreground: `var(--color-${_tone})`,
+          border: `rgba(var(--color-${_tone}-rgb), 0.3)`,
+          contrastBackground: `var(--color-${_tone}-foreground)`,
         },
 
         hover: {
-          background: `var(--color-${tone}-subtle)`,
-          foreground: `var(--color-${tone})`,
-          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
+          background: `var(--color-${_tone}-subtle)`,
+          foreground: `var(--color-${_tone})`,
+          border: `rgba(var(--color-${_tone}-rgb), 0.3)`,
         },
 
         pressed: {
           background: `transparent`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
-          border: `rgba(var(--color-${tone}-rgb), 0.3)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
+          border: `rgba(var(--color-${_tone}-rgb), 0.3)`,
         },
       };
     case "text":
       return {
         default: {
           background: `transparent`,
-          foreground: `var(--color-${tone})`,
+          foreground: `var(--color-${_tone})`,
           border: `transparent`,
-          contrastBackground: `var(--color-${tone}-foreground)`,
+          contrastBackground: `var(--color-${_tone}-foreground)`,
         },
 
         pressed: {
           background: `transparent`,
-          foreground: `var(--color-${tone}-subtle-foreground)`,
+          foreground: `var(--color-${_tone}-subtle-foreground)`,
           border: `transparent`,
         },
       };
@@ -217,20 +217,20 @@ type StatesRecipe<
 > = Partial<Record<State, StateProps<Props, StructuredKeys>>>;
 
 // Is this value safe to recursively merge?
-function IsPlainObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
+function IsPlainObject(_value: unknown): _value is Record<string, unknown> {
+  return typeof _value === "object" && _value !== null && !Array.isArray(_value);
 }
 
 // Merge these two structured objects recursively.
 function MergeStructuredProps(
-  baseProps: Record<string, unknown>,
-  overrideProps: Record<string, unknown>,
+  _baseProps: Record<string, unknown>,
+  _overrideProps: Record<string, unknown>,
 ): Record<string, unknown> {
-  const result = { ...baseProps };
+  const result = { ..._baseProps };
 
-  for (const key of Object.keys(overrideProps)) {
+  for (const key of Object.keys(_overrideProps)) {
     const basePropsValue = result[key];
-    const overrideValue = overrideProps[key];
+    const overrideValue = _overrideProps[key];
 
     if (IsPlainObject(basePropsValue) && IsPlainObject(overrideValue)) {
       result[key] = MergeStructuredProps(basePropsValue, overrideValue);
@@ -247,30 +247,30 @@ function MergeStateProps<
   Props extends object,
   StructuredKeys extends keyof Props,
 >(
-  currentProps: Props,
-  overrideProps: StateProps<Props, StructuredKeys> | undefined,
-  structuredKeys: readonly StructuredKeys[],
+  _currentProps: Props,
+  _overrideProps: StateProps<Props, StructuredKeys> | undefined,
+  _structuredKeys: readonly StructuredKeys[],
 ): Props {
-  if (!overrideProps) return currentProps;
+  if (!_overrideProps) return _currentProps;
 
-  const nextProps = { ...currentProps };
+  const nextProps = { ..._currentProps };
 
-  for (const key of Object.keys(overrideProps) as Array<keyof Props>) {
-    const value = (overrideProps as Partial<Props>)[key];
+  for (const key of Object.keys(_overrideProps) as Array<keyof Props>) {
+    const overridePropValue = (_overrideProps as Partial<Props>)[key];
 
-    if (value === undefined) continue;
+    if (overridePropValue === undefined) continue;
 
     if (
-      structuredKeys.includes(key as StructuredKeys) &&
+      _structuredKeys.includes(key as StructuredKeys) &&
       IsPlainObject(nextProps[key]) &&
-      IsPlainObject(value)
+      IsPlainObject(overridePropValue)
     ) {
       nextProps[key] = MergeStructuredProps(
         nextProps[key] as Record<string, unknown>,
-        value as Record<string, unknown>,
+        overridePropValue as Record<string, unknown>,
       ) as Props[typeof key];
     } else {
-      nextProps[key] = value as Props[typeof key];
+      nextProps[key] = overridePropValue as Props[typeof key];
     }
   }
 
@@ -282,32 +282,32 @@ function ResolveStateProps<
   Props extends object,
   StructuredKeys extends keyof Props = never,
 >(
-  defaults: Props,
-  presetStates: StatesRecipe<Props, StructuredKeys>,
-  userProps: Partial<Props>,
-  userStates: StatesRecipe<Props, StructuredKeys> | undefined,
-  state: State,
-  structuredKeys: readonly StructuredKeys[],
+  _defaults: Props,
+  _presetStates: StatesRecipe<Props, StructuredKeys>,
+  _userProps: Partial<Props>,
+  _userStates: StatesRecipe<Props, StructuredKeys> | undefined,
+  _state: State,
+  _structuredKeys: readonly StructuredKeys[],
 ): Props {
-  let result = { ...defaults };
+  let result = { ..._defaults };
 
   // 1. Preset default
-  result = MergeStateProps(result, presetStates.default, structuredKeys);
+  result = MergeStateProps(result, _presetStates.default, _structuredKeys);
 
   // 2. Preset current state
-  if (state !== "default") {
-    result = MergeStateProps(result, presetStates[state], structuredKeys);
+  if (_state !== "default") {
+    result = MergeStateProps(result, _presetStates[_state], _structuredKeys);
   }
 
   // 3. Ordinary user props → default state
-  result = MergeStateProps(result, userProps, structuredKeys);
+  result = MergeStateProps(result, _userProps, _structuredKeys);
 
   // 4. Explicit user default state
-  result = MergeStateProps(result, userStates?.default, structuredKeys);
+  result = MergeStateProps(result, _userStates?.default, _structuredKeys);
 
   // 5. Explicit user current state
-  if (state !== "default") {
-    result = MergeStateProps(result, userStates?.[state], structuredKeys);
+  if (_state !== "default") {
+    result = MergeStateProps(result, _userStates?.[_state], _structuredKeys);
   }
 
   return result;
