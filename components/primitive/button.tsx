@@ -14,6 +14,8 @@ import {
   State,
   StatesRecipe,
   ResolveStateProps,
+  PaintStructure,
+  BorderStructure,
 } from "@/lib/design-system/resolver/resolver";
 import { RenderIcon, IconDefinition, SizeRecipe } from "./icon";
 
@@ -130,22 +132,11 @@ const buttonVariants = cva(
 );
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 type ButtonVisualProps = {
-  background?: {
-    color?: string;
-    opacity?: number;
-  };
+  background?: PaintStructure;
 
-  foreground?: {
-    color?: string;
-    opacity?: number;
-  };
+  foreground?: PaintStructure;
 
-  border?: {
-    color?: string;
-    opacity?: number;
-    width?: string;
-    style?: React.CSSProperties["borderStyle"];
-  };
+  border?: BorderStructure;
 };
 type ButtonOwnProps = {
   badge?: React.ReactNode;
@@ -386,6 +377,30 @@ function Button({
     "foreground",
     "border",
   ]);
+  const defaultProps = ResolveStateProps<
+    ButtonResolverProps,
+    ButtonStructuredKey
+  >(buttonDefaults, presetRecipe ?? {}, userProps, states, "default", [
+    "background",
+    "foreground",
+    "border",
+  ]);
+  const hoverProps = ResolveStateProps<
+    ButtonResolverProps,
+    ButtonStructuredKey
+  >(buttonDefaults, presetRecipe ?? {}, userProps, states, "hover", [
+    "background",
+    "foreground",
+    "border",
+  ]);
+  const pressedProps = ResolveStateProps<
+    ButtonResolverProps,
+    ButtonStructuredKey
+  >(buttonDefaults, presetRecipe ?? {}, userProps, states, "pressed", [
+    "background",
+    "foreground",
+    "border",
+  ]);
   const resolvedButtonSize = resolvedStateProps.isIcon
     ? buttonSizeRecipe[resolvedStateProps.size].icon.component
     : buttonSizeRecipe[resolvedStateProps.size].label.component;
@@ -395,6 +410,18 @@ function Button({
   const palette = GetPalette(
     resolvedStateProps.appearance,
     resolvedStateProps.tone,
+  );
+  const defaultPalette = GetPalette(
+    defaultProps.appearance,
+    defaultProps.tone,
+  );
+  const hoverPalette = GetPalette(
+    hoverProps.appearance,
+    hoverProps.tone,
+  );
+  const pressedPalette = GetPalette(
+    pressedProps.appearance,
+    pressedProps.tone,
   );
   return (
     <Comp

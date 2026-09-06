@@ -47,11 +47,23 @@ const states = {
 } as const;
 type State = keyof typeof states;
 
+type PaintStructure = {
+  color?: React.CSSProperties["color"];
+  opacity?: number;
+};
+
+type BorderStructure = {
+  color?: React.CSSProperties["color"];
+  opacity?: number;
+  width?: React.CSSProperties["width"];
+  style?: React.CSSProperties["borderStyle"];
+};
+
 type ComponentState = {
-  background?: string;
-  foreground?: string;
-  border?: string;
-  contrastBackground?: string;
+  background?: PaintStructure;
+  foreground?: PaintStructure;
+  border?: BorderStructure;
+  contrastBackground?: React.CSSProperties["color"];
 };
 
 type Palette = {
@@ -62,13 +74,26 @@ type Palette = {
   selected?: ComponentState;
 };
 
-function GetPalette(_appearance: Appearance, _tone: Tone): Palette {
+function GetPalette(
+  _appearance: Appearance,
+  _tone: Tone,
+  _defaultBgOpacity: number,
+  _defaultFgOpacity: number,
+  _defaultBorderOpacity: number,
+): Palette {
   switch (_appearance) {
     case "solid":
       return {
         default: {
-          background: `var(--color-${_tone})`,
-          foreground: `var(--color-${_tone}-foreground)`,
+          // background: {
+          //   color: `rgba(var(--color-${_tone}), ${_defaultBgOpacity})`,
+          // },
+          // foreground: {
+          //   color: `var(--color-${_tone})`,
+          //   opacity: _defaultBgOpacity,
+          // },
+          background:`var(--color-${_tone})`,
+          foreground:`var(--color-${_tone}-foreground)`,
           border: "transparent",
           contrastBackground: `var(--color-${_tone})`,
         },
@@ -218,11 +243,22 @@ type StatesRecipe<
 
 // Is this value safe to recursively merge?
 function IsPlainObject(_value: unknown): _value is Record<string, unknown> {
-  return typeof _value === "object" && _value !== null && !Array.isArray(_value);
+  return (
+    typeof _value === "object" && _value !== null && !Array.isArray(_value)
+  );
 }
 
-// Merge these two structured objects recursively.
-function MergeStructuredProps(
+/**
+ * Deep-merges the values inside a structured component prop.
+ *
+ * Example:
+ *
+ * base     = { color: "primary", opacity: 0.3 }
+ * override = { opacity: 1 }
+ *
+ * result   = { color: "primary", opacity: 1 }
+ */
+function MergeStructuredPropValues(
   _baseProps: Record<string, unknown>,
   _overrideProps: Record<string, unknown>,
 ): Record<string, unknown> {
@@ -233,7 +269,7 @@ function MergeStructuredProps(
     const overrideValue = _overrideProps[key];
 
     if (IsPlainObject(basePropsValue) && IsPlainObject(overrideValue)) {
-      result[key] = MergeStructuredProps(basePropsValue, overrideValue);
+      result[key] = MergeStructuredPropValues(basePropsValue, overrideValue);
     } else {
       result[key] = overrideValue;
     }
@@ -242,7 +278,44 @@ function MergeStructuredProps(
   return result;
 }
 
-// Apply this state's values to the current resolved props.
+/**
+ * Applies a state patch to the component's resolved props.
+ *
+ * Simple props are replaced.
+ * Structured props are recursively merged.
+ *
+ * Example:
+ *
+ * base     = {
+ *  appearance: "solid",
+ *  tone: "primary",
+ *  bg: {
+ *    color: #000000,
+ *    opacity: 0.2,
+ *    }
+ *  }
+ * override = {
+ *  tone: "violet",
+ *  bg: {
+ *    opacity: 1,
+ *    }
+ *  }
+ *
+ * structuredKeys = [
+ *  "bg",
+ *  "fg",
+ *  "border",
+ *  ]
+ *
+ * result   = {
+ *  appearance: "solid",
+ *  tone: "violet",
+ *  bg: {
+ *    color: #000000,
+ *    opacity: 1,
+ *    }
+ *  }
+ */
 function MergeStateProps<
   Props extends object,
   StructuredKeys extends keyof Props,
@@ -265,7 +338,7 @@ function MergeStateProps<
       IsPlainObject(nextProps[key]) &&
       IsPlainObject(overridePropValue)
     ) {
-      nextProps[key] = MergeStructuredProps(
+      nextProps[key] = MergeStructuredPropValues(
         nextProps[key] as Record<string, unknown>,
         overridePropValue as Record<string, unknown>,
       ) as Props[typeof key];
@@ -324,4 +397,6 @@ export {
   type Tone,
   appearances,
   type Appearance,
+  type PaintStructure,
+  type BorderStructure,
 };
