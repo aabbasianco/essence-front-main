@@ -42,3 +42,9 @@ next-env.d.ts
 
 *storybook.log
 storybook-static
+
+
+
+.nx/cache
+.nx/workspace-data
+.nx/migrate-runs
