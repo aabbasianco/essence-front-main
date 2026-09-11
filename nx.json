@@ -19,22 +19,25 @@
   },
   "analytics": false,
   "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "eslint:lint"
-      }
-    },
-    {
-      "plugin": "@nx/storybook/plugin",
-      "options": {
-        "serveStorybookTargetName": "serve:storybook",
-        "buildStorybookTargetName": "build:storybook",
-        "testStorybookTargetName": "test-storybook",
-        "staticStorybookTargetName": "static-storybook",
-        "buildDepsTargetName": "build-deps",
-        "watchDepsTargetName": "watch-deps"
-      }
+  {
+    "plugin": "@nx/next/plugin"
+  },
+  {
+    "plugin": "@nx/eslint/plugin",
+    "options": {
+      "targetName": "eslint:lint"
     }
-  ]
+  },
+  {
+    "plugin": "@nx/storybook/plugin",
+    "options": {
+      "serveStorybookTargetName": "serve:storybook",
+      "buildStorybookTargetName": "build:storybook",
+      "testStorybookTargetName": "test-storybook",
+      "staticStorybookTargetName": "static-storybook",
+      "buildDepsTargetName": "build-deps",
+      "watchDepsTargetName": "watch-deps"
+    }
+  }
+]
 }
