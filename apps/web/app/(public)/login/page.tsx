@@ -1,8 +1,8 @@
 import { GalleryVerticalEnd } from "lucide-react"
 
-import { LoginForm } from "@/apps/web/components/login-form";
+import { LoginForm } from "@/components/login-form";
 import Image from "next/image";
-import { ThemeToggle } from '@/apps/web/components/theme-toggle';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export default function Login() {
   return (

@@ -4,15 +4,15 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Toggle as TogglePrimitive } from "radix-ui";
 
-import { cn } from "@/apps/web/lib/utils";
+import { cn } from "@/lib/utils";
 import {
   GetPalette,
   type Appearance,
   type Tone,
   appearances,
   tones,
-} from "@/apps/web/lib/design-system/resolver/resolver";
-import { defaultShapes, ExtendVariants } from "@/apps/web/lib/design-system/variants";
+} from "@/lib/design-system/resolver/resolver";
+import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 import { IconDefinition, IconPropsSet, RenderIcon } from "./icon";
 
 const toggleDefaults = {

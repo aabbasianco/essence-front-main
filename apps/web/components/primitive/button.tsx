@@ -1,11 +1,11 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
-import { cn } from "@/apps/web/lib/utils";
+import { cn } from "@/lib/utils";
 
 import { Spinner } from "./spinner";
 import { Badge } from "./badge";
-import { defaultShapes, ExtendVariants } from "@/apps/web/lib/design-system/variants";
+import { defaultShapes, ExtendVariants } from "@/lib/design-system/variants";
 import {
   GetPalette,
   appearances,
@@ -16,7 +16,7 @@ import {
   ResolveStateProps,
   PaintStructure,
   BorderStructure,
-} from "@/apps/web/lib/design-system/resolver/resolver";
+} from "@/lib/design-system/resolver/resolver";
 import { RenderIcon, IconDefinition, SizeRecipe } from "./icon";
 
 const buttonShapes = ExtendVariants(defaultShapes, {

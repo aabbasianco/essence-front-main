@@ -5,7 +5,7 @@ import {
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/apps/web/components/primitive/input-group";
+} from "@/components/primitive/input-group";
 import { Search } from "lucide-react";
 import { inputPresets, inputShapes } from "./input";
 import { RenderIcon } from "./icon";

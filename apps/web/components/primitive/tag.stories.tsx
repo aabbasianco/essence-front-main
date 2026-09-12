@@ -4,12 +4,12 @@ import {
   tones,
   appearances,
   Tone,
-} from "@/apps/web/lib/design-system/resolver/resolver";
+} from "@/lib/design-system/resolver/resolver";
 import {
   tagPresets,
   tagShapes,
   tagSizeRecipe,
-} from "@/apps/web/components/primitive/tag";
+} from "@/components/primitive/tag";
 import { DsIcons } from "./icon";
 
 const meta = {

@@ -1,20 +1,20 @@
-import { cn } from "@/apps/web/lib/utils";
-import { Button } from "@/apps/web/components/primitive/button";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/primitive/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/apps/web/components/primitive/card";
+} from "@/components/primitive/card";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
-} from "@/apps/web/components/ui/field";
-import { Input } from "@/apps/web/components/primitive/input";
+} from "@/components/ui/field";
+import { Input } from "@/components/primitive/input";
 
 // Theme mode toggle
 import { ArrowRight } from "lucide-react";
@@ -24,7 +24,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/apps/web/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 
 export function LoginForm({

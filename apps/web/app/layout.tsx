@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { cn } from "@/apps/web/lib/utils";
-import { notoSans } from "@/apps/web/lib/fonts";
+import { cn } from "@/lib/utils";
+import { notoSans } from "@/lib/fonts";
 
 // Theme probider
-import { ThemeProvider } from "@/apps/web/components/theme-provider" 
+import { ThemeProvider } from "@/components/theme-provider" 
 
 export const metadata: Metadata = {
   title: "Essence | اسانس",

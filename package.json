@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@12.3.4",
   "scripts": {
-    "dev": "nx serve web",
+    "dev": "nx run web:dev",
     "build": "nx build web",
     "lint": "nx lint web",
     "storybook": "nx run web:storybook",

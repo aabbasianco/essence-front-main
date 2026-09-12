@@ -1,4 +1,4 @@
-import { cn } from "@/apps/web/lib/utils";
+import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import {
   GetPalette,
@@ -6,7 +6,7 @@ import {
   tones,
   type Appearance,
   type Tone,
-} from "@/apps/web/lib/design-system/resolver/resolver";
+} from "@/lib/design-system/resolver/resolver";
 import {
   Heart,
   HeartOff,

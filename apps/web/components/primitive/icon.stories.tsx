@@ -6,14 +6,14 @@ import {
   type IconName,
   type IconPurpose,
   type IconSize,
-} from "@/apps/web/components/primitive/icon";
+} from "@/components/primitive/icon";
 
 import {
   appearances,
   tones,
   type Appearance,
   type Tone,
-} from "@/apps/web/lib/design-system/resolver/resolver";
+} from "@/lib/design-system/resolver/resolver";
 import { Button } from "./button";
 
 const iconNames = Object.keys(DsIcons) as IconName[];

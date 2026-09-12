@@ -7,7 +7,7 @@ import { CardDescription } from "./card";
 import { CardContent } from "./card";
 import { CardFooter } from "./card";
 import { CardAction } from "./card";
-import { Button } from "@/apps/web/components/primitive/button";
+import { Button } from "@/components/primitive/button";
 import Image from "next/image";
 
 const meta = {
