@@ -109,6 +109,9 @@ importers:
 
   .:
     devDependencies:
+      '@nx/dotnet':
+        specifier: 23.2.0
+        version: 23.2.0(nx@23.2.0)
       '@nx/eslint':
         specifier: 23.2.0
         version: 23.2.0(@babel/traverse@7.29.8(supports-color@8.1.1))(@zkochan/js-yaml@0.0.7)(eslint@9.39.5(jiti@2.7.0)(supports-color@8.1.1))(nx@23.2.0)(supports-color@8.1.1)
@@ -1456,6 +1459,9 @@ packages:
     resolution: {integrity: sha512-srj04UsYqq2nG7Z9DxM00D8XpSpmSM7XQafCkD4FIOE2NPMCu0QvypJLe8S7a1/YAW9rqlnYrdadaQte687eAw==}
     peerDependencies:
       nx: '>= 22 <= 24 || ^23.0.0-0'
+
+  '@nx/dotnet@23.2.0':
+    resolution: {integrity: sha512-06iiu42xCy7n8IfnW6mmjiIDCp+EgVCPfK7bTH1wDoMliv6fpylitE0hiWipUvYh0x41HfaK9SVDmVAXQuDoaw==}
 
   '@nx/eslint@23.2.0':
     resolution: {integrity: sha512-ecVhJ4eU9wHw9xo9e8FKBzme8NjM4X3YQdeU0boOXJczqV7yoArAQbMfCwd9O64Ez/emaTWZKQ5sMeUCdKEyTw==}
@@ -7860,6 +7866,14 @@ snapshots:
       semver: 7.8.5
       tslib: 2.8.1
       yargs-parser: 21.1.1
+
+  '@nx/dotnet@23.2.0(nx@23.2.0)':
+    dependencies:
+      '@nx/devkit': 23.2.0(nx@23.2.0)
+      ignore: 7.0.8
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - nx
 
   '@nx/eslint@23.2.0(@babel/traverse@7.29.8(supports-color@8.1.1))(@zkochan/js-yaml@0.0.7)(eslint@9.39.5(jiti@2.7.0)(supports-color@8.1.1))(nx@23.2.0)(supports-color@8.1.1)':
     dependencies:

@@ -11,6 +11,7 @@
     "build-storybook": "nx run web:build-storybook"
   },
   "devDependencies": {
+    "@nx/dotnet": "23.2.0",
     "@nx/eslint": "23.2.0",
     "@nx/next": "23.2.0",
     "@nx/storybook": "23.2.0",
